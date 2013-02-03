@@ -55,7 +55,7 @@ public class Program {
                     }
                 }
             } catch (Exception x) {
-                x.printStackTrace();
+                System.err.println(x.getMessage());
             }
         }
     }

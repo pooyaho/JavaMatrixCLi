@@ -1,6 +1,7 @@
 package matrix;
 
 import java.io.Serializable;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -235,4 +236,80 @@ public class Matrix implements Serializable {
     public double[] getRow(int i) {
         return content[i];
     }
+
+    public Matrix add(Matrix b) {
+        if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
+            throw new IllegalArgumentException("Input Matrixes should have same dimensions");
+        }
+
+        Matrix temp = new Matrix(getHeight(), getWidth());
+
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                temp.setContent(getContent(i, j) + b.getContent(i, j), i, j);
+            }
+        }
+
+        return temp;
+    }
+
+    public Matrix sub(Matrix b) {
+
+        if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
+            throw new IllegalArgumentException("Input Matrixes should have same dimensions");
+        }
+
+        Matrix temp = new Matrix(getWidth(), getHeight(), getName() + "-" + b.getName());
+
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                temp.setContent(getContent(i, j) - b.getContent(i, j), i, j);
+            }
+        }
+
+        return temp;
+
+    }
+
+    public Matrix mul(Matrix b) {
+
+        if (getWidth() != b.getHeight()) {
+            throw new IllegalArgumentException(MessageFormat.format("A:Rows: {0} did not match B:Columns {1}.",
+                    getWidth(), b.getHeight()));
+        }
+
+        Matrix temp = new Matrix(getHeight(), b.getWidth());
+
+        double[][] result = new double[getHeight()][b.getWidth()];
+
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < b.getWidth(); j++) { // bColumn
+                for (int k = 0; k < getWidth(); k++) { // aColumn
+                    result[i][j] += getContent(i, k) * b.getContent(k, j);
+                }
+            }
+        }
+
+        temp.setContent(result);
+        return temp;
+    }
+
+    public Matrix power(int c) {
+        Matrix temp = new Matrix(getHeight(), getWidth());
+        temp.setMatrix(this);
+        for (int i = 1; i < c; i++) {
+            temp.setMatrix(temp.mul(this));
+        }
+        return temp;
+    }
+    public void lu(Matrix l, Matrix u) throws Exception {
+        if (getHeight() != getWidth())
+            throw new Exception("Can not decompose");
+
+        LUDecomposition luDecomposition = new LUDecomposition(this);
+        l.setMatrix( luDecomposition.getL());
+        u.setMatrix(luDecomposition.getU());
+
+    }
+
 }

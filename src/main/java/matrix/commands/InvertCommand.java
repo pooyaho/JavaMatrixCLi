@@ -1,7 +1,6 @@
 package matrix.commands;
 
 import matrix.Matrix;
-import matrix.MatrixOperations;
 
 import java.util.List;
 
@@ -21,12 +20,12 @@ public class InvertCommand extends AbstractCommand {
         if (params.size() == 2) {
 
             matrix1 = getMatrix(params.get(1));
-            resultMatrix = MatrixOperations.invert(matrix1);
+            resultMatrix = matrix1.invert();
             resultMatrix.setName(params.get(0));
 
         } else if (params.size() == 1) {
             matrix1 = getMatrix(params.get(0));
-            resultMatrix = MatrixOperations.invert(matrix1);
+            resultMatrix = matrix1.invert();
 
             resultMatrix.setName(matrix1.getName());
         }

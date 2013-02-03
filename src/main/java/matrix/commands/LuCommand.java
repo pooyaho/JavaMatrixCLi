@@ -1,7 +1,6 @@
 package matrix.commands;
 
 import matrix.Matrix;
-import matrix.MatrixOperations;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class LuCommand extends AbstractCommand {
         Matrix l = getMatrix(params.get(1));
         Matrix u = getMatrix(params.get(2));
 
-        MatrixOperations.lu(a, l, u);
+        a.lu(l, u);
 
         persistMatrix(a, l, u);
 

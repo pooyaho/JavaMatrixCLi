@@ -3,7 +3,6 @@ package matrix.commands;
 import matrix.Matrix;
 import matrix.MatrixOperations;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,6 +11,7 @@ import java.util.List;
  * Time: 2:14 PM
  */
 public class TransposeCommand extends AbstractCommand {
+
     @Override
     public void execute(List<String> params) throws Exception {
         if (params.size() < 1)

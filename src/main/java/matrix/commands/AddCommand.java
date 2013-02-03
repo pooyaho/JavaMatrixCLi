@@ -1,9 +1,7 @@
 package matrix.commands;
 
 import matrix.Matrix;
-import matrix.MatrixOperations;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -24,13 +22,13 @@ public class AddCommand extends AbstractCommand {
 
             matrix1 = getMatrix(params.get(1));
             matrix2 = getMatrix(params.get(2));
-            resultMatrix = MatrixOperations.add(matrix1, matrix2);
+            resultMatrix = matrix1.add(matrix2);
             resultMatrix.setName(params.get(0));
 
         } else if (params.size() == 2) {
             matrix1 = getMatrix(params.get(0));
             matrix2 = getMatrix(params.get(1));
-            resultMatrix = MatrixOperations.add(matrix1, matrix2);
+            resultMatrix = matrix1.add(matrix2);
 
             resultMatrix.setName(matrix1.getName());
         }
