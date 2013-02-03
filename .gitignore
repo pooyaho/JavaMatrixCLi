@@ -5,11 +5,19 @@
 *.class
 *.dll
 *.exe
+
 *.o
 *.so
+
+###################
 # IDEA #
-.idea/workspace.xml
+###################
 *.iml
+.idea/*.*
+.idea
+.idea/workspace.xml
+
+
 ############
 # Packages #
 ############
