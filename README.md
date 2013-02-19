@@ -1,12 +1,13 @@
 Hi
-This project developed by Pooya.hfp and e.Amoli to desing a command line program in Java to create, save, load and manipulate Matrices.
+This project developed by Pooya husseini to design a command line program in Java to create, save,
+load and manipulate Matrices.
 It's pure Java core and I did not used any other technologies. I created it in maven to make it cross IDE.
 Run Program.java and for example write Matrix a 3 3; it creates a 3x3 matrix that named 'a'.
 each commands should end with ; and also every command is case insensitive.
 Full command list is:
 
 ### MATRIX name height width
-Creates a matrix with dimension of heightxwidth . Width and height are optional
+Creates a matrix with dimension of height * width . Width and height are optional
 
 ### SET M {values}
 Fills matrix with values 
@@ -77,7 +78,11 @@ Solves Matrix equation  Ax=b that A is M1, X is M2 and b is M3.
 ### LUDecompose M1 M2 M3
 Decomposes M1 with LU decomposition and set M2 with L and M3 with U
 
+### Usage #command_name
+prints how to use the command_name
 
+### Help #command_name
+prints about the command_name
 
 Best regards
 Pooya Husseini
