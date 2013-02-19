@@ -60,6 +60,9 @@
         <entry key="matrix">
             <bean class="matrix.commands.CreateCommand"/>
         </entry>
+        <entry key="det">
+            <bean class="matrix.commands.DeterminantCommand"/>
+        </entry>
     </utils:map>
 
 </beans>
