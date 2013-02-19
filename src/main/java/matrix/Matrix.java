@@ -12,12 +12,15 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Base Matrix class that has a lot of functions which manipulates matrix data
+ *
  * @author : Pooya husseini
- * Email : info@pooya-hfp.ir
- * Date: 1/26/13
- * Time: 10:58 AM
+ *         Email : info@pooya-hfp.ir
+ *         Date: 1/26/13
+ *         Time: 10:58 AM
  */
 public class Matrix implements Serializable {
+
     private double[][] content;
     private String name;
     private int width;
@@ -42,6 +45,11 @@ public class Matrix implements Serializable {
     }
 
 
+    /**
+     * Changes the content of the matrix with a 2d double array
+     *
+     * @param content 2d double array
+     */
     public void setContent(double[][] content) {
         for (int i = 0; i < content.length; i++) {
             System.arraycopy(content[i], 0, this.content[i], 0, content[0].length);
@@ -50,11 +58,28 @@ public class Matrix implements Serializable {
         this.width = content[0].length;
     }
 
+    /**
+     * Changes the content of the matrix with a 1d double array
+     * It copies row by row of the 1d content array
+     *
+     * @param content 1d double array
+     */
     public void setContent(double[] content) {
         for (int i = 0; i < height; i++)
             System.arraycopy(content, i * width, this.content[i], 0, width);
     }
 
+    /**
+     * Sets the content of array according to row and col.
+     * if row is null then it copies all 1d content to entered column
+     * if col is null then it copies all 1d content to entered row
+     * if both have value then it copies the content[0] to the [row][col]
+     * and if both were null then it acts like setContent(double[] content)
+     *
+     * @param row     desired row number. it can be null
+     * @param col     desired col number. it can be null
+     * @param content 1d double array
+     */
     public void setContent(Integer row, Integer col, double[] content) {
         if (row == null && col != null) {
             for (int i = 0; i < height; i++) {
@@ -69,47 +94,100 @@ public class Matrix implements Serializable {
         }
     }
 
+    /**
+     * @return the name of the matrix
+     */
     public String getName() {
         return name;
     }
 
+
+    /**
+     * sets the name of matrix
+     *
+     * @param name name of the matrix
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return the width of matrix
+     */
     public int getWidth() {
         return width;
     }
 
+
+    /**
+     * sets the width of the matrix
+     *
+     * @param width the with
+     */
     public void setWidth(int width) {
         this.width = width;
     }
 
+    /**
+     * @return height of the matrix
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * sets the height of the matrix
+     *
+     * @param height the height
+     */
     public void setHeight(int height) {
         this.height = height;
     }
 
+    /**
+     * @param i cell row
+     * @param j cell column
+     * @return content at i,j cell
+     */
     public double getContent(int i, int j) {
         return content[i][j];
     }
 
+    /**
+     * @return all content
+     */
     public double[][] getContent() {
         return content;
     }
 
+    /**
+     * changes the cell value
+     *
+     * @param val new value
+     * @param i   cell row
+     * @param j   cell column
+     */
     public void setContent(double val, int i, int j) {
         content[i][j] = val;
     }
 
+
+    /**
+     * Fills the matrix with the input matrix's name and content
+     *
+     * @param x new matrix
+     */
     public void setMatrix(Matrix x) {
         setContent(x.content);
         setName(x.name);
     }
 
+    /**
+     * it removes entire a row
+     *
+     * @param r desired row
+     * @return returns the new matrix without the row
+     */
     public Matrix removeRow(int r) {
         Matrix x = new Matrix(height - 1, width, name);
         x.setContent(removeRow(content, r));
@@ -117,6 +195,12 @@ public class Matrix implements Serializable {
         return x;
     }
 
+    /**
+     * it removes entire a column
+     *
+     * @param c desired column
+     * @return returns the new matrix without the column
+     */
     public Matrix removeColumn(int c) {
         Matrix x = new Matrix(height, width - 1, name);
 
@@ -132,17 +216,22 @@ public class Matrix implements Serializable {
         return x;
     }
 
-    // arraye content ra tabdil be yek list mikonad va az aan satre morede nazar ra hazf mikonad
+    /**
+     * Removes the row from the entered array
+     * @param content input array
+     * @param r input row
+     * @return the new array without the row
+     */
     private double[][] removeRow(double[][] content, int r) {
         List<double[]> l = new ArrayList<double[]>(Arrays.asList(content));
         l.remove(r);
         return l.toArray(new double[][]{});
     }
 
-//    public Matrix getTranspose() {
-//        return getTranspose(this.content);
-//    }
-
+    /**
+     *
+     * @return returns the transpose of this matrix
+     */
     public Matrix getTranspose() {
         double temp[][] = new double[this.width][this.height];
         for (int i = 0; i < height; ++i) {
@@ -157,6 +246,10 @@ public class Matrix implements Serializable {
         return matrix;
     }
 
+    /**
+     *
+     * @return returns the string representation of the matrix
+     */
     @Override
     public String toString() {
 
@@ -165,13 +258,17 @@ public class Matrix implements Serializable {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 builder.append(String.format("%2f", content[i][j])).append("\t");
-
             }
             builder.append("\n");
         }
         return builder.toString();
     }
 
+    /**
+     * divides the matrix with the input number
+     * @param n input divisor
+     * @return return the divided matrix
+     */
     public Matrix divide(double n) {
         Matrix matrix = new Matrix(height, width);
         matrix.setMatrix(this);
@@ -183,18 +280,35 @@ public class Matrix implements Serializable {
         return matrix;
     }
 
+    /**
+     *
+     * @return returns the determinant of the matrix
+     */
     public double determinant() {
         return determinant(this);
     }
 
+    /**
+     *
+     * @return is the matrix deterministic
+     */
     public boolean isDeterministic() {
         return height == width;
     }
 
+    /**
+     *
+     * @return is the matrix invertible
+     */
     public boolean isInvertible() {
         return determinant() != 0;
     }
 
+    /**
+     * Calculates determinant of the matrix
+     * @param a input matrix
+     * @return determinant of the matrix
+     */
     private double determinant(Matrix a) {
         if (!a.isDeterministic())
             throw new IllegalArgumentException("Matrix has not determinant");
@@ -211,38 +325,58 @@ public class Matrix implements Serializable {
         return n;
     }
 
+    /**
+     * Removes row and col from the matrix
+     * @param i input row number
+     * @param j input column number
+     * @return the new matrix without row and column
+     */
     public Matrix removeRowAndCol(int i, int j) {
         Matrix temp = removeRow(i);
         temp.setMatrix(temp.removeColumn(j));
         return temp;
     }
 
-    public Matrix hamsaze() {
+    /**
+     *
+     * @return returns the cofactor of the matrix
+     */
+    public Matrix cofactor() {
         Matrix temp = new Matrix(height, width);
-//        Matrix temp = removeRowAndCol(i, j);
-//        temp.divide(((i + j) % 2 == 0 ? 1 : -1));
-//        temp.setMatrix(temp.removeColumn(j));
-//        return temp;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                Matrix hamsaze = this.removeRowAndCol(i, j);
-                temp.setContent(((i + j) % 2 == 0 ? 1 : -1) * determinant(hamsaze), i, j);
+                Matrix cofactor = this.removeRowAndCol(i, j);
+                temp.setContent(((i + j) % 2 == 0 ? 1 : -1) * determinant(cofactor), i, j);
             }
         }
         return temp;
     }
 
+    /**
+     *
+     * @return returns the invert of the matrix
+     */
     public Matrix invert() {
 //        Matrix temp = new Matrix(height, width);
         double det = this.determinant();
 
-        return hamsaze().getTranspose().divide(det);
+        return cofactor().getTranspose().divide(det);
     }
 
+    /**
+     *
+     * @param i row number
+     * @return returns the row in an 1d array
+     */
     public double[] getRow(int i) {
         return content[i];
     }
 
+    /**
+     * Adds the input matrix to this matrix
+     * @param b input matrix
+     * @return returns the result of addition
+     */
     public Matrix add(Matrix b) {
         if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
             throw new IllegalArgumentException("Input Matrixes should have same dimensions");
@@ -259,6 +393,11 @@ public class Matrix implements Serializable {
         return temp;
     }
 
+    /**
+     * Subtracts the input matrix from this matrix
+     * @param b input matrix
+     * @return returns the result of this-b
+     */
     public Matrix sub(Matrix b) {
 
         if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
@@ -277,6 +416,11 @@ public class Matrix implements Serializable {
 
     }
 
+    /**
+     * Multiplies the input matrix with this matrix
+     * @param b input matrix
+     * @return returns the result of this*b
+     */
     public Matrix mul(Matrix b) {
 
         if (getWidth() != b.getHeight()) {
@@ -300,6 +444,11 @@ public class Matrix implements Serializable {
         return temp;
     }
 
+    /**
+     * Powers the matrix to input number
+     * @param c power number
+     * @return returns the result of this^c
+     */
     public Matrix power(int c) {
         Matrix temp = new Matrix(getHeight(), getWidth());
         temp.setMatrix(this);
@@ -309,6 +458,12 @@ public class Matrix implements Serializable {
         return temp;
     }
 
+    /**
+     * Decomposes the matrix to lu decomposition and fills l and u
+     * @param l output parameter of l in lu decomposition
+     * @param u output parameter of u in lu decomposition
+     * @throws Exception
+     */
     public void lu(Matrix l, Matrix u) throws Exception {
         if (getHeight() != getWidth())
             throw new Exception("Can not decompose");
@@ -401,6 +556,4 @@ public class Matrix implements Serializable {
         l.setMatrix(lTemp);
 
     }
-
-
 }
