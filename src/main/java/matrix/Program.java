@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013, Phsys and/or its affiliates. All rights reserved.
+ *  Phsys PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
 package matrix;
 
 import matrix.commands.*;
@@ -11,11 +16,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * User: e.amoli - pooya.hfp
+ * @author : Pooya husseini
+ * Email : info@pooya-hfp.ir
  * Date: 1/26/13
  * Time: 11:25 AM
  */
 public class Program {
+
     public static Map<String, AbstractCommand> commandMap = new HashMap<String, AbstractCommand>();
 
     private static void fillCommandMap() {
@@ -35,6 +42,8 @@ public class Program {
         commandMap.put("solve", new SolveEquationCommand());
         commandMap.put("trn", new TransposeCommand());
         commandMap.put("lu", new LuCommand());
+        commandMap.put("help", new HelpCommand());
+        commandMap.put("usage", new UsageCommand());
 
     }
 

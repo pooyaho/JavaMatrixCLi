@@ -1,9 +1,21 @@
+/*
+ * Copyright (c) 2013, Phsys and/or its affiliates. All rights reserved.
+ *  Phsys PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
 package matrix;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 
 /**
- * User: e.amoli and pooya.hfp
+* @author : Pooya husseini
+ * Email : info@pooya-hfp.ir
  * Date: 1/26/13
  * Time: 11:24 AM
  */

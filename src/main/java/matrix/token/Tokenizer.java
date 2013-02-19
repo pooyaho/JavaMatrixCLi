@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013, Phsys and/or its affiliates. All rights reserved.
+ *  Phsys PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
 package matrix.token;
 
 import java.util.ArrayList;
@@ -5,7 +10,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- * User: e.amoli and pooya.hfp
+* @author : Pooya husseini
+ * Email : info@pooya-hfp.ir
  * Date: 1/23/13
  * Time: 2:50 PM
  */
@@ -15,15 +21,15 @@ public class Tokenizer {
 
         List<Token> temp = new ArrayList<Token>();
 
-        if (!s.trim().endsWith(";"))
-            throw new IllegalArgumentException("Statements should ends with ;");
+//        if (!s.trim().endsWith(";"))
+//            throw new IllegalArgumentException("Statements should ends with ;");
 
-        // این دستور خط به خط دستورات را می دهد
+
         StringTokenizer lines = new StringTokenizer(s, ";");
 
 
         while (lines.hasMoreElements()) {
-            // این دستور هرکدام از اجزای دستور را میدهد
+
             StringTokenizer tokens = new StringTokenizer((String) lines.nextElement(), " {}");
             String command = (String) tokens.nextElement();
             List<String> params = new ArrayList<String>();

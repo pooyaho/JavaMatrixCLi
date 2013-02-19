@@ -1,7 +1,13 @@
+/*
+ * Copyright (c) 2013, Phsys and/or its affiliates. All rights reserved.
+ *  Phsys PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
 package matrix;
 
 /**
- * User: e.amoli - pooya.hfp
+ * @author : Pooya husseini
+ * Email : info@pooya-hfp.ir
  * Date: 1/26/13
  * Time: 10:58 AM
  */
@@ -20,7 +26,4 @@ public class MatrixOperations {
     public static Matrix transpose(Matrix a) {
         return a.getTranspose();
     }
-
-
-
 }

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2013, Phsys and/or its affiliates. All rights reserved.
+ *  Phsys PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
 package matrix;
 
 import java.io.Serializable;
@@ -7,7 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * User: e.amoli - pooya.hfp
+ * @author : Pooya husseini
+ * Email : info@pooya-hfp.ir
  * Date: 1/26/13
  * Time: 10:58 AM
  */
@@ -302,14 +308,99 @@ public class Matrix implements Serializable {
         }
         return temp;
     }
+
     public void lu(Matrix l, Matrix u) throws Exception {
         if (getHeight() != getWidth())
             throw new Exception("Can not decompose");
 
-        LUDecomposition luDecomposition = new LUDecomposition(this);
-        l.setMatrix( luDecomposition.getL());
-        u.setMatrix(luDecomposition.getU());
+        double[][] lu;
+
+        int height;
+        int width;
+
+        lu = getContent();
+        height = getHeight();
+        width = getWidth();
+
+        int[] piv = new int[height];
+        for (int i = 0; i < height; i++) {
+            piv[i] = i;
+        }
+        int pivsign = 1;
+        double[] LUrowi;
+        double[] LUcolj = new double[height];
+
+        for (int j = 0; j < width; j++) {
+
+            for (int i = 0; i < height; i++) {
+                LUcolj[i] = lu[i][j];
+            }
+
+            for (int i = 0; i < height; i++) {
+                LUrowi = lu[i];
+
+                int kmax = Math.min(i, j);
+                double s = 0.0;
+                for (int k = 0; k < kmax; k++) {
+                    s += LUrowi[k] * LUcolj[k];
+                }
+
+                LUrowi[j] = LUcolj[i] -= s;
+            }
+            int p = j;
+            for (int i = j + 1; i < height; i++) {
+                if (Math.abs(LUcolj[i]) > Math.abs(LUcolj[p])) {
+                    p = i;
+                }
+            }
+            if (p != j) {
+                for (int k = 0; k < width; k++) {
+                    double t = lu[p][k];
+                    lu[p][k] = lu[j][k];
+                    lu[j][k] = t;
+                }
+                int k = piv[p];
+                piv[p] = piv[j];
+                piv[j] = k;
+                pivsign = -pivsign;
+            }
+
+            if (j < height & lu[j][j] != 0.0) {
+                for (int i = j + 1; i < height; i++) {
+                    lu[i][j] /= lu[j][j];
+                }
+            }
+        }
+
+        Matrix lTemp = new Matrix(height, width);
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (i > j) {
+                    lTemp.setContent(lu[i][j], i, j);
+                } else if (i == j) {
+                    lTemp.setContent(1.0, i, j);
+                } else {
+                    lTemp.setContent(0.0, i, j);
+                }
+            }
+        }
+
+        Matrix uTemp = new Matrix(width, width);
+//        double[][] U = uTemp.getContent();
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < width; j++) {
+                if (i <= j) {
+                    uTemp.setContent(lu[i][j], i, j);
+                } else {
+                    uTemp.setContent(0.0, i, j);
+                }
+            }
+        }
+        u.setMatrix(uTemp);
+        l.setMatrix(lTemp);
 
     }
+
 
 }
