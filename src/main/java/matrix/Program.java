@@ -5,51 +5,35 @@
 
 package matrix;
 
-import matrix.commands.*;
+import matrix.commands.AbstractCommand;
 import matrix.token.Token;
 import matrix.token.Tokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author : Pooya husseini
- * Email : info@pooya-hfp.ir
- * Date: 1/26/13
- * Time: 11:25 AM
+ *         Email : info@pooya-hfp.ir
+ *         Date: 1/26/13
+ *         Time: 11:25 AM
  */
 public class Program {
 
-    public static Map<String, AbstractCommand> commandMap = new HashMap<String, AbstractCommand>();
-
-    private static void fillCommandMap() {
-
-        commandMap.put("matrix", new CreateCommand());
-        commandMap.put("set", new SetCommand());
-        commandMap.put("save", new SaveCommand());
-        commandMap.put("read", new LoadCommand());
-        commandMap.put("show", new ShowCommand());
-        commandMap.put("copy", new CopyCommand());
-        commandMap.put("swap", new SwapCommand());
-        commandMap.put("add", new AddCommand());
-        commandMap.put("sub", new SubCommand());
-        commandMap.put("mul", new MulCommand());
-        commandMap.put("pow", new PowerCommand());
-        commandMap.put("inv", new InvertCommand());
-        commandMap.put("solve", new SolveEquationCommand());
-        commandMap.put("trn", new TransposeCommand());
-        commandMap.put("lu", new LuCommand());
-        commandMap.put("help", new HelpCommand());
-        commandMap.put("usage", new UsageCommand());
-
+    private Program() {
     }
 
-    public static void main(String[] args) {
+    //    public static Map<String, AbstractCommand> commandMap = new HashMap<String, AbstractCommand>();
+    @Autowired
+    private Map<String, AbstractCommand> commandMap;
+
+    private void start() {
         String curLine = "";
-        fillCommandMap();
         System.out.println("Enter a command (type 'quit' to exit): ");
         InputStreamReader converter = new InputStreamReader(System.in);
         BufferedReader in = new BufferedReader(converter);
@@ -64,8 +48,17 @@ public class Program {
                     }
                 }
             } catch (Exception x) {
-                System.err.println(x.getMessage());
+                System.err.println("An error occurred: " + x.getMessage());
             }
         }
+    }
+
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext(
+                "classpath*:**/spring/spring-config.xml");
+
+        Program program = new Program();
+        program.commandMap = (Map<String, AbstractCommand>) context.getBean("commands");
+        program.start();
     }
 }
