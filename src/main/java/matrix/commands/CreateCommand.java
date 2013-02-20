@@ -20,7 +20,7 @@ public class CreateCommand extends AbstractCommand {
     public void execute(List<String> params) throws Exception {
 
         if (params.isEmpty()){
-            throw new IllegalArgumentException("matrix.Matrix command without parameters.");
+            throw new IllegalArgumentException("Matrix command without parameters.");
         }
 
         Matrix matrix;

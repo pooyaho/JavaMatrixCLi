@@ -8,14 +8,13 @@ package matrix.commands;
 import matrix.Matrix;
 import matrix.MatrixOperations;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
-* @author : Pooya husseini
- * Email : info@pooya-hfp.ir
- * Date: 1/23/13
- * Time: 2:14 PM
+ * @author : Pooya husseini
+ *         Email : info@pooya-hfp.ir
+ *         Date: 1/23/13
+ *         Time: 2:14 PM
  */
 public class SwapCommand extends AbstractCommand {
 
@@ -31,5 +30,4 @@ public class SwapCommand extends AbstractCommand {
 
         persistMatrix(matrix1, matrix2);
     }
-
 }

@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class AddCommand extends AbstractCommand {
     @Override
-    public void execute(List<String> params) throws Exception, ClassNotFoundException {
+    public void execute(List<String> params) throws Exception {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 or 3 parameters");
 

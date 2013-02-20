@@ -21,7 +21,7 @@ public class DeterminantCommand extends AbstractCommand {
             throw new IllegalArgumentException("Input should have parameter!");
 
         for (String param : params) {
-            System.out.println(getMatrix(param).determinant());
+            getWriter().println(getMatrix(param).determinant());
         }
     }
 }

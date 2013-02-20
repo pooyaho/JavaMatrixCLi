@@ -29,7 +29,7 @@ public class Matrix implements Serializable {
     public Matrix() {
     }
 
-    public Matrix(int height, int width) {
+    private Matrix(int height, int width) {
         this(height, width, "");
     }
 
@@ -218,8 +218,9 @@ public class Matrix implements Serializable {
 
     /**
      * Removes the row from the entered array
+     *
      * @param content input array
-     * @param r input row
+     * @param r       input row
      * @return the new array without the row
      */
     private double[][] removeRow(double[][] content, int r) {
@@ -229,7 +230,6 @@ public class Matrix implements Serializable {
     }
 
     /**
-     *
      * @return returns the transpose of this matrix
      */
     public Matrix getTranspose() {
@@ -239,6 +239,7 @@ public class Matrix implements Serializable {
                 temp[j][i] = this.content[i][j];
             }
         }
+        //noinspection SuspiciousNameCombination
         Matrix matrix = new Matrix(width, height);
         matrix.setContent(temp);
         matrix.setName(name);
@@ -247,7 +248,6 @@ public class Matrix implements Serializable {
     }
 
     /**
-     *
      * @return returns the string representation of the matrix
      */
     @Override
@@ -266,6 +266,7 @@ public class Matrix implements Serializable {
 
     /**
      * divides the matrix with the input number
+     *
      * @param n input divisor
      * @return return the divided matrix
      */
@@ -281,7 +282,6 @@ public class Matrix implements Serializable {
     }
 
     /**
-     *
      * @return returns the determinant of the matrix
      */
     public double determinant() {
@@ -289,7 +289,6 @@ public class Matrix implements Serializable {
     }
 
     /**
-     *
      * @return is the matrix deterministic
      */
     public boolean isDeterministic() {
@@ -297,7 +296,6 @@ public class Matrix implements Serializable {
     }
 
     /**
-     *
      * @return is the matrix invertible
      */
     public boolean isInvertible() {
@@ -306,6 +304,7 @@ public class Matrix implements Serializable {
 
     /**
      * Calculates determinant of the matrix
+     *
      * @param a input matrix
      * @return determinant of the matrix
      */
@@ -327,6 +326,7 @@ public class Matrix implements Serializable {
 
     /**
      * Removes row and col from the matrix
+     *
      * @param i input row number
      * @param j input column number
      * @return the new matrix without row and column
@@ -338,7 +338,6 @@ public class Matrix implements Serializable {
     }
 
     /**
-     *
      * @return returns the cofactor of the matrix
      */
     public Matrix cofactor() {
@@ -353,18 +352,18 @@ public class Matrix implements Serializable {
     }
 
     /**
-     *
      * @return returns the invert of the matrix
      */
     public Matrix invert() {
 //        Matrix temp = new Matrix(height, width);
+        if (!isInvertible())
+            throw new IllegalArgumentException("Matrix is not invertible!");
         double det = this.determinant();
 
         return cofactor().getTranspose().divide(det);
     }
 
     /**
-     *
      * @param i row number
      * @return returns the row in an 1d array
      */
@@ -374,6 +373,7 @@ public class Matrix implements Serializable {
 
     /**
      * Adds the input matrix to this matrix
+     *
      * @param b input matrix
      * @return returns the result of addition
      */
@@ -395,6 +395,7 @@ public class Matrix implements Serializable {
 
     /**
      * Subtracts the input matrix from this matrix
+     *
      * @param b input matrix
      * @return returns the result of this-b
      */
@@ -418,6 +419,7 @@ public class Matrix implements Serializable {
 
     /**
      * Multiplies the input matrix with this matrix
+     *
      * @param b input matrix
      * @return returns the result of this*b
      */
@@ -446,6 +448,7 @@ public class Matrix implements Serializable {
 
     /**
      * Powers the matrix to input number
+     *
      * @param c power number
      * @return returns the result of this^c
      */
@@ -460,6 +463,7 @@ public class Matrix implements Serializable {
 
     /**
      * Decomposes the matrix to lu decomposition and fills l and u
+     *
      * @param l output parameter of l in lu decomposition
      * @param u output parameter of u in lu decomposition
      * @throws Exception
@@ -541,6 +545,7 @@ public class Matrix implements Serializable {
             }
         }
 
+        //noinspection SuspiciousNameCombination
         Matrix uTemp = new Matrix(width, width);
 //        double[][] U = uTemp.getContent();
         for (int i = 0; i < width; i++) {

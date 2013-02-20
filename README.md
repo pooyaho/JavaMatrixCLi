@@ -52,10 +52,10 @@ Solves Matrix equation  Ax=b
 ### lu #a #l #u
 Decomposes #a with LU decomposition and set #l and #u
 
-### Usage #command_name
+### usage #command_name [ #command_name... ]
 prints how to use the command_name
 
-### Help #command_name
+### help #command_name [ #command_name ]
 prints about the command_name
 
 Best regards

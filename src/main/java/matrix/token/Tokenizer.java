@@ -24,10 +24,7 @@ public class Tokenizer {
 //        if (!s.trim().endsWith(";"))
 //            throw new IllegalArgumentException("Statements should ends with ;");
 
-
         StringTokenizer lines = new StringTokenizer(s, ";");
-
-
         while (lines.hasMoreElements()) {
 
             StringTokenizer tokens = new StringTokenizer((String) lines.nextElement(), " {}");

@@ -8,16 +8,17 @@ package matrix.token;
 import java.util.List;
 
 /**
-* @author : Pooya husseini
- * Email : info@pooya-hfp.ir
- * Date: 1/23/13
- * Time: 2:50 PM
+ * @author : Pooya husseini
+ *         Email : info@pooya-hfp.ir
+ *         Date: 1/23/13
+ *         Time: 2:50 PM
  */
 public class Token {
     private String command;
     private List<String> params;
 
     public Token() {
+
     }
 
     public Token(String command, List<String> params) {

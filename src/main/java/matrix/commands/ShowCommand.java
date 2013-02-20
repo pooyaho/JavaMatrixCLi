@@ -5,7 +5,6 @@
 
 package matrix.commands;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,6 +17,6 @@ public class ShowCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params) throws Exception{
         for (String matrixName : params)
-            System.out.println(getMatrix(matrixName));
+            getWriter().println(getMatrix(matrixName));
     }
 }

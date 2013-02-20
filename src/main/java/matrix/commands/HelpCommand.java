@@ -20,7 +20,7 @@ public class HelpCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params) throws Exception {
         if (params.size() <= 0) {
-            System.out.println(
+            getWriter().println(
                     "Command line Matrix manipulation program\n" +
                             "Help: \n\n" +
                             "Choose one of these options:\n" +
@@ -44,7 +44,7 @@ public class HelpCommand extends AbstractCommand {
         ResourceBundle rb = ResourceBundle.getBundle("help");
 
         for (String param : params) {
-            System.out.println(rb.getString("help." + param));
+            getWriter().println(rb.getString("help." + param));
         }
     }
 

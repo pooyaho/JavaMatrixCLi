@@ -19,7 +19,7 @@ public class UsageCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params) throws Exception {
         if (params.size() <= 0) {
-            System.out.println(
+            getWriter().println(
                     "Command line Matrix manipulation program\n" +
                             "Usage: \n\n" +
                             "Choose one of these options:\n" +
@@ -43,7 +43,7 @@ public class UsageCommand extends AbstractCommand {
         ResourceBundle rb = ResourceBundle.getBundle("usage");
 
         for (String param : params) {
-            System.out.println(rb.getString("usage." + param));
+            getWriter().println(rb.getString("usage." + param));
         }
     }
 

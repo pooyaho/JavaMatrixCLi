@@ -1,68 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
   ~ Copyright (c) 2013 Phsys and/or its affiliates. All rights reserved.
   ~  Phsys PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
   -->
-
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:utils="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <utils:map id="commands" map-class="java.util.Hashtable">
+    <utils:map id="commands" map-class="java.util.Hashtable" key-type="java.lang.String"
+               value-type="matrix.commands.AbstractCommand">
+
         <entry key="set">
             <bean class="matrix.commands.SetCommand"/>
         </entry>
+
         <entry key="save">
             <bean class="matrix.commands.SaveCommand"/>
         </entry>
+
         <entry key="load">
             <bean class="matrix.commands.LoadCommand"/>
         </entry>
+
         <entry key="show">
             <bean class="matrix.commands.ShowCommand"/>
         </entry>
+
         <entry key="copy">
             <bean class="matrix.commands.CopyCommand"/>
         </entry>
+
         <entry key="swap">
             <bean class="matrix.commands.SwapCommand"/>
         </entry>
+
         <entry key="add">
             <bean class="matrix.commands.AddCommand"/>
         </entry>
+
         <entry key="sub">
             <bean class="matrix.commands.SubCommand"/>
         </entry>
+
         <entry key="mul">
             <bean class="matrix.commands.MulCommand"/>
         </entry>
+
         <entry key="power">
             <bean class="matrix.commands.PowerCommand"/>
         </entry>
-        <entry key="invert">
+
+        <entry key="inv">
             <bean class="matrix.commands.InvertCommand"/>
         </entry>
+
         <entry key="solve">
             <bean class="matrix.commands.SolveEquationCommand"/>
         </entry>
+
         <entry key="trn">
             <bean class="matrix.commands.TransposeCommand"/>
         </entry>
+
         <entry key="lu">
             <bean class="matrix.commands.LuCommand"/>
         </entry>
+
         <entry key="help">
             <bean class="matrix.commands.HelpCommand"/>
         </entry>
+
         <entry key="usage">
             <bean class="matrix.commands.UsageCommand"/>
         </entry>
+
         <entry key="matrix">
             <bean class="matrix.commands.CreateCommand"/>
         </entry>
+
         <entry key="det">
             <bean class="matrix.commands.DeterminantCommand"/>
         </entry>
+
     </utils:map>
+
+
+
+    <bean name="main" class="matrix.Program">
+        <property name="writer" ref="writer"/>
+        <property name="commandMap" ref="commands"/>
+    </bean>
+    <bean name="writer" class="java.io.PrintWriter">
+        <constructor-arg index="0" type="java.io.OutputStream">
+            <util:constant static-field="java.lang.System.out"/>
+        </constructor-arg>
+        <constructor-arg index="1" type="boolean" value="true"/>
+    </bean>
 
 </beans>

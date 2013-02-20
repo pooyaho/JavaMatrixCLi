@@ -8,12 +8,11 @@ package matrix;
 import matrix.commands.AbstractCommand;
 import matrix.token.Token;
 import matrix.token.Tokenizer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -25,40 +24,48 @@ import java.util.Map;
  */
 public class Program {
 
+    private static PrintWriter writer;
+
     private Program() {
     }
 
-    //    public static Map<String, AbstractCommand> commandMap = new HashMap<String, AbstractCommand>();
-    @Autowired
-    private Map<String, AbstractCommand> commandMap;
+    private static Map<String, AbstractCommand> commandMap;
 
     private void start() {
         String curLine = "";
-        System.out.println("Enter a command (type 'quit' to exit): ");
+        writer.println("Enter a command (type 'quit' to exit): ");
         InputStreamReader converter = new InputStreamReader(System.in);
         BufferedReader in = new BufferedReader(converter);
-
+        AbstractCommand.setWriter(writer);
         while (!curLine.equals("quit")) {
             try {
                 curLine = in.readLine();
                 if (!(curLine.equals("quit"))) {
                     List<Token> tokens = Tokenizer.createToken(curLine);
                     for (Token token : tokens) {
-                        commandMap.get(token.getCommand()).execute(token.getParams());
+                        AbstractCommand abstractCommand = commandMap.get(token.getCommand());
+                        if (abstractCommand == null)
+                            throw new IllegalArgumentException("Command not found!");
+                        abstractCommand.execute(token.getParams());
                     }
                 }
             } catch (Exception x) {
-                System.err.println("An error occurred: " + x.getMessage());
+                writer.println("An error occurred: " + x.getMessage());
             }
         }
     }
 
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-                "classpath*:**/spring/spring-config.xml");
+    public void setWriter(PrintWriter writer) {
+        Program.writer = writer;
+    }
 
+    public void setCommandMap(Map<String, AbstractCommand> commandMap) {
+        Program.commandMap = commandMap;
+    }
+
+    public static void main(String[] args) {
+        new ClassPathXmlApplicationContext("classpath*:**/spring/spring-config.xml");
         Program program = new Program();
-        program.commandMap = (Map<String, AbstractCommand>) context.getBean("commands");
         program.start();
     }
 }
