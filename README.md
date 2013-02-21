@@ -52,6 +52,15 @@ Solves Matrix equation  Ax=b
 ### lu #a #l #u
 Decomposes #a with LU decomposition and set #l and #u
 
+### echelon [#store_name] #name
+Calculates the echelon form of the matrix
+
+### rank #name
+Prints the rank of the matrix
+
+### trace #name
+Prints the trace of the matrix
+
 ### usage #command_name [ #command_name... ]
 prints how to use the command_name
 
