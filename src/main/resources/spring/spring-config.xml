@@ -87,6 +87,13 @@
             <bean class="matrix.commands.DeterminantCommand"/>
         </entry>
 
+        <entry key="echelon">
+            <bean class="matrix.commands.EchelonCommand"/>
+        </entry>
+
+        <entry key="rank">
+            <bean class="matrix.commands.RankCommand"/>
+        </entry>
     </utils:map>
 
 

@@ -44,6 +44,13 @@ public class Matrix implements Serializable {
         this.content = new double[height][width];
     }
 
+    public Matrix(String name, double[][] content) {
+        this.name = name;
+        this.width = content[0].length;
+        this.height = content.length;
+        this.content = content.clone();
+    }
+
 
     /**
      * Changes the content of the matrix with a 2d double array
@@ -559,6 +566,125 @@ public class Matrix implements Serializable {
         }
         u.setMatrix(uTemp);
         l.setMatrix(lTemp);
-
     }
+
+    public Matrix echelonForm() {
+
+        double[][] a = content.clone();
+
+        for (int r = 0; r < a.length; r++) {
+            if (a[r][r] != 1 && a[r][r] != 0) {
+                a[r] = divide(a[r], a[r][r]);
+            }
+            for (int i = r + 1; i < a.length; i++) {
+                a[i] = sub(a[i], multiply(a[r], a[i][r])).clone();
+            }
+        }
+
+        return new Matrix(name, a);
+    }
+
+
+    private double[] divide(double[] content, double divisor) {
+        double[] clone = content.clone();
+        for (int i = 0; i < content.length; i++) {
+            clone[i] /= divisor;
+        }
+        return clone;
+    }
+
+    private double[] multiply(double[] content, double multiplier) {
+        double[] clone = content.clone();
+        for (int i = 0; i < content.length; i++) {
+            clone[i] *= multiplier;
+        }
+        return clone;
+    }
+
+    private double[] sub(double[] content, double operand) {
+        double[] clone = content.clone();
+        for (int i = 0; i < content.length; i++) {
+            clone[i] -= operand;
+
+        }
+        return clone;
+    }
+
+    private double[] divide(double[] a, double[] b) {
+        double[] clone = a.clone();
+        for (int i = 0; i < a.length; i++) {
+            clone[i] /= b[i];
+        }
+        return clone;
+    }
+
+    private double[] multiply(double[] a, double[] b) {
+        double[] clone = a.clone();
+        for (int i = 0; i < a.length; i++) {
+            clone[i] *= b[i];
+        }
+        return clone;
+    }
+
+    private double[] sub(double[] a, double[] b) {
+        double[] clone = a.clone();
+        for (int i = 0; i < a.length; i++) {
+            clone[i] -= b[i];
+
+        }
+        return clone;
+    }
+
+    private double[] add(double[] a, double[] b) {
+        double[] clone = a.clone();
+        for (int i = 0; i < a.length; i++) {
+            clone[i] += b[i];
+        }
+        return clone;
+    }
+
+    private double[] add(double[] content, double operand) {
+        double[] clone = content.clone();
+        for (int i = 0; i < content.length; i++) {
+            clone[i] += operand;
+        }
+        return clone;
+    }
+
+    public double[] concat(double[] first, double[] second) {
+        double[] result = Arrays.copyOf(first, first.length + second.length);
+        System.arraycopy(second, 0, result, first.length, second.length);
+
+        return result;
+    }
+
+    private double gcd(double[] content) {
+        double result = content[0];
+        for (int i = 1; i < content.length; i++) {
+            result = gcd(result, content[i]);
+        }
+        return result;
+    }
+
+
+    private double gcd(double a, double b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
+    public int getRank() {
+        Matrix x = echelonForm();
+
+        int rank = 0;
+        for (double[] doubles : x.content) {
+            double sum = 0;
+            for (double aDouble : doubles) {
+                sum += aDouble;
+            }
+            if (Math.abs(sum) == 0)
+                rank++;
+        }
+        return x.content.length-rank;
+    }
+
 }
