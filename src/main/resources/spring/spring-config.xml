@@ -94,9 +94,11 @@
         <entry key="rank">
             <bean class="matrix.commands.RankCommand"/>
         </entry>
+
+        <entry key="trace">
+            <bean class="matrix.commands.TraceCommand"/>
+        </entry>
     </utils:map>
-
-
 
     <bean name="main" class="matrix.Program">
         <property name="writer" ref="writer"/>

@@ -684,7 +684,18 @@ public class Matrix implements Serializable {
             if (Math.abs(sum) == 0)
                 rank++;
         }
-        return x.content.length-rank;
+        return x.content.length - rank;
     }
 
+    public double getTrace() throws Exception {
+        if (height != width)
+            throw new Exception("Matrix should be square matrix!");
+
+        double sum = 0;
+        for (int i = 0; i < height; i++) {
+            sum += content[i][i];
+        }
+
+        return sum;
+    }
 }
