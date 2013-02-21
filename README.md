@@ -66,6 +66,6 @@ prints how to use the command_name
 
 ### help #command_name [ #command_name ]
 prints about the command_name
-
+<br/>
 Best regards
 Pooya Husseini
