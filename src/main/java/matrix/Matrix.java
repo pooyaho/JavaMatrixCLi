@@ -51,7 +51,6 @@ public class Matrix implements Serializable {
         this.content = content.clone();
     }
 
-
     /**
      * Changes the content of the matrix with a 2d double array
      *
@@ -108,7 +107,6 @@ public class Matrix implements Serializable {
         return name;
     }
 
-
     /**
      * sets the name of matrix
      *
@@ -124,7 +122,6 @@ public class Matrix implements Serializable {
     public int getWidth() {
         return width;
     }
-
 
     /**
      * sets the width of the matrix
@@ -168,6 +165,18 @@ public class Matrix implements Serializable {
     }
 
     /**
+     * Fills all matrix with the given value
+     *
+     * @param val given value
+     */
+    public void setContent(double val) {
+        for (double[] doubles : content) {
+            Arrays.fill(doubles, val);
+        }
+
+    }
+
+    /**
      * changes the cell value
      *
      * @param val new value
@@ -177,7 +186,6 @@ public class Matrix implements Serializable {
     public void setContent(double val, int i, int j) {
         content[i][j] = val;
     }
-
 
     /**
      * Fills the matrix with the input matrix's name and content
@@ -286,6 +294,37 @@ public class Matrix implements Serializable {
             }
         }
         return matrix;
+    }
+
+    /**
+     * divides this matrix with the n matrix cell by cell
+     *
+     * @param n input matrix
+     * @return the divided matrix
+     */
+    public Matrix divide(Matrix n) {
+        if(n.contains(0))
+            throw new IllegalArgumentException("Division by zero");
+
+        Matrix matrix = new Matrix(height, width);
+        matrix.setMatrix(this);
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                matrix.content[i][j] /= n.getContent(i, j);
+            }
+        }
+        return matrix;
+    }
+
+    public boolean contains(double value) {
+        for (double[] aContent : content) {
+            for (double c : aContent) {
+                if (value == c)
+                    return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -584,7 +623,6 @@ public class Matrix implements Serializable {
         return new Matrix(name, a);
     }
 
-
     private double[] divide(double[] content, double divisor) {
         double[] clone = content.clone();
         for (int i = 0; i < content.length; i++) {
@@ -666,7 +704,6 @@ public class Matrix implements Serializable {
         return result;
     }
 
-
     private double gcd(double a, double b) {
         if (b == 0) return a;
         return gcd(b, a % b);
@@ -697,5 +734,18 @@ public class Matrix implements Serializable {
         }
 
         return sum;
+    }
+
+    public Matrix eigenValues() {
+        Matrix y = new Matrix(height, 1);
+        y.setContent(1);
+
+        for (int i = 1; i < 10; i++) {
+            Matrix pre = this.power(i - 1).mul(y);
+            Matrix in = this.power(i).mul(y);
+
+            y = in.divide(pre);
+        }
+        return y;
     }
 }

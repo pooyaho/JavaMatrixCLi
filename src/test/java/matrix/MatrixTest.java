@@ -5,6 +5,7 @@
 
 package matrix;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -16,6 +17,11 @@ import org.junit.Test;
 public class MatrixTest {
     @Test
     public void testSetContent() throws Exception {
+        Matrix x=new Matrix(3,3,"a");
+        x.setContent(1);
+        for (double[] doubles : x.getContent()) {
+            Assert.assertArrayEquals(doubles,new double[]{1,1,1},0);
+        }
 
     }
 
@@ -158,5 +164,9 @@ public class MatrixTest {
         System.out.println(p.echelonForm());
     }
 
-
+    @Test
+    public void testEigenValues(){
+        Matrix matrix=new Matrix();
+        System.out.println(matrix.eigenValues());
+    }
 }
