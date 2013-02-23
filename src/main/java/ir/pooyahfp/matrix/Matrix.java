@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Base Matrix class that has a lot of functions which manipulates ir.pooyahfp.matrix data
+ * Base Matrix class that has a lot of functions which manipulates matrix data
  *
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
@@ -52,7 +52,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Changes the content of the ir.pooyahfp.matrix with a 2d double array
+     * Changes the content of the matrix with a 2d double array
      *
      * @param content 2d double array
      */
@@ -65,7 +65,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Changes the content of the ir.pooyahfp.matrix with a 1d double array
+     * Changes the content of the matrix with a 1d double array
      * It copies row by row of the 1d content array
      *
      * @param content 1d double array
@@ -101,30 +101,30 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * @return the name of the ir.pooyahfp.matrix
+     * @return the name of the matrix
      */
     public String getName() {
         return name;
     }
 
     /**
-     * sets the name of ir.pooyahfp.matrix
+     * sets the name of matrix
      *
-     * @param name name of the ir.pooyahfp.matrix
+     * @param name name of the matrix
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @return the width of ir.pooyahfp.matrix
+     * @return the width of matrix
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * sets the width of the ir.pooyahfp.matrix
+     * sets the width of the matrix
      *
      * @param width the with
      */
@@ -133,14 +133,14 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * @return height of the ir.pooyahfp.matrix
+     * @return height of the matrix
      */
     public int getHeight() {
         return height;
     }
 
     /**
-     * sets the height of the ir.pooyahfp.matrix
+     * sets the height of the matrix
      *
      * @param height the height
      */
@@ -165,7 +165,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Fills all ir.pooyahfp.matrix with the given value
+     * Fills all matrix with the given value
      *
      * @param val given value
      */
@@ -188,9 +188,9 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Fills the ir.pooyahfp.matrix with the input ir.pooyahfp.matrix's name and content
+     * Fills the matrix with the input matrix's name and content
      *
-     * @param x new ir.pooyahfp.matrix
+     * @param x new matrix
      */
     public void setMatrix(Matrix x) {
         setContent(x.content);
@@ -201,7 +201,7 @@ public class Matrix implements Serializable {
      * it removes entire a row
      *
      * @param r desired row
-     * @return returns the new ir.pooyahfp.matrix without the row
+     * @return returns the new matrix without the row
      */
     public Matrix removeRow(int r) {
         Matrix x = new Matrix(height - 1, width, name);
@@ -214,7 +214,7 @@ public class Matrix implements Serializable {
      * it removes entire a column
      *
      * @param c desired column
-     * @return returns the new ir.pooyahfp.matrix without the column
+     * @return returns the new matrix without the column
      */
     public Matrix removeColumn(int c) {
         Matrix x = new Matrix(height, width - 1, name);
@@ -245,7 +245,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * @return returns the transpose of this ir.pooyahfp.matrix
+     * @return returns the transpose of this matrix
      */
     public Matrix getTranspose() {
         double temp[][] = new double[this.width][this.height];
@@ -263,7 +263,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * @return returns the string representation of the ir.pooyahfp.matrix
+     * @return returns the string representation of the matrix
      */
     @Override
     public String toString() {
@@ -280,10 +280,10 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * divides the ir.pooyahfp.matrix with the input number
+     * divides the matrix with the input number
      *
      * @param n input divisor
-     * @return return the divided ir.pooyahfp.matrix
+     * @return return the divided matrix
      */
     public Matrix divide(double n) {
         Matrix matrix = new Matrix(height, width);
@@ -297,10 +297,10 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * divides this ir.pooyahfp.matrix with the n ir.pooyahfp.matrix cell by cell
+     * divides this matrix with the n matrix cell by cell
      *
-     * @param n input ir.pooyahfp.matrix
-     * @return the divided ir.pooyahfp.matrix
+     * @param n input matrix
+     * @return the divided matrix
      */
     public Matrix divide(Matrix n) {
         if (n.contains(0))
@@ -328,31 +328,31 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * @return returns the determinant of the ir.pooyahfp.matrix
+     * @return returns the determinant of the matrix
      */
     public double determinant() {
         return determinant(this);
     }
 
     /**
-     * @return is the ir.pooyahfp.matrix deterministic
+     * @return is the matrix deterministic
      */
     public boolean isDeterministic() {
         return height == width;
     }
 
     /**
-     * @return is the ir.pooyahfp.matrix invertible
+     * @return is the matrix invertible
      */
     public boolean isInvertible() {
         return determinant() != 0;
     }
 
     /**
-     * Calculates determinant of the ir.pooyahfp.matrix
+     * Calculates determinant of the matrix
      *
-     * @param a input ir.pooyahfp.matrix
-     * @return determinant of the ir.pooyahfp.matrix
+     * @param a input matrix
+     * @return determinant of the matrix
      */
     private double determinant(Matrix a) {
         if (!a.isDeterministic())
@@ -371,11 +371,11 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Removes row and col from the ir.pooyahfp.matrix
+     * Removes row and col from the matrix
      *
      * @param i input row number
      * @param j input column number
-     * @return the new ir.pooyahfp.matrix without row and column
+     * @return the new matrix without row and column
      */
     public Matrix removeRowAndCol(int i, int j) {
         Matrix temp = removeRow(i);
@@ -384,7 +384,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * @return returns the cofactor of the ir.pooyahfp.matrix
+     * @return returns the cofactor of the matrix
      */
     public Matrix cofactor() {
         Matrix temp = new Matrix(height, width);
@@ -404,7 +404,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * @return returns the invert of the ir.pooyahfp.matrix
+     * @return returns the invert of the matrix
      */
     public Matrix invert() {
 //        Matrix temp = new Matrix(height, width);
@@ -435,9 +435,9 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Adds the input ir.pooyahfp.matrix to this ir.pooyahfp.matrix
+     * Adds the input matrix to this matrix
      *
-     * @param b input ir.pooyahfp.matrix
+     * @param b input matrix
      * @return returns the result of addition
      */
     public Matrix add(Matrix b) {
@@ -457,9 +457,9 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Subtracts the input ir.pooyahfp.matrix from this ir.pooyahfp.matrix
+     * Subtracts the input matrix from this matrix
      *
-     * @param b input ir.pooyahfp.matrix
+     * @param b input matrix
      * @return returns the result of this-b
      */
     public Matrix sub(Matrix b) {
@@ -481,9 +481,9 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Multiplies the input ir.pooyahfp.matrix with this ir.pooyahfp.matrix
+     * Multiplies the input matrix with this matrix
      *
-     * @param b input ir.pooyahfp.matrix
+     * @param b input matrix
      * @return returns the result of this*b
      */
     public Matrix mul(Matrix b) {
@@ -510,7 +510,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Powers the ir.pooyahfp.matrix to input number
+     * Powers the matrix to input number
      *
      * @param c power number
      * @return returns the result of this^c
@@ -525,7 +525,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * Decomposes the ir.pooyahfp.matrix to lu decomposition and fills l and u
+     * Decomposes the matrix to lu decomposition and fills l and u
      *
      * @param l output parameter of l in lu decomposition
      * @param u output parameter of u in lu decomposition
@@ -743,7 +743,7 @@ public class Matrix implements Serializable {
 
     public double getTrace() throws Exception {
         if (height != width)
-            throw new Exception("Matrix should be square ir.pooyahfp.matrix!");
+            throw new Exception("Matrix should be square matrix!");
 
         double sum = 0;
         for (int i = 0; i < height; i++) {
