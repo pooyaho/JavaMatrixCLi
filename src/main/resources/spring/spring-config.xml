@@ -13,94 +13,94 @@
        http://www.springframework.org/schema/util/spring-util.xsd">
 
     <utils:map id="commands" map-class="java.util.Hashtable" key-type="java.lang.String"
-               value-type="matrix.commands.AbstractCommand">
+               value-type="ir.pooyahfp.matrix.commands.AbstractCommand">
 
         <entry key="set">
-            <bean class="matrix.commands.SetCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.SetCommand"/>
         </entry>
 
         <entry key="save">
-            <bean class="matrix.commands.SaveCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.SaveCommand"/>
         </entry>
 
         <entry key="load">
-            <bean class="matrix.commands.LoadCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.LoadCommand"/>
         </entry>
 
         <entry key="show">
-            <bean class="matrix.commands.ShowCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.ShowCommand"/>
         </entry>
 
         <entry key="copy">
-            <bean class="matrix.commands.CopyCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.CopyCommand"/>
         </entry>
 
         <entry key="swap">
-            <bean class="matrix.commands.SwapCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.SwapCommand"/>
         </entry>
 
         <entry key="add">
-            <bean class="matrix.commands.AddCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.AddCommand"/>
         </entry>
 
         <entry key="sub">
-            <bean class="matrix.commands.SubCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.SubCommand"/>
         </entry>
 
         <entry key="mul">
-            <bean class="matrix.commands.MulCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.MulCommand"/>
         </entry>
 
         <entry key="power">
-            <bean class="matrix.commands.PowerCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.PowerCommand"/>
         </entry>
 
         <entry key="inv">
-            <bean class="matrix.commands.InvertCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.InvertCommand"/>
         </entry>
 
         <entry key="solve">
-            <bean class="matrix.commands.SolveEquationCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.SolveEquationCommand"/>
         </entry>
 
         <entry key="trn">
-            <bean class="matrix.commands.TransposeCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.TransposeCommand"/>
         </entry>
 
         <entry key="lu">
-            <bean class="matrix.commands.LuCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.LuCommand"/>
         </entry>
 
         <entry key="help">
-            <bean class="matrix.commands.HelpCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.HelpCommand"/>
         </entry>
 
         <entry key="usage">
-            <bean class="matrix.commands.UsageCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.UsageCommand"/>
         </entry>
 
         <entry key="matrix">
-            <bean class="matrix.commands.CreateCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.CreateCommand"/>
         </entry>
 
         <entry key="det">
-            <bean class="matrix.commands.DeterminantCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.DeterminantCommand"/>
         </entry>
 
         <entry key="echelon">
-            <bean class="matrix.commands.EchelonCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.EchelonCommand"/>
         </entry>
 
         <entry key="rank">
-            <bean class="matrix.commands.RankCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.RankCommand"/>
         </entry>
 
         <entry key="trace">
-            <bean class="matrix.commands.TraceCommand"/>
+            <bean class="ir.pooyahfp.matrix.commands.TraceCommand"/>
         </entry>
     </utils:map>
 
-    <bean name="main" class="matrix.Program">
+    <bean name="main" class="ir.pooyahfp.matrix.Program">
         <property name="writer" ref="writer"/>
         <property name="commandMap" ref="commands"/>
     </bean>
