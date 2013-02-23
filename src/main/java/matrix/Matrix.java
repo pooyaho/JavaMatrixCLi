@@ -442,7 +442,7 @@ public class Matrix implements Serializable {
      */
     public Matrix add(Matrix b) {
         if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
-            throw new IllegalArgumentException("Input Matrixes should have same dimensions");
+            throw new IllegalArgumentException("Input matrices should have same dimensions");
         }
 
         Matrix temp = new Matrix(getHeight(), getWidth());

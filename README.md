@@ -10,7 +10,7 @@ Full command list is:
 ### matrix #name [#height #width]
 Creates a matrix with dimension of height * width . width and height are optional
 
-### set #name [[#row]][[#col]] [{ #values... }]
+### set #name [[#row]][[#col]] [{ (#values,)+ }]
 Fills matrix with values according to values
 
 ### read #name #file_path
@@ -19,7 +19,7 @@ Reads matrix from filePath and store it with name of MatrixName
 ### save #name #file_path
 Stores  MatrixName if desired filePath
 
-### show #name  [ #name... ]
+### show #name  [ (#name)+ ]
 Prints string representation of the  MatrixName in console
 
 ### copy [#store_name] #name1 #name2
