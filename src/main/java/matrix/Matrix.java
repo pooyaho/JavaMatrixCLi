@@ -303,7 +303,7 @@ public class Matrix implements Serializable {
      * @return the divided matrix
      */
     public Matrix divide(Matrix n) {
-        if(n.contains(0))
+        if (n.contains(0))
             throw new IllegalArgumentException("Division by zero");
 
         Matrix matrix = new Matrix(height, width);
@@ -388,13 +388,19 @@ public class Matrix implements Serializable {
      */
     public Matrix cofactor() {
         Matrix temp = new Matrix(height, width);
+
+//
+//        } else {
+
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 Matrix cofactor = this.removeRowAndCol(i, j);
                 temp.setContent(((i + j) % 2 == 0 ? 1 : -1) * determinant(cofactor), i, j);
             }
         }
+
         return temp;
+
     }
 
     /**
@@ -402,9 +408,20 @@ public class Matrix implements Serializable {
      */
     public Matrix invert() {
 //        Matrix temp = new Matrix(height, width);
+        double[][] temp = content.clone();
         if (!isInvertible())
             throw new IllegalArgumentException("Matrix is not invertible!");
         double det = this.determinant();
+        if (height == 2 && width == 2) {
+            double a = temp[0][0];
+            temp[0][0] = temp[1][1];
+            temp[1][1] = a;
+            temp[0][1] = -temp[0][1];
+            temp[1][0] = -temp[1][0];
+
+            Matrix matrix = new Matrix(name, temp);
+            return matrix.divide(det);
+        }
 
         return cofactor().getTranspose().divide(det);
     }

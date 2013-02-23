@@ -23,7 +23,7 @@ public abstract class AbstractCommand {
 
     private static PrintWriter writer;
 
-    public abstract void execute(List<String> params) throws Exception;
+    public abstract void execute(List<String> params,List<String> values) throws Exception;
 
     private final static Map<String, Matrix> matrixMap = new HashMap<String, Matrix>();
 

@@ -19,7 +19,7 @@ import java.util.List;
 public class SaveCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params) throws Exception {
+    public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() < 2)
             throw new IllegalArgumentException("Save should have 2 parameters");
         String name = params.get(0);

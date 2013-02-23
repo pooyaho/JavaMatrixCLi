@@ -37,6 +37,7 @@ public class Program {
         InputStreamReader converter = new InputStreamReader(System.in);
         BufferedReader in = new BufferedReader(converter);
         AbstractCommand.setWriter(writer);
+
         while (!curLine.equals("quit")) {
             try {
                 curLine = in.readLine();
@@ -46,13 +47,14 @@ public class Program {
                         AbstractCommand abstractCommand = commandMap.get(token.getCommand());
                         if (abstractCommand == null)
                             throw new IllegalArgumentException("Command not found!");
-                        abstractCommand.execute(token.getParams());
+                        abstractCommand.execute(token.getParams(), token.getValues());
                     }
                 }
             } catch (Exception x) {
                 writer.println("An error occurred: " + x.getMessage());
             }
         }
+
     }
 
     public void setWriter(PrintWriter writer) {

@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class CreateCommand extends AbstractCommand {
     @Override
-    public void execute(List<String> params) throws Exception {
+    public void execute(List<String> params, List<String> values) throws Exception {
 
         if (params.isEmpty()){
             throw new IllegalArgumentException("Matrix command without parameters.");

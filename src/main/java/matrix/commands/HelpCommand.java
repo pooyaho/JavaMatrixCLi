@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class HelpCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params) throws Exception {
+    public void execute(List<String> params, List<String> values) throws Exception {
         ResourceBundle rb = ResourceBundle.getBundle("help");
 
         if (params.size() <= 0) {

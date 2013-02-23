@@ -19,7 +19,7 @@ import java.util.List;
 public class TransposeCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params) throws Exception {
+    public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() < 1)
             throw new IllegalArgumentException("Invalid parameters");
 

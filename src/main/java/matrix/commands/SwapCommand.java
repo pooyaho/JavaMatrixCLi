@@ -19,7 +19,7 @@ import java.util.List;
 public class SwapCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params) throws Exception {
+    public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 parameters");
 

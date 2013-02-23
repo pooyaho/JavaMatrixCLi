@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class UsageCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params) throws Exception {
+    public void execute(List<String> params, List<String> values) throws Exception {
         ResourceBundle rb = ResourceBundle.getBundle("usage");
 
         if (params.size() <= 0) {
@@ -29,7 +29,6 @@ public class UsageCommand extends AbstractCommand {
             Enumeration<String> keys = rb.getKeys();
             while (keys.hasMoreElements()) {
                 builder.append(keys.nextElement().replace(".", " ")).append("\n");
-
             }
             getWriter().println(
                     builder.toString()

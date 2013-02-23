@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SolveEquationCommand extends AbstractCommand {
     @Override
-    public void execute(List<String> params) throws Exception {
+    public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() < 3)
             throw new IllegalArgumentException("Input should has 3 parameters");
 
