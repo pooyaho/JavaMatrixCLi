@@ -5,11 +5,11 @@
 
 package matrix.commands;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- *
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
  *         Date: 2/19/13
@@ -19,33 +19,26 @@ public class HelpCommand extends AbstractCommand {
 
     @Override
     public void execute(List<String> params) throws Exception {
-        if (params.size() <= 0) {
-            getWriter().println(
-                    "Command line Matrix manipulation program\n" +
-                            "Help: \n\n" +
-                            "Choose one of these options:\n" +
-                            "help matrix\n" +
-                            "help set\n" +
-                            "help read\n" +
-                            "help save\n" +
-                            "help show\n" +
-                            "help copy\n" +
-                            "help swap\n" +
-                            "help add\n" +
-                            "help sub\n" +
-                            "help mul\n" +
-                            "help pow\n" +
-                            "help inv\n" +
-                            "help trn\n" +
-                            "help solve\n" +
-                            "help lu"
-            );
-        }
         ResourceBundle rb = ResourceBundle.getBundle("help");
+
+        if (params.size() <= 0) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Command line Matrix manipulation program\n")
+                    .append("Help: \n\n")
+                    .append("Choose one of these options:\n");
+            Enumeration<String> keys = rb.getKeys();
+            while (keys.hasMoreElements()) {
+                builder.append(keys.nextElement().replace(".", " ")).append("\n");
+
+            }
+            getWriter().println(
+                    builder.toString()
+            );
+
+        }
 
         for (String param : params) {
             getWriter().println(rb.getString("help." + param));
         }
     }
-
 }

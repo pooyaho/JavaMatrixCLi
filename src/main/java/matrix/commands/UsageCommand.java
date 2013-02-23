@@ -5,6 +5,7 @@
 
 package matrix.commands;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -18,29 +19,22 @@ public class UsageCommand extends AbstractCommand {
 
     @Override
     public void execute(List<String> params) throws Exception {
-        if (params.size() <= 0) {
-            getWriter().println(
-                    "Command line Matrix manipulation program\n" +
-                            "Usage: \n\n" +
-                            "Choose one of these options:\n" +
-                            "usage matrix\n" +
-                            "usage set\n" +
-                            "usage read\n" +
-                            "usage save\n" +
-                            "usage show\n" +
-                            "usage copy\n" +
-                            "usage swap\n" +
-                            "usage add\n" +
-                            "usage sub\n" +
-                            "usage mul\n" +
-                            "usage pow\n" +
-                            "usage inv\n" +
-                            "usage trn\n" +
-                            "usage solve\n" +
-                            "usage lu"
-            );
-        }
         ResourceBundle rb = ResourceBundle.getBundle("usage");
+
+        if (params.size() <= 0) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Command line Matrix manipulation program\n")
+                    .append("Usage : \n\n")
+                    .append("Choose one of these options:\n");
+            Enumeration<String> keys = rb.getKeys();
+            while (keys.hasMoreElements()) {
+                builder.append(keys.nextElement().replace(".", " ")).append("\n");
+
+            }
+            getWriter().println(
+                    builder.toString()
+            );
+         }
 
         for (String param : params) {
             getWriter().println(rb.getString("usage." + param));
