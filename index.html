@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Javamatrixcli by pooyaho</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Javamatrixcli</h1>
+        <p>Command line matrix manipulations in java</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/pooyaho/JavaMatrixCLi" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/pooyaho/JavaMatrixCLi/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/pooyaho/JavaMatrixCLi/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <p><b>Hi</b>
+<br>
+This project developed by Pooya husseini to design a command line program in Java to create, save,
+load and manipulate Matrices.
+It's pure Java core and I did not used any other technologies. I created it in maven to make it cross IDE.
+Run Program.java and for example write Matrix a 3 3; it creates a 3x3 matrix that named 'a'.
+each commands should end with ; and also every command is case insensitive.
+Full command list is:</p>
+
+<h3>matrix #name [#height #width]</h3>
+
+<p>Creates a matrix with dimension of height * width . width and height are optional</p>
+
+<h3>set #name [[#row]][[#col]] [{ (#values,)+ }]</h3>
+
+<p>Fills matrix with values according to values</p>
+
+<h3>read #name #file_path</h3>
+
+<p>Reads matrix from filePath and store it with name of MatrixName</p>
+
+<h3>save #name #file_path</h3>
+
+<p>Stores  MatrixName if desired filePath</p>
+
+<h3>show #name  [ (#name)+ ]</h3>
+
+<p>Prints string representation of the  MatrixName in console</p>
+
+<h3>copy [#store_name] #name1 #name2</h3>
+
+<p>Copies M2 into M1</p>
+
+<h3>swap #name1 #name2</h3>
+
+<p>Swaps one matrix to another</p>
+
+<h3>add [ #store_name ] #name1 #name2</h3>
+
+<p>Adds one matrix to another</p>
+
+<h3>sub [ #store_name ] #name1 #name2</h3>
+
+<p>Subtracts one matrix to another</p>
+
+<h3>mul [ #store_name ] #name1 #name2</h3>
+
+<p>Multiplies one matrix to another</p>
+
+<h3>pow [ #store_name ] #name #integer</h3>
+
+<p>Powers one matrix to the entered number</p>
+
+<h3>inv [ #store_name ] #name</h3>
+
+<p>Inverts the matrix</p>
+
+<h3>trn [ #store_name ] #name</h3>
+
+<p>Transpose the matrix</p>
+
+<h3>solve #x #a #b</h3>
+
+<p>Solves Matrix equation  Ax=b</p>
+
+<h3>lu #a #l #u</h3>
+
+<p>Decomposes #a with LU decomposition and set #l and #u</p>
+
+<h3>echelon [#store_name] #name</h3>
+
+<p>Calculates the echelon form of the matrix</p>
+
+<h3>rank #name</h3>
+
+<p>Prints the rank of the matrix</p>
+
+<h3>trace #name</h3>
+
+<p>Prints the trace of the matrix</p>
+
+<h3>usage #command_name [ #command_name... ]</h3>
+
+<p>prints how to use the command_name</p>
+
+<h3>help #command_name [ #command_name ]</h3>
+
+<p>prints about the command_name
+<br>
+Best regards
+Pooya Husseini</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/pooyaho">pooyaho</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
