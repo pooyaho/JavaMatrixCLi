@@ -19,12 +19,11 @@ import java.util.List;
  *         Date: 1/26/13
  *         Time: 10:58 AM
  */
-public class Matrix implements Serializable {
+public class Matrix implements Serializable, Cloneable {
 
     private double[][] content;
     private String name;
-    private int width;
-    private int height;
+
 
     public Matrix() {
     }
@@ -39,30 +38,36 @@ public class Matrix implements Serializable {
 
     public Matrix(int height, int width, String name) {
         this.name = name;
-        this.width = width;
-        this.height = height;
+//        this.width = width;
+//        this.getHeight() = getHeight();
         this.content = new double[height][width];
     }
 
-    public Matrix(String name, double[][] content) {
-        this.name = name;
-        this.width = content[0].length;
-        this.height = content.length;
-        this.content = content.clone();
-    }
+//    public Matrix(String name, double[][] content) {
+//        this.name = name;
+//        this.width = content[0].length;
+//        this.getHeight() = content.length;
+//        this.content = content.clone();
+//    }
 
     /**
      * Changes the content of the matrix with a 2d double array
      *
      * @param content 2d double array
+     * @return the matrix with given data
      */
-    public void setContent(double[][] content) {
+    public Matrix setContent(double[][] content) {
+        Matrix x = new Matrix(content.length, content[0].length, this.name);
+
         for (int i = 0; i < content.length; i++) {
-            System.arraycopy(content[i], 0, this.content[i], 0, content[0].length);
+            System.arraycopy(content[i], 0, x.content[i], 0, content[0].length);
         }
-        this.height = content.length;
-        this.width = content[0].length;
+//        x.getHeight() = content.length;
+//        x.width = content[0].length;
+//
+        return x;
     }
+
 
     /**
      * Changes the content of the matrix with a 1d double array
@@ -70,9 +75,13 @@ public class Matrix implements Serializable {
      *
      * @param content 1d double array
      */
-    public void setContent(double[] content) {
-        for (int i = 0; i < height; i++)
-            System.arraycopy(content, i * width, this.content[i], 0, width);
+    public Matrix setContent(double[] content) {
+        Matrix x = this.copy();
+
+        for (int i = 0; i < getHeight(); i++)
+            System.arraycopy(content, i * getWidth(), x.content[i], 0, getWidth());
+
+        return x;
     }
 
     /**
@@ -86,18 +95,21 @@ public class Matrix implements Serializable {
      * @param col     desired col number. it can be null
      * @param content 1d double array
      */
-    public void setContent(Integer row, Integer col, double[] content) {
+    public Matrix setContent(Integer row, Integer col, double[] content) {
+        Matrix x = this.copy();
+
         if (row == null && col != null) {
-            for (int i = 0; i < height; i++) {
-                this.content[i][col] = content[i];
+            for (int i = 0; i < getHeight(); i++) {
+                x.content[i][col] = content[i];
             }
         } else if (col == null && row != null) {
-            System.arraycopy(content, 0, this.content[row], 0, width);
+            System.arraycopy(content, 0, x.content[row], 0, getWidth());
         } else if (col != null && content.length == 1) {
-            setContent(content[0], row, col);
+            return setContent(content[0], row, col);
         } else {
-            setContent(content);
+            return setContent(content);
         }
+        return x;
     }
 
     /**
@@ -120,7 +132,7 @@ public class Matrix implements Serializable {
      * @return the width of matrix
      */
     public int getWidth() {
-        return width;
+        return content[0].length;
     }
 
     /**
@@ -128,43 +140,42 @@ public class Matrix implements Serializable {
      *
      * @param width the with
      */
-    public void setWidth(int width) {
+    public Matrix setWidth(int width) {
         if (width <= 0)
             throw new IllegalArgumentException("Width should be greater than zero");
 
-        double[][] newArray = new double[height][width];
+        Matrix matrix = new Matrix(this.getHeight(), width, this.name);
 
-        for (int i = 0; i < height; i++) {
-            System.arraycopy(content[i], 0, newArray[i], 0, this.width);
+        for (int i = 0; i < this.getHeight(); i++) {
+            System.arraycopy(content[i], 0, matrix.content[i], 0, this.getWidth());
         }
 
-        this.content = newArray.clone();
-        this.width = width;
+        return matrix;
     }
 
     /**
-     * @return height of the matrix
+     * @return getHeight() of the matrix
      */
     public int getHeight() {
-        return height;
+        return content.length;
     }
 
     /**
-     * Sets the height of the matrix and resize it
+     * Sets the getHeight() of the matrix and resize it
      *
-     * @param height the height
+     * @param height the getHeight()
      */
-    public void setHeight(int height) {
+    public Matrix setHeight(int height) {
         if (height <= 0)
             throw new IllegalArgumentException("Height should be greater than zero");
 
-        double[][] newArray = new double[height][width];
+        Matrix matrix = new Matrix(height, this.getWidth(), name);
+//        double[][] newArray = new double[getHeight()][width];
 
-        for (int i = 0; i < this.height; i++) {
-            System.arraycopy(content[i], 0, newArray[i], 0, width);
+        for (int i = 0; i < this.getHeight(); i++) {
+            System.arraycopy(content[i], 0, matrix.content[i], 0, getWidth());
         }
-        this.content = newArray.clone();
-        this.height = height;
+        return matrix;
     }
 
     /**
@@ -188,11 +199,13 @@ public class Matrix implements Serializable {
      *
      * @param val given value
      */
-    public void setContent(double val) {
-        for (double[] doubles : content) {
+    public Matrix setContent(double val) {
+        Matrix x = this.copy();
+
+        for (double[] doubles : x.content) {
             Arrays.fill(doubles, val);
         }
-
+        return x;
     }
 
     /**
@@ -202,19 +215,12 @@ public class Matrix implements Serializable {
      * @param i   cell row
      * @param j   cell column
      */
-    public void setContent(double val, int i, int j) {
-        content[i][j] = val;
+    public Matrix setContent(double val, int i, int j) {
+        Matrix x = this.copy();
+        x.content[i][j] = val;
+        return x;
     }
 
-    /**
-     * Fills the matrix with the input matrix's name and content
-     *
-     * @param x new matrix
-     */
-    public void setMatrix(Matrix x) {
-        setContent(x.content);
-        setName(x.name);
-    }
 
     /**
      * it removes entire a row
@@ -223,10 +229,9 @@ public class Matrix implements Serializable {
      * @return returns the new matrix without the row
      */
     public Matrix removeRow(int r) {
-        Matrix x = new Matrix(height - 1, width, name);
-        x.setContent(removeRow(content, r));
+        Matrix x = new Matrix(getHeight() - 1, getWidth(), name);
 
-        return x;
+        return x.setContent(removeRow(content, r));
     }
 
     /**
@@ -236,15 +241,12 @@ public class Matrix implements Serializable {
      * @return returns the new matrix without the column
      */
     public Matrix removeColumn(int c) {
-        Matrix x = new Matrix(height, width - 1, name);
+        Matrix x = new Matrix(getHeight(), getWidth() - 1, name);
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < c; j++) {
-                x.setContent(content[i][j], i, j);
-            }
-            for (int j = c + 1; j < width; j++) {
-                x.setContent(content[i][j], i, j - 1);
-            }
+        for (int i = 0; i < getHeight(); i++) {
+            System.arraycopy(this.content[i], 0, x.content[i], 0, c);
+
+            System.arraycopy(this.content[i], c + 1, x.content[i], c + 1 - 1, getWidth() - (c + 1));
         }
 
         return x;
@@ -267,16 +269,14 @@ public class Matrix implements Serializable {
      * @return returns the transpose of this matrix
      */
     public Matrix getTranspose() {
-        double temp[][] = new double[this.width][this.height];
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
-                temp[j][i] = this.content[i][j];
+        Matrix matrix = new Matrix(getWidth(), getHeight(), name);
+//        double temp[][] = new double[this.getWidth()][this.getHeight()];
+        for (int i = 0; i < getHeight(); ++i) {
+            for (int j = 0; j < getWidth(); ++j) {
+                matrix.content[j][i] = this.content[i][j];
             }
         }
         //noinspection SuspiciousNameCombination
-        Matrix matrix = new Matrix(width, height);
-        matrix.setContent(temp);
-        matrix.setName(name);
 
         return matrix;
     }
@@ -289,8 +289,8 @@ public class Matrix implements Serializable {
 
         StringBuilder builder = new StringBuilder();
         builder.append("[[").append(name).append("]]\n");
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
                 builder.append(String.format("%2f", content[i][j])).append("\t");
             }
             builder.append("\n");
@@ -305,10 +305,10 @@ public class Matrix implements Serializable {
      * @return return the divided matrix
      */
     public Matrix divide(double n) {
-        Matrix matrix = new Matrix(height, width);
-        matrix.setMatrix(this);
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+        Matrix matrix = this.copy();
+
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
                 matrix.content[i][j] /= n;
             }
         }
@@ -325,11 +325,11 @@ public class Matrix implements Serializable {
         if (n.contains(0))
             throw new IllegalArgumentException("Division by zero");
 
-        Matrix matrix = new Matrix(height, width);
-        matrix.setMatrix(this);
+        Matrix matrix = this.copy();
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
                 matrix.content[i][j] /= n.getContent(i, j);
             }
         }
@@ -357,7 +357,7 @@ public class Matrix implements Serializable {
      * @return is the matrix deterministic
      */
     public boolean hasDeterminant() {
-        return height == width;
+        return getHeight() == getWidth();
     }
 
     /**
@@ -379,11 +379,11 @@ public class Matrix implements Serializable {
 
         if (a.getHeight() == 2 && a.getWidth() == 2)
             //in haman ad -bc ast
-            return a.getContent(0, 0) * a.getContent(1, 1) - a.getContent(0, 1) * a.getContent(1, 0);
+            return a.content[0][0] * a.content[1][1] - a.content[0][1] * a.content[1][0];
 
         double n = 0;
 
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < getWidth(); j++)
             n += a.content[0][j] * determinant(a.removeRowAndCol(0, j)) * (j % 2 == 0 ? 1 : -1);
 
         return n;
@@ -397,22 +397,22 @@ public class Matrix implements Serializable {
      * @return the new matrix without row and column
      */
     public Matrix removeRowAndCol(int i, int j) {
-        Matrix temp = removeRow(i);
-        temp.setMatrix(temp.removeColumn(j));
-        return temp;
+        Matrix temp = this.removeRow(i);
+
+        return temp.removeColumn(j);
     }
 
     /**
      * @return returns the cofactor of the matrix
      */
     public Matrix cofactor() {
-        Matrix temp = new Matrix(height, width);
+        Matrix temp = new Matrix(getHeight(), getWidth());
 
 //
 //        } else {
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
                 Matrix cofactor = this.removeRowAndCol(i, j);
                 temp.setContent(((i + j) % 2 == 0 ? 1 : -1) * determinant(cofactor), i, j);
             }
@@ -426,20 +426,23 @@ public class Matrix implements Serializable {
      * @return returns the invert of the matrix
      */
     public Matrix getInvert() {
-//        Matrix temp = new Matrix(height, width);
-        double[][] temp = content.clone();
+
         if (!isInvertible())
             throw new IllegalArgumentException("Matrix is not invertible!");
         double det = this.getDeterminant();
-        if (height == 2 && width == 2) {
-            double a = temp[0][0];
-            temp[0][0] = temp[1][1];
-            temp[1][1] = a;
-            temp[0][1] = -temp[0][1];
-            temp[1][0] = -temp[1][0];
 
-            Matrix matrix = new Matrix(name, temp);
-            return matrix.divide(det);
+        if (getHeight() == 2 && getWidth() == 2) {
+
+            Matrix temp = new Matrix(name);
+            temp.content = this.content.clone();
+            double a = temp.content[0][0];
+            temp.content[0][0] = temp.content[1][1];
+            temp.content[1][1] = a;
+            temp.content[0][1] = -temp.content[0][1];
+            temp.content[1][0] = -temp.content[1][0];
+
+
+            return temp.divide(det);
         }
 
         return cofactor().getTranspose().divide(det);
@@ -470,7 +473,7 @@ public class Matrix implements Serializable {
 
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
-                temp.setContent(getContent(i, j) + b.getContent(i, j), i, j);
+                temp.content[i][j] = this.content[i][j] + b.content[i][j];
             }
         }
 
@@ -489,11 +492,11 @@ public class Matrix implements Serializable {
             throw new IllegalArgumentException("Input Matrixes should have same dimensions");
         }
 
-        Matrix temp = new Matrix(getWidth(), getHeight(), getName() + "-" + b.getName());
+        Matrix temp = new Matrix(getHeight(), getWidth(), getName() + "-" + b.getName());
 
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
-                temp.setContent(getContent(i, j) - b.getContent(i, j), i, j);
+                temp.content[i][j] = this.content[i][j] - b.content[i][j];
             }
         }
 
@@ -516,17 +519,15 @@ public class Matrix implements Serializable {
 
         Matrix temp = new Matrix(getHeight(), b.getWidth());
 
-        double[][] result = new double[getHeight()][b.getWidth()];
+//        double[][] result = new double[getHeight()][b.getWidth()];
 
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < b.getWidth(); j++) { // bColumn
                 for (int k = 0; k < getWidth(); k++) { // aColumn
-                    result[i][j] += getContent(i, k) * b.getContent(k, j);
+                    temp.content[i][j] += this.content[i][k] * b.content[k][j];
                 }
             }
         }
-
-        temp.setContent(result);
         return temp;
     }
 
@@ -540,10 +541,10 @@ public class Matrix implements Serializable {
         if (c <= 0)
             throw new IllegalArgumentException("Power must be greater than zero");
 
-        Matrix temp = new Matrix(getHeight(), getWidth());
-        temp.setMatrix(this);
+        Matrix temp = this.copy();
+
         for (int i = 1; i < c; i++) {
-            temp.setMatrix(temp.mul(this));
+            temp = temp.mul(this).copy();
         }
         return temp;
     }
@@ -568,21 +569,21 @@ public class Matrix implements Serializable {
         height = getHeight();
         width = getWidth();
 
-        int[] piv = new int[height];
-        for (int i = 0; i < height; i++) {
+        int[] piv = new int[getHeight()];
+        for (int i = 0; i < getHeight(); i++) {
             piv[i] = i;
         }
         int pivsign = 1;
         double[] LUrowi;
-        double[] LUcolj = new double[height];
+        double[] LUcolj = new double[getHeight()];
 
         for (int j = 0; j < width; j++) {
 
-            for (int i = 0; i < height; i++) {
+            for (int i = 0; i < getHeight(); i++) {
                 LUcolj[i] = lu[i][j];
             }
 
-            for (int i = 0; i < height; i++) {
+            for (int i = 0; i < getHeight(); i++) {
                 LUrowi = lu[i];
 
                 int kmax = Math.min(i, j);
@@ -594,7 +595,7 @@ public class Matrix implements Serializable {
                 LUrowi[j] = LUcolj[i] -= s;
             }
             int p = j;
-            for (int i = j + 1; i < height; i++) {
+            for (int i = j + 1; i < getHeight(); i++) {
                 if (Math.abs(LUcolj[i]) > Math.abs(LUcolj[p])) {
                     p = i;
                 }
@@ -611,16 +612,16 @@ public class Matrix implements Serializable {
                 pivsign = -pivsign;
             }
 
-            if (j < height & lu[j][j] != 0.0) {
-                for (int i = j + 1; i < height; i++) {
+            if (j < getHeight() & lu[j][j] != 0.0) {
+                for (int i = j + 1; i < getHeight(); i++) {
                     lu[i][j] /= lu[j][j];
                 }
             }
         }
 
-        Matrix lTemp = new Matrix(height, width);
+        Matrix lTemp = new Matrix(getHeight(), width);
 
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < width; j++) {
                 if (i > j) {
                     lTemp.setContent(lu[i][j], i, j);
@@ -644,24 +645,25 @@ public class Matrix implements Serializable {
                 }
             }
         }
-        u.setMatrix(uTemp);
-        l.setMatrix(lTemp);
+        u = uTemp.copy();
+        l = lTemp.copy();
     }
 
     public Matrix echelonForm() {
+        Matrix matrix = new Matrix(name);
+        matrix.content = this.content.clone();
+//        double[][] a = content.clone();
 
-        double[][] a = content.clone();
-
-        for (int r = 0; r < a.length; r++) {
-            if (a[r][r] != 1 && a[r][r] != 0) {
-                a[r] = divide(a[r], a[r][r]);
+        for (int r = 0; r < matrix.content.length; r++) {
+            if (matrix.content[r][r] != 1 && matrix.content[r][r] != 0) {
+                matrix.content[r] = divide(matrix.content[r], matrix.content[r][r]);
             }
-            for (int i = r + 1; i < a.length; i++) {
-                a[i] = sub(a[i], multiply(a[r], a[i][r])).clone();
+            for (int i = r + 1; i < matrix.content.length; i++) {
+                matrix.content[i] = sub(matrix.content[i], multiply(matrix.content[r], matrix.content[i][r])).clone();
             }
         }
 
-        return new Matrix(name, a);
+        return matrix;
     }
 
     private double[] divide(double[] content, double divisor) {
@@ -766,11 +768,11 @@ public class Matrix implements Serializable {
     }
 
     public double getTrace() throws Exception {
-        if (height != width)
+        if (getHeight() != getWidth())
             throw new Exception("Matrix should be square matrix!");
 
         double sum = 0;
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < getHeight(); i++) {
             sum += content[i][i];
         }
 
@@ -778,7 +780,7 @@ public class Matrix implements Serializable {
     }
 
     public Matrix eigenValues() {
-        Matrix y = new Matrix(height, 1);
+        Matrix y = new Matrix(getHeight(), 1);
         y.setContent(1);
 
         for (int i = 1; i < 10; i++) {
@@ -791,16 +793,21 @@ public class Matrix implements Serializable {
     }
 
     public Matrix identityMatrix() {
-        if (height != width)
+        if (getHeight() != getWidth())
             throw new IllegalStateException("Matrix has not identity");
-        double[][] v = new double[width][width];
+        double[][] v = new double[getWidth()][getWidth()];
 
 
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < getHeight(); i++) {
             v[i][i] = 1;
 
         }
-        return new Matrix("Identity", v);
+        return new Matrix("I").setContent(v);
     }
 
+    public Matrix copy() {
+        Matrix matrix = new Matrix(name);
+        matrix.content = this.content.clone();
+        return matrix;
+    }
 }

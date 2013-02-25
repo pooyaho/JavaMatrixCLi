@@ -6,15 +6,14 @@
 package ir.pooyahfp.matrix.commands;
 
 import ir.pooyahfp.matrix.Matrix;
-import ir.pooyahfp.matrix.MatrixOperations;
 
 import java.util.List;
 
 /**
-* @author : Pooya husseini
- * Email : info@pooya-hfp.ir
- * Date: 1/23/13
- * Time: 2:15 PM
+ * @author : Pooya husseini
+ *         Email : info@pooya-hfp.ir
+ *         Date: 1/23/13
+ *         Time: 2:15 PM
  */
 public class CopyCommand extends AbstractCommand {
     @Override
@@ -23,10 +22,11 @@ public class CopyCommand extends AbstractCommand {
         if (params.size() < 2)
             throw new IllegalArgumentException("Copy should have 2 parameters");
 
-        Matrix matrix1 = getMatrix(params.get(0));
+
         Matrix matrix2 = getMatrix(params.get(1));
 
-        MatrixOperations.copy(matrix1, matrix2);
+        Matrix matrix1 = matrix2.copy();
+        matrix1.setName(params.get(0));
 
         persistMatrix(matrix1, matrix2);
     }

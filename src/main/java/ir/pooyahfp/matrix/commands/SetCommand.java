@@ -21,13 +21,14 @@ public class SetCommand extends AbstractCommand {
     public void execute(List<String> params, List<String> values) throws Exception {
         String name = params.get(0);
 
-        Integer row = params.get(1).isEmpty() ? null : Integer.parseInt(params.get(1))-1;
-        Integer col = params.get(2).isEmpty() ? null : Integer.parseInt(params.get(2))-1;
+        Integer row = params.get(1).isEmpty() ? null : Integer.parseInt(params.get(1)) - 1;
+        Integer col = params.get(2).isEmpty() ? null : Integer.parseInt(params.get(2)) - 1;
 
         Matrix matrix = getMatrix(name);
         double[] doubles = toDouble(values);
-        matrix.setContent(row, col, doubles);
+        matrix = matrix.setContent(row, col, doubles);
 
+        persistMatrix(matrix);
     }
 
     public double[] toDouble(List<String> list) {

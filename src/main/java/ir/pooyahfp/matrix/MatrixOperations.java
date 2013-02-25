@@ -13,9 +13,9 @@ package ir.pooyahfp.matrix;
  */
 public class MatrixOperations {
 
-    public static void copy(Matrix a, Matrix b) {
-        a.setMatrix(b);
-    }
+//    public static void copy(Matrix a, Matrix b) {
+//        a=b.copy();
+//    }
 
     public static void swap(Matrix a, Matrix b) {
         String temp = a.getName();
