@@ -765,4 +765,18 @@ public class Matrix implements Serializable {
         }
         return y;
     }
+
+    public Matrix identityMatrix() {
+        if (height != width)
+            throw new IllegalStateException("Matrix has not identity");
+        double[][] v = new double[width][width];
+
+
+        for (int i = 0; i < height; i++) {
+            v[i][i] = 1;
+
+        }
+        return new Matrix("Identity", v);
+    }
+
 }

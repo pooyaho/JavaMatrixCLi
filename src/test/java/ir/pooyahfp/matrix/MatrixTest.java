@@ -176,7 +176,9 @@ public class MatrixTest {
 
     @Test
     public void testEigenValues() {
-        Matrix matrix = new Matrix();
+        Matrix matrix = new Matrix(3,3,"A");
+
+
         System.out.println(matrix.eigenValues());
     }
 
@@ -259,4 +261,13 @@ public class MatrixTest {
             scanner.read(";");
         }
     }
+
+    @Test
+    public void testIdentityMatrix(){
+        Matrix matrix=new Matrix(4,4,"A");
+        System.out.println(matrix.identityMatrix());
+
+    }
+
+
 }

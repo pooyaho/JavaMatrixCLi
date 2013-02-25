@@ -15,6 +15,7 @@ import java.util.List;
  *         Time: 2:50 PM
  */
 public class Token {
+
     private String command;
     private List<String> params = new ArrayList<String>();
     private List<String> values = new ArrayList<String>();
