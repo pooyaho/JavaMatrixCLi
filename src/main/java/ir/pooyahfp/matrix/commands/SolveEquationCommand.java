@@ -21,7 +21,7 @@ public class SolveEquationCommand extends AbstractCommand {
         Matrix a = getMatrix(params.get(1));
         Matrix b = getMatrix(params.get(2));
 
-        MatrixOperations.copy(x, a.invert().mul(b));
+        MatrixOperations.copy(x, a.getInvert().mul(b));
 
         persistMatrix(x);
     }

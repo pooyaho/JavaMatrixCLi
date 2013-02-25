@@ -38,88 +38,165 @@ public class MatrixTest {
 
     @Test
     public void testGetName() throws Exception {
-
+        Matrix x = new Matrix("A");
+        Assert.assertEquals(x.getName(), "A");
     }
 
     @Test
     public void testSetName() throws Exception {
-
+        Matrix x = new Matrix("A");
+        x.setName("B");
+        Assert.assertEquals(x.getName(), "B");
     }
 
     @Test
     public void testGetWidth() throws Exception {
+        Matrix x = new Matrix(10, 10, "A");
 
+        Assert.assertEquals(x.getWidth(), 10);
     }
 
     @Test
     public void testSetWidth() throws Exception {
 
+        Matrix x = new Matrix(10, 10, "A");
+        boolean ex = false;
+
+        try {
+            x.setWidth(0);
+        } catch (Exception y) {
+            ex = true;
+        }
+        Assert.assertTrue(ex);
+
+        x.setWidth(200);
+        Assert.assertEquals(x.getWidth(), 200);
+        Assert.assertEquals(x.getContent()[0].length, 200);
     }
 
     @Test
     public void testGetHeight() throws Exception {
+        Matrix x = new Matrix(10, 10, "A");
 
+        Assert.assertEquals(x.getHeight(), 10);
     }
 
     @Test
     public void testSetHeight() throws Exception {
+        Matrix x = new Matrix(10, 10, "A");
+        boolean ex = false;
 
+        try {
+            x.setHeight(0);
+        } catch (Exception y) {
+            ex = true;
+        }
+        Assert.assertTrue(ex);
+
+        x.setHeight(200);
+        Assert.assertEquals(x.getHeight(), 200);
+        Assert.assertEquals(x.getContent().length, 200);
     }
 
     @Test
     public void testGetContent() throws Exception {
-
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
+        Assert.assertArrayEquals(x.getContent()[0], new double[]{1, 2}, 0);
+        Assert.assertArrayEquals(x.getContent()[1], new double[]{3, 4}, 0);
     }
 
 
     @Test
     public void testSetMatrix() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        Matrix y = new Matrix(2, 2, "B");
+        y.setContent(new double[]{1, 2, 3, 4});
 
+        x.setMatrix(y);
+        Assert.assertEquals(x.getName(), "B");
+        Assert.assertArrayEquals(x.getContent()[0], new double[]{1, 2}, 0);
+        Assert.assertArrayEquals(x.getContent()[1], new double[]{3, 4}, 0);
     }
 
     @Test
     public void testRemoveRow() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Matrix matrix = x.removeRow(0);
+        Assert.assertArrayEquals(matrix.getContent()[0], new double[]{3, 4}, 0);
     }
 
     @Test
     public void testRemoveColumn() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Matrix matrix = x.removeColumn(0);
+        Assert.assertArrayEquals(matrix.getContent()[0], new double[]{2}, 0);
+        Assert.assertArrayEquals(matrix.getContent()[1], new double[]{4}, 0);
     }
 
     @Test
     public void testGetTranspose() throws Exception {
-
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
+        Matrix transpose = x.getTranspose();
+        Assert.assertArrayEquals(transpose.getContent()[0], new double[]{1, 3}, 0);
+        Assert.assertArrayEquals(transpose.getContent()[1], new double[]{2, 4}, 0);
     }
 
     @Test
     public void testToString() throws Exception {
-
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
+        System.out.println(x);
     }
 
     @Test
     public void testDivide() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
+        Matrix y = new Matrix(2, 2, "B");
+        y.setContent(new double[]{4, 4, 2, 1});
 
+        Matrix divide = x.divide(y);
+        Assert.assertArrayEquals(divide.getContent()[0], new double[]{0.25, 0.5}, 0);
+        Assert.assertArrayEquals(divide.getContent()[1], new double[]{1.5, 4L}, 0);
     }
 
     @Test
     public void testDeterminant() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Assert.assertEquals(x.getDeterminant(), -2L, 0);
     }
 
     @Test
     public void testIsDeterministic() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Assert.assertTrue(x.hasDeterminant());
     }
 
     @Test
     public void testIsInvertible() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Assert.assertTrue(x.isInvertible());
     }
 
     @Test
     public void testRemoveRowAndCol() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Matrix matrix = x.removeRowAndCol(0, 0);
+        Assert.assertEquals(matrix.getContent()[0][0], 4L, 0);
     }
 
     @Test
@@ -129,32 +206,155 @@ public class MatrixTest {
 
     @Test
     public void testInvert() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Matrix invert = x.getInvert();
+        Assert.assertArrayEquals(invert.getContent()[0], new double[]{-2L, 1L}, 0);
+        Assert.assertArrayEquals(invert.getContent()[1], new double[]{1.5, -0.5}, 0);
+
+        x.setWidth(3);
+        x.setHeight(3);
+        x.setContent(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+
+        boolean ex = false;
+
+        try {
+            x.getInvert();
+        } catch (Exception xx) {
+            ex = true;
+        }
+
+        Assert.assertTrue(ex);
     }
 
     @Test
     public void testGetRow() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
+        Assert.assertArrayEquals(x.getRow(0), new double[]{1L, 2L}, 0);
 
+
+
+        boolean ex=false;
+
+        try{
+            x.getRow(-2);
+
+        }catch (IllegalArgumentException xx){
+            ex=true;
+        }
+
+        Assert.assertTrue(ex);
     }
 
     @Test
     public void testAdd() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Matrix y = new Matrix(2, 2, "A");
+        y.setContent(new double[]{4, 3, 2, 1});
+
+        Matrix add = x.add(y);
+
+        Assert.assertArrayEquals(add.getContent()[0], new double[]{5L, 5L}, 0);
+        Assert.assertArrayEquals(add.getContent()[1], new double[]{5L, 5L}, 0);
+
+        y.setWidth(3);
+        y.setHeight(3);
+        y.setContent(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+
+        boolean ex = false;
+
+        try {
+            x.add(y);
+
+        } catch (IllegalArgumentException xx) {
+            ex = true;
+        }
+
+        Assert.assertTrue(ex);
     }
 
     @Test
     public void testSub() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Matrix y = new Matrix(2, 2, "A");
+        y.setContent(new double[]{4, 3, 2, 1});
+
+        Matrix sub = x.sub(y);
+
+        Assert.assertArrayEquals(sub.getContent()[0], new double[]{-3L, -1L}, 0);
+        Assert.assertArrayEquals(sub.getContent()[1], new double[]{1L, 3L}, 0);
+
+        y.setWidth(3);
+        y.setHeight(3);
+        y.setContent(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+
+        boolean ex = false;
+
+        try {
+            x.sub(y);
+
+        } catch (IllegalArgumentException xx) {
+            ex = true;
+        }
+
+        Assert.assertTrue(ex);
     }
 
     @Test
     public void testMul() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Matrix y = new Matrix(2, 2, "A");
+        y.setContent(new double[]{4, 3, 2, 1});
+
+        Matrix mul = x.mul(y);
+
+        Assert.assertArrayEquals(mul.getContent()[0], new double[]{8L, 5L}, 0);
+        Assert.assertArrayEquals(mul.getContent()[1], new double[]{20L, 13L}, 0);
+
+        y.setWidth(3);
+        y.setHeight(3);
+        y.setContent(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+
+        boolean ex = false;
+
+        try {
+            x.mul(y);
+
+        } catch (IllegalArgumentException xx) {
+            ex = true;
+        }
+
+        Assert.assertTrue(ex);
     }
 
     @Test
     public void testPower() throws Exception {
+        Matrix x = new Matrix(2, 2, "A");
+        x.setContent(new double[]{1, 2, 3, 4});
 
+        Matrix power = x.power(3);
+
+        Assert.assertArrayEquals(power.getContent()[0], new double[]{37L, 54L}, 0);
+        Assert.assertArrayEquals(power.getContent()[1], new double[]{81L, 118L}, 0);
+
+        boolean ex = false;
+
+        try {
+            x.power(0);
+
+        } catch (IllegalArgumentException xx) {
+            ex = true;
+        }
+
+        Assert.assertTrue(ex);
     }
 
     @Test
@@ -176,10 +376,10 @@ public class MatrixTest {
 
     @Test
     public void testEigenValues() {
-        Matrix matrix = new Matrix(3,3,"A");
+        Matrix matrix = new Matrix(3, 3, "A");
 
 
-        System.out.println(matrix.eigenValues());
+//        System.out.println(matrix.eigenValues());
     }
 
     @Test
@@ -226,7 +426,7 @@ public class MatrixTest {
 
     @Test
     public void testSimpleCommandScanner() {
-        String document = "set x y er 3 5 6 u    ";
+        String document = "set x y er 3 5 6 u   ; ";
         final DocumentScanner scanner = new PositionAwareDocumentScanner(document);
         scanner.read("\\s*");
 
@@ -263,8 +463,8 @@ public class MatrixTest {
     }
 
     @Test
-    public void testIdentityMatrix(){
-        Matrix matrix=new Matrix(4,4,"A");
+    public void testIdentityMatrix() {
+        Matrix matrix = new Matrix(4, 4, "A");
         System.out.println(matrix.identityMatrix());
 
     }

@@ -124,11 +124,21 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * sets the width of the matrix
+     * sets the width of the matrix and resize the matrix width
      *
      * @param width the with
      */
     public void setWidth(int width) {
+        if (width <= 0)
+            throw new IllegalArgumentException("Width should be greater than zero");
+
+        double[][] newArray = new double[height][width];
+
+        for (int i = 0; i < height; i++) {
+            System.arraycopy(content[i], 0, newArray[i], 0, this.width);
+        }
+
+        this.content = newArray.clone();
         this.width = width;
     }
 
@@ -140,11 +150,20 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * sets the height of the matrix
+     * Sets the height of the matrix and resize it
      *
      * @param height the height
      */
     public void setHeight(int height) {
+        if (height <= 0)
+            throw new IllegalArgumentException("Height should be greater than zero");
+
+        double[][] newArray = new double[height][width];
+
+        for (int i = 0; i < this.height; i++) {
+            System.arraycopy(content[i], 0, newArray[i], 0, width);
+        }
+        this.content = newArray.clone();
         this.height = height;
     }
 
@@ -330,14 +349,14 @@ public class Matrix implements Serializable {
     /**
      * @return returns the determinant of the matrix
      */
-    public double determinant() {
+    public double getDeterminant() {
         return determinant(this);
     }
 
     /**
      * @return is the matrix deterministic
      */
-    public boolean isDeterministic() {
+    public boolean hasDeterminant() {
         return height == width;
     }
 
@@ -345,7 +364,7 @@ public class Matrix implements Serializable {
      * @return is the matrix invertible
      */
     public boolean isInvertible() {
-        return determinant() != 0;
+        return getDeterminant() != 0;
     }
 
     /**
@@ -355,7 +374,7 @@ public class Matrix implements Serializable {
      * @return determinant of the matrix
      */
     private double determinant(Matrix a) {
-        if (!a.isDeterministic())
+        if (!a.hasDeterminant())
             throw new IllegalArgumentException("Matrix has not determinant");
 
         if (a.getHeight() == 2 && a.getWidth() == 2)
@@ -406,12 +425,12 @@ public class Matrix implements Serializable {
     /**
      * @return returns the invert of the matrix
      */
-    public Matrix invert() {
+    public Matrix getInvert() {
 //        Matrix temp = new Matrix(height, width);
         double[][] temp = content.clone();
         if (!isInvertible())
             throw new IllegalArgumentException("Matrix is not invertible!");
-        double det = this.determinant();
+        double det = this.getDeterminant();
         if (height == 2 && width == 2) {
             double a = temp[0][0];
             temp[0][0] = temp[1][1];
@@ -431,6 +450,8 @@ public class Matrix implements Serializable {
      * @return returns the row in an 1d array
      */
     public double[] getRow(int i) {
+        if (i < 0)
+            throw new IllegalArgumentException("Row number is greater or equal than 0");
         return content[i];
     }
 
@@ -516,6 +537,9 @@ public class Matrix implements Serializable {
      * @return returns the result of this^c
      */
     public Matrix power(int c) {
+        if (c <= 0)
+            throw new IllegalArgumentException("Power must be greater than zero");
+
         Matrix temp = new Matrix(getHeight(), getWidth());
         temp.setMatrix(this);
         for (int i = 1; i < c; i++) {

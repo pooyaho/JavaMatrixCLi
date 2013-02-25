@@ -39,7 +39,6 @@ public class AddCommand extends AbstractCommand {
             resultMatrix.setName(matrix1.getName());
         }
 
-
         persistMatrix(resultMatrix);
 
     }
