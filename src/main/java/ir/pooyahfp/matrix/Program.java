@@ -10,9 +10,7 @@ import ir.pooyahfp.matrix.token.Token;
 import ir.pooyahfp.matrix.token.Tokenizer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +29,16 @@ public class Program {
 
     private static Map<String, AbstractCommand> commandMap;
 
+    private void runCommand(String line) throws Exception {
+        List<Token> tokens = Tokenizer.createToken(line);
+        for (Token token : tokens) {
+            AbstractCommand abstractCommand = commandMap.get(token.getCommand());
+            if (abstractCommand == null)
+                throw new IllegalArgumentException("Command not found!");
+            abstractCommand.execute(token.getParams(), token.getValues());
+        }
+    }
+
     private void start() {
         String curLine = "";
         writer.println("Enter a command (type 'quit' to exit): ");
@@ -42,13 +50,7 @@ public class Program {
             try {
                 curLine = in.readLine();
                 if (!(curLine.equals("quit"))) {
-                    List<Token> tokens = Tokenizer.createToken(curLine);
-                    for (Token token : tokens) {
-                        AbstractCommand abstractCommand = commandMap.get(token.getCommand());
-                        if (abstractCommand == null)
-                            throw new IllegalArgumentException("Command not found!");
-                        abstractCommand.execute(token.getParams(), token.getValues());
-                    }
+                    runCommand(curLine);
                 }
             } catch (Exception x) {
                 writer.println("An error occurred: " + x.getMessage());
@@ -66,8 +68,30 @@ public class Program {
     }
 
     public static void main(String[] args) {
+
         new ClassPathXmlApplicationContext("classpath*:**/spring/spring-config.xml");
         Program program = new Program();
+        if (args.length > 0)
+            program.loadCommandFile(args[0]);
+
         program.start();
     }
+
+    public void loadCommandFile(String path) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
+
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                runCommand(line);
+            }
+        } catch (FileNotFoundException e) {
+            writer.println("An error occurred: " + e.getMessage());
+        } catch (IOException e) {
+            writer.println("An error occurred: " + e.getMessage());
+        } catch (Exception e) {
+            writer.println("An error occurred: " + e.getMessage());
+        }
+    }
+
 }
