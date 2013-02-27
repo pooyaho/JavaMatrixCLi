@@ -44,7 +44,6 @@ public class Program {
         writer.println("Enter a command (type 'quit' to exit): ");
         InputStreamReader converter = new InputStreamReader(System.in);
         BufferedReader in = new BufferedReader(converter);
-        AbstractCommand.setWriter(writer);
 
         while (!curLine.equals("quit")) {
             try {
@@ -61,6 +60,7 @@ public class Program {
 
     public void setWriter(PrintWriter writer) {
         Program.writer = writer;
+        AbstractCommand.setWriter(writer);
     }
 
     public void setCommandMap(Map<String, AbstractCommand> commandMap) {
@@ -73,8 +73,8 @@ public class Program {
         Program program = new Program();
         if (args.length > 0)
             program.loadCommandFile(args[0]);
-
-        program.start();
+        else
+            program.start();
     }
 
     public void loadCommandFile(String path) {
@@ -83,13 +83,16 @@ public class Program {
 
             String line = "";
             while ((line = reader.readLine()) != null) {
-                runCommand(line);
+                try {
+                    runCommand(line);
+
+                } catch (Exception e) {
+                    writer.println("An error occurred: " + e.getMessage());
+                }
             }
         } catch (FileNotFoundException e) {
             writer.println("An error occurred: " + e.getMessage());
         } catch (IOException e) {
-            writer.println("An error occurred: " + e.getMessage());
-        } catch (Exception e) {
             writer.println("An error occurred: " + e.getMessage());
         }
     }
