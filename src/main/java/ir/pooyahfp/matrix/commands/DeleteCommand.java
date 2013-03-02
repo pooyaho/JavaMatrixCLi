@@ -5,26 +5,28 @@
 
 package ir.pooyahfp.matrix.commands;
 
-import ir.pooyahfp.matrix.Matrix;
-
 import java.util.List;
 
 /**
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
  *         Date: 1/23/13
- *         Time: 2:16 PM
+ *         Time: 2:14 PM
  */
-public class ShowCommand extends AbstractCommand {
+public class DeleteCommand extends AbstractCommand {
+
+
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
-        if (params.size() == 1 && "all".equalsIgnoreCase(params.get(0))) {
-            for (Matrix matrix : getAllMatrices()) {
-                getWriter().println(matrix);
-            }
-            return;
+        if (params.size() < 1)
+            throw new IllegalArgumentException("Input should has 2 or 3 parameters");
+
+        for (String param : params) {
+            deleteMatrix(param);
         }
-        for (String matrixName : params)
-            getWriter().println(getMatrix(matrixName));
+
+
     }
+
+
 }

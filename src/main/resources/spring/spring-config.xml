@@ -100,23 +100,22 @@
             <bean class="ir.pooyahfp.matrix.commands.TraceCommand"/>
         </entry>
 
+        <entry key="del">
+            <bean class="ir.pooyahfp.matrix.commands.DeleteCommand"/>
+        </entry>
+
     </utils:map>
 
     <bean name="main" class="ir.pooyahfp.matrix.Program">
-
         <property name="writer" ref="writer"/>
         <property name="commandMap" ref="commands"/>
-
     </bean>
 
     <bean name="writer" class="java.io.PrintWriter">
-
         <constructor-arg index="0" type="java.io.OutputStream">
             <util:constant static-field="java.lang.System.out"/>
         </constructor-arg>
-
         <constructor-arg index="1" type="boolean" value="true"/>
-
     </bean>
 
 </beans>
