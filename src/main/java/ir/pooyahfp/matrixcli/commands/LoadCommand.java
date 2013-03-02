@@ -27,7 +27,7 @@ public class LoadCommand extends AbstractCommand {
         Matrix matrix = (Matrix) SaveLoad.readObject(path);
         matrix.setName(name);
 
-        persistMatrix(matrix);
+        updateMathObject(matrix);
     }
 
 }

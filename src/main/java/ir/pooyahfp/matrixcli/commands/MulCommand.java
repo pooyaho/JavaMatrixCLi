@@ -26,18 +26,18 @@ public class MulCommand extends AbstractCommand {
         Matrix resultMatrix = null;
         if (params.size() == 3) {
 
-            matrix1 = getMatrix(params.get(1));
-            matrix2 = getMatrix(params.get(2));
+            matrix1 = (Matrix) getMathObject(params.get(1));
+            matrix2 = (Matrix) getMathObject(params.get(2));
             resultMatrix = matrix1.mul(matrix2);
             resultMatrix.setName(params.get(0));
 
         } else if (params.size() == 2) {
-            matrix1 = getMatrix(params.get(0));
-            matrix2 = getMatrix(params.get(1));
+            matrix1 = (Matrix) getMathObject(params.get(0));
+            matrix2 = (Matrix) getMathObject(params.get(1));
             resultMatrix = matrix1.mul(matrix2);
             resultMatrix.setName(matrix1.getName());
         }
 
-        persistMatrix(resultMatrix);
+        updateMathObject(resultMatrix);
     }
 }

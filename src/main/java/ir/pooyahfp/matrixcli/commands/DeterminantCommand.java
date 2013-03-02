@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.matrix.Matrix;
+
 import java.util.List;
 
 /**
@@ -21,7 +23,7 @@ public class DeterminantCommand extends AbstractCommand {
             throw new IllegalArgumentException("Input should have parameter!");
 
         for (String param : params) {
-            getWriter().println(getMatrix(param).getDeterminant());
+            getWriter().println(((Matrix) getMathObject(param)).getDeterminant());
         }
     }
 }

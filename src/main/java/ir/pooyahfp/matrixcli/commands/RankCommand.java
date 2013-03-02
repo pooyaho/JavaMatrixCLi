@@ -22,7 +22,7 @@ public class RankCommand extends AbstractCommand {
         if (params.size() != 1)
             throw new IllegalArgumentException("Illegal parameters");
 
-        Matrix matrix = getMatrix(params.get(0));
+        Matrix matrix = (Matrix) getMathObject(params.get(0));
         getWriter().println(matrix.getRank());
     }
 

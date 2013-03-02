@@ -23,11 +23,11 @@ public class SwapCommand extends AbstractCommand {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 parameters");
 
-        Matrix matrix1 = getMatrix(params.get(0));
-        Matrix matrix2 = getMatrix(params.get(1));
+        Matrix matrix1 = (Matrix) getMathObject(params.get(0));
+        Matrix matrix2 = (Matrix) getMathObject(params.get(1));
 
         MatrixOperations.swap(matrix1, matrix2);
 
-        persistMatrix(matrix1, matrix2);
+        updateMathObject(matrix1, matrix2);
     }
 }

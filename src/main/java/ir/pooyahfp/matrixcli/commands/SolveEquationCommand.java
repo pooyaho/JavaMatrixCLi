@@ -17,12 +17,12 @@ public class SolveEquationCommand extends AbstractCommand {
             throw new IllegalArgumentException("Input should has 3 parameters");
 
 
-        Matrix a = getMatrix(params.get(1));
-        Matrix b = getMatrix(params.get(2));
+        Matrix a = (Matrix) getMathObject(params.get(1));
+        Matrix b = (Matrix) getMathObject(params.get(2));
 
         Matrix x=a.getInvert().mul(b).copy();
         x.setName(params.get(0));
 
-        persistMatrix(x);
+        updateMathObject(x);
     }
 }

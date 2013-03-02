@@ -24,15 +24,15 @@ public class EchelonCommand extends AbstractCommand {
 
         switch (params.size()) {
             case 1:
-                Matrix matrix = getMatrix(params.get(0));
+                Matrix matrix = (Matrix) getMathObject(params.get(0));
                 matrix = matrix.echelonForm();
-                persistMatrix(matrix);
+                updateMathObject(matrix);
                 break;
             case 2:
-                matrix = getMatrix(params.get(1));
+                matrix = (Matrix) getMathObject(params.get(1));
                 Matrix temp = matrix.echelonForm();
                 temp.setName(params.get(0));
-                persistMatrix();
+                updateMathObject();
                 break;
             default:
                 throw new IllegalArgumentException("Illegal parameters");

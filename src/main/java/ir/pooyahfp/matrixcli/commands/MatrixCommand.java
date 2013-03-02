@@ -16,6 +16,7 @@ import java.util.List;
  * Time: 2:18 PM
  */
 public class MatrixCommand extends AbstractCommand {
+
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
 
@@ -32,6 +33,6 @@ public class MatrixCommand extends AbstractCommand {
         } else {
             matrix = new Matrix(params.get(0));
         }
-        persistMatrix(matrix);
+        createMathObject(matrix);
     }
 }

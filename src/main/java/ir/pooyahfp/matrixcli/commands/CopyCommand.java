@@ -23,11 +23,11 @@ public class CopyCommand extends AbstractCommand {
             throw new IllegalArgumentException("Copy should have 2 parameters");
 
 
-        Matrix matrix2 = getMatrix(params.get(1));
+        Matrix matrix2 = (Matrix) getMathObject(params.get(1));
 
         Matrix matrix1 = matrix2.copy();
         matrix1.setName(params.get(0));
 
-        persistMatrix(matrix1, matrix2);
+        updateMathObject(matrix1, matrix2);
     }
 }

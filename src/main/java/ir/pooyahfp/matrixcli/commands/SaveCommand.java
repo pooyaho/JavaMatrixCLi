@@ -24,7 +24,7 @@ public class SaveCommand extends AbstractCommand {
             throw new IllegalArgumentException("Save should have 2 parameters");
         String name = params.get(0);
         String path = params.get(1);
-        Matrix matrix = getMatrix(name);
+        Matrix matrix = (Matrix) getMathObject(name);
         SaveLoad.saveObject(path, matrix);
     }
 }

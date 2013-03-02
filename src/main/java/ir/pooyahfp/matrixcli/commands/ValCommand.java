@@ -16,6 +16,7 @@ import java.util.List;
  *         Time: 2:18 PM
  */
 public class ValCommand extends AbstractCommand {
+
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
 
@@ -32,6 +33,6 @@ public class ValCommand extends AbstractCommand {
             value = new SimpleValue(params.get(0),null);
         }
 
-        persistSimpleValue(value);
+        createMathObject(value);
     }
 }

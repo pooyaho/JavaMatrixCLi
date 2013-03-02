@@ -15,13 +15,13 @@ public class LuCommand extends AbstractCommand {
         if (params.size() < 3)
             throw new IllegalArgumentException("Input should has 3 parameters");
 
-        Matrix a = getMatrix(params.get(0));
-        Matrix l = getMatrix(params.get(1));
-        Matrix u = getMatrix(params.get(2));
+        Matrix a = (Matrix) getMathObject(params.get(0));
+        Matrix l = (Matrix) getMathObject(params.get(1));
+        Matrix u = (Matrix) getMathObject(params.get(2));
 
         a.lu(l, u);
 
-        persistMatrix(a, l, u);
+        updateMathObject(a, l, u);
 
     }
 }

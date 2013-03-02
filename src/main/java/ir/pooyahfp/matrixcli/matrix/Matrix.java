@@ -20,7 +20,7 @@ import java.util.List;
  *         Date: 1/26/13
  *         Time: 10:58 AM
  */
-public class Matrix implements Serializable, Cloneable {
+public class Matrix implements MathObject,Serializable, Cloneable {
 
     private double[][] content;
     private String name;

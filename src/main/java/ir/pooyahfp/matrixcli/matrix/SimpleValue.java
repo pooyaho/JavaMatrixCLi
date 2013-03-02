@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.matrix;
 
+import java.io.Serializable;
+
 /**
  * A POJO class that contains simple values
  *
@@ -13,7 +15,7 @@ package ir.pooyahfp.matrixcli.matrix;
  *         Date: 3/2/13
  *         Time: 5:59 PM
  */
-public class SimpleValue {
+public class SimpleValue implements MathObject,Serializable, Cloneable{
     private String name;
     private Number value;
 

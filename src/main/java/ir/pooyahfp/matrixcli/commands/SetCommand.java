@@ -24,11 +24,11 @@ public class SetCommand extends AbstractCommand {
         Integer row = params.get(1).isEmpty() ? null : Integer.parseInt(params.get(1)) - 1;
         Integer col = params.get(2).isEmpty() ? null : Integer.parseInt(params.get(2)) - 1;
 
-        Matrix matrix = getMatrix(name);
+        Matrix matrix = (Matrix) getMathObject(name);
         double[] doubles = toDouble(values);
         matrix = matrix.setContent(row, col, doubles);
 
-        persistMatrix(matrix);
+        updateMathObject(matrix);
     }
 
     public double[] toDouble(List<String> list) {

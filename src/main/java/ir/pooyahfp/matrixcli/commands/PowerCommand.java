@@ -26,20 +26,20 @@ public class PowerCommand extends AbstractCommand {
         Matrix resultMatrix = null;
         if (params.size() == 3) {
 
-            matrix1 = getMatrix(params.get(1));
+            matrix1 = (Matrix) getMathObject(params.get(1));
             pow = Integer.parseInt(params.get(2));
 
             resultMatrix = matrix1.power(pow);
             resultMatrix.setName(params.get(0));
 
         } else if (params.size() == 2) {
-            matrix1 = getMatrix(params.get(0));
+            matrix1 = (Matrix) getMathObject(params.get(0));
             pow = Integer.parseInt(params.get(1));
 
             resultMatrix = matrix1.power(pow);
 
             resultMatrix.setName(matrix1.getName());
         }
-        persistMatrix(resultMatrix);
+        updateMathObject(resultMatrix);
     }
 }

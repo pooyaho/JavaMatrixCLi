@@ -12,4 +12,6 @@ package ir.pooyahfp.matrixcli.matrix;
  *         Time: 6:28 PM
  */
 public interface MathObject  {
+    String toString();
+    String getName();
 }

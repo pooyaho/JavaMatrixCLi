@@ -22,7 +22,7 @@ public class DeleteCommand extends AbstractCommand {
             throw new IllegalArgumentException("Input should has 2 or 3 parameters");
 
         for (String param : params) {
-            deleteMatrix(param);
+            deleteMathObject(param);
         }
 
 

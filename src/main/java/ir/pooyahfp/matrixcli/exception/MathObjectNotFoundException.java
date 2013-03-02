@@ -11,23 +11,23 @@ package ir.pooyahfp.matrixcli.exception;
  *         Date: 2/27/13
  *         Time: 5:06 PM
  */
-public class DuplicateSimpleValueException extends Exception {
-    public DuplicateSimpleValueException() {
+public class MathObjectNotFoundException extends Exception {
+    public MathObjectNotFoundException() {
     }
 
-    public DuplicateSimpleValueException(String message) {
+    public MathObjectNotFoundException(String message) {
         super(message);
     }
 
-    public DuplicateSimpleValueException(String message, Throwable cause) {
+    public MathObjectNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public DuplicateSimpleValueException(Throwable cause) {
+    public MathObjectNotFoundException(Throwable cause) {
         super(cause);
     }
 
-    public DuplicateSimpleValueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public MathObjectNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }
