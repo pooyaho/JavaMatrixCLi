@@ -5,15 +5,10 @@
 
 package ir.pooyahfp.matrix;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 /**
+ * A class to store and restore the objects, It uses the serialization technology
 * @author : Pooya husseini
  * Email : info@pooya-hfp.ir
  * Date: 1/26/13
@@ -21,7 +16,15 @@ import java.io.ObjectOutputStream;
  */
 public class SaveLoad {
 
-    public static Object readObject(String path) throws Exception {
+    /**
+     * Read the object from the given file. if file does not exist or it is not convertible to an object,
+     * It will throw the exceptions
+     * @param path the path of the file that contains the object
+     * @return returns the object
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public static Object readObject(String path) throws IOException, ClassNotFoundException {
         FileInputStream f = new FileInputStream(path);
         ObjectInput s = new ObjectInputStream(f);
         Object o = s.readObject();
@@ -30,6 +33,12 @@ public class SaveLoad {
         return o;
     }
 
+    /**
+     * It stores your object in the entered path
+     * @param path The given path that you want to save object in it
+     * @param o the given object
+     * @throws IOException
+     */
     public static void saveObject(String path, Object o) throws IOException {
         FileOutputStream f = new FileOutputStream(path);
         ObjectOutput s = new ObjectOutputStream(f);

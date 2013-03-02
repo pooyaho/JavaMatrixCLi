@@ -6,24 +6,23 @@
 package ir.pooyahfp.matrix;
 
 /**
+ * This class contains the operation on multiple matrices
+ *
  * @author : Pooya husseini
- * Email : info@pooya-hfp.ir
- * Date: 1/26/13
- * Time: 10:58 AM
+ *         Email : info@pooya-hfp.ir
+ *         Date: 1/26/13
+ *         Time: 10:58 AM
  */
 public class MatrixOperations {
 
-//    public static void copy(Matrix a, Matrix b) {
-//        a=b.copy();
-//    }
-
+    /**
+     * It swaps two given matrices,
+     * @param a The first matrix
+     * @param b The second one
+     */
     public static void swap(Matrix a, Matrix b) {
         String temp = a.getName();
         a.setName(b.getName());
         b.setName(temp);
-    }
-
-    public static Matrix transpose(Matrix a) {
-        return a.getTranspose();
     }
 }

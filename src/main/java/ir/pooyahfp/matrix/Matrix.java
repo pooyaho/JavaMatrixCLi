@@ -12,7 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Base Matrix class that has a lot of functions which manipulates matrix data
+ * Base immutable matrix class that has a lot of functions to manipulate the matrix data
+ *
  *
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir

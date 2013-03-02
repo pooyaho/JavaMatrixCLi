@@ -23,6 +23,15 @@ import java.util.regex.Pattern;
  */
 public class Tokenizer {
 
+    /**
+     * It create a list of token according to the given string. a line can contain infinite commands that separated
+     * with semicolon. In this program command has two structure,one of them has {} like set command and others have
+     * not. The method start with the tokenizer that tokenize with semicolon. and separates each command,
+     * then tokenize them and returns a list of tokens
+     *
+     * @param s input command string
+     * @return a list of token
+     */
     public static List<Token> createToken(String s) {
 
         List<Token> tokenArrayList = new ArrayList<Token>();
@@ -82,26 +91,8 @@ public class Tokenizer {
                         }
                         scanner.expect("}");
                         return null;
-//                    return new SimpleTaggedToken(scanner.getOffset() - offset, offset, new SetCommand.CommandDescriptor
-//                            (identifier, Integer.parseInt(firstDimension.isEmpty() ? "-1" : firstDimension),
-//                                    Integer.parseInt(secondDimension.isEmpty() ? "-1" : secondDimension),
-//                                    values.toArray(new Integer[values.size()])));
                     }
                 });
-
-//            StringTokenizer lines = new StringTokenizer(s, ";");
-//            while (lines.hasMoreElements()) {
-//
-//                StringTokenizer tokens = new StringTokenizer((String) lines.nextElement(), " {}");
-//                String command = (String) tokens.nextElement();
-//                List<String> params = new ArrayList<String>();
-//                while (tokens.hasMoreElements()) {
-//                    params.add(((String) tokens.nextElement()).toLowerCase());
-//                }
-//                tokenArrayList.add(new Token(command.toLowerCase(), params));
-//            }
-//            return tokenArrayList;
-//        }
 
             } else {
                 scanner.read("\\s*");

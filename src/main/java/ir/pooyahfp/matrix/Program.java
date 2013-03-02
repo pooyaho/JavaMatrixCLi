@@ -24,12 +24,14 @@ public class Program {
 
     private static PrintWriter writer;
 
+
     private Program() {
     }
 
     private static Map<String, AbstractCommand> commandMap;
 
-    private void runCommand(String line) throws Exception {
+
+    public void runCommand(String line) throws Exception {
         List<Token> tokens = Tokenizer.createToken(line);
         for (Token token : tokens) {
             AbstractCommand abstractCommand = commandMap.get(token.getCommand());
@@ -58,10 +60,12 @@ public class Program {
 
     }
 
+
     public void setWriter(PrintWriter writer) {
         Program.writer = writer;
         AbstractCommand.setWriter(writer);
     }
+
 
     public void setCommandMap(Map<String, AbstractCommand> commandMap) {
         Program.commandMap = commandMap;
@@ -77,6 +81,10 @@ public class Program {
             program.start();
     }
 
+    /**
+     * Opens a script file and reads each line and execute them
+     * @param path the path of the input
+     */
     public void loadCommandFile(String path) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
