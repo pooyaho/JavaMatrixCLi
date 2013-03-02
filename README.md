@@ -62,10 +62,14 @@ Prints the rank of the matrix
 Prints the trace of the matrix
 
 ### usage #command_name [ #command_name... ]
-prints how to use the command_name
+Prints how to use the command_name
 
 ### help #command_name [ #command_name ]
-prints about the command_name
+Prints about the command_name
+
+### del #name [ #name... ]
+Delete the given matrix
+
 <br/>
 Best regards
 Pooya Husseini
