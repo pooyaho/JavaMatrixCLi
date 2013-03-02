@@ -70,7 +70,7 @@ Prints about the command_name
 ### del #name [ #name... ]
 Delete the given matrix
 
-### var #name [ #value ]
+### val #name [ #value ]
 Defines a variable with given value
 
 <br/>
