@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.Matrix;
+import ir.pooyahfp.matrixcli.matrix.MathObject;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ public class LuCommand extends AbstractCommand {
         if (params.size() < 3)
             throw new IllegalArgumentException("Input should has 3 parameters");
 
-        Matrix a = (Matrix) getMathObject(params.get(0));
-        Matrix l = (Matrix) getMathObject(params.get(1));
-        Matrix u = (Matrix) getMathObject(params.get(2));
+        MathObject a =  getMathObject(params.get(0));
+        MathObject  l =  getMathObject(params.get(1));
+        MathObject  u =  getMathObject(params.get(2));
 
         a.lu(l, u);
 

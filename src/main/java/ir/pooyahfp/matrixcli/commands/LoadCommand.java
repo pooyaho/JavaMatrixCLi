@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.Matrix;
+import ir.pooyahfp.matrixcli.matrix.MathObject;
 import ir.pooyahfp.matrixcli.matrix.SaveLoad;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class LoadCommand extends AbstractCommand {
         String name = params.get(0);
         String path = params.get(1);
 
-        Matrix matrix = (Matrix) SaveLoad.readObject(path);
+        MathObject matrix = (MathObject ) SaveLoad.readObject(path);
         matrix.setName(name);
 
         updateMathObject(matrix);

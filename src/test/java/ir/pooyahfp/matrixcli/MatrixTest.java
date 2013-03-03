@@ -437,9 +437,9 @@ public class MatrixTest {
     }
 
     @Test
-    public void testIdentityMatrix() {
+    public void testIdentityMatrix() throws Exception {
         Matrix matrix = new Matrix(4, 4, "A");
-        System.out.println(matrix.identityMatrix());
+        System.out.println(matrix.getIdentity());
 
     }
 

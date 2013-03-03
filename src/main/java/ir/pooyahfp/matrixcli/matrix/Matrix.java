@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.matrix;
 
+import ir.pooyahfp.matrixcli.exception.TypeConversionException;
+
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -14,13 +16,12 @@ import java.util.List;
 /**
  * Base immutable matrix class that has a lot of functions to manipulate the matrix data
  *
- *
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
  *         Date: 1/26/13
  *         Time: 10:58 AM
  */
-public class Matrix implements MathObject,Serializable, Cloneable {
+public class Matrix implements MathObject, Serializable, Cloneable {
 
     private double[][] content;
     private String name;
@@ -76,7 +77,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
      *
      * @param content 1d double array
      */
-    public Matrix setContent(double[] content) {
+    public Matrix setContent(double[] content) throws Exception {
         Matrix x = this.copy();
 
         for (int i = 0; i < getHeight(); i++)
@@ -96,7 +97,8 @@ public class Matrix implements MathObject,Serializable, Cloneable {
      * @param col     desired col number. it can be null
      * @param content 1d double array
      */
-    public Matrix setContent(Integer row, Integer col, double[] content) {
+    @Override
+    public Matrix setContent(Integer row, Integer col, double[] content) throws Exception {
         Matrix x = this.copy();
 
         if (row == null && col != null) {
@@ -200,7 +202,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
      *
      * @param val given value
      */
-    public Matrix setContent(double val) {
+    public Matrix setContent(double val) throws Exception {
         Matrix x = this.copy();
 
         for (double[] doubles : x.content) {
@@ -216,7 +218,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
      * @param i   cell row
      * @param j   cell column
      */
-    public Matrix setContent(double val, int i, int j) {
+    public Matrix setContent(double val, int i, int j) throws Exception {
         Matrix x = this.copy();
         x.content[i][j] = val;
         return x;
@@ -305,7 +307,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
      * @param n input divisor
      * @return return the divided matrix
      */
-    public Matrix divide(double n) {
+    public Matrix divide(double n) throws Exception {
         Matrix matrix = this.copy();
 
         for (int i = 0; i < getHeight(); i++) {
@@ -316,14 +318,16 @@ public class Matrix implements MathObject,Serializable, Cloneable {
         return matrix;
     }
 
+
     /**
      * divides this matrix with the n matrix cell by cell
      *
-     * @param n input matrix
+     * @param o input matrix
      * @return the divided matrix
      */
-    public Matrix divide(Matrix n) {
-        if (n.contains(0))
+    public Matrix divide(MathObject o) throws Exception {
+        Matrix n=cast(o);
+        if (isDivisionByZero(n))
             throw new IllegalArgumentException("Division by zero");
 
         Matrix matrix = this.copy();
@@ -404,9 +408,9 @@ public class Matrix implements MathObject,Serializable, Cloneable {
     }
 
     /**
-     * @return returns the cofactor of the matrix
+     * @return returns the coFactor of the matrix
      */
-    public Matrix cofactor() {
+    public Matrix coFactor() throws Exception {
         Matrix temp = new Matrix(getHeight(), getWidth());
 
 //
@@ -426,7 +430,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
     /**
      * @return returns the invert of the matrix
      */
-    public Matrix getInvert() {
+    public Matrix getInvert() throws Exception {
 
         if (!isInvertible())
             throw new IllegalArgumentException("Matrix is not invertible!");
@@ -446,7 +450,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
             return temp.divide(det);
         }
 
-        return cofactor().getTranspose().divide(det);
+        return coFactor().getTranspose().divide(det);
     }
 
     /**
@@ -462,10 +466,12 @@ public class Matrix implements MathObject,Serializable, Cloneable {
     /**
      * Adds the input matrix to this matrix
      *
-     * @param b input matrix
+     * @param o input matrix
      * @return returns the result of addition
      */
-    public Matrix add(Matrix b) {
+    public Matrix add(MathObject o) throws Exception {
+        Matrix b=cast(o);
+
         if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
             throw new IllegalArgumentException("Input matrices should have same dimensions");
         }
@@ -484,11 +490,11 @@ public class Matrix implements MathObject,Serializable, Cloneable {
     /**
      * Subtracts the input matrix from this matrix
      *
-     * @param b input matrix
+     * @param o input matrix
      * @return returns the result of this-b
      */
-    public Matrix sub(Matrix b) {
-
+    public Matrix sub(MathObject o) throws Exception {
+        Matrix b = cast(o);
         if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
             throw new IllegalArgumentException("Input Matrixes should have same dimensions");
         }
@@ -508,11 +514,11 @@ public class Matrix implements MathObject,Serializable, Cloneable {
     /**
      * Multiplies the input matrix with this matrix
      *
-     * @param b input matrix
+     * @param o input matrix
      * @return returns the result of this*b
      */
-    public Matrix mul(Matrix b) {
-
+    public Matrix mul(MathObject o) throws Exception {
+        Matrix b = cast(o);
         if (getWidth() != b.getHeight()) {
             throw new IllegalArgumentException(MessageFormat.format("A:Rows: {0} did not match B:Columns {1}.",
                     getWidth(), b.getHeight()));
@@ -538,7 +544,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
      * @param c power number
      * @return returns the result of this^c
      */
-    public Matrix power(int c) {
+    public Matrix power(int c) throws Exception {
         if (c <= 0)
             throw new IllegalArgumentException("Power must be greater than zero");
 
@@ -557,7 +563,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
      * @param u output parameter of u in lu decomposition
      * @throws Exception
      */
-    public void lu(Matrix l, Matrix u) throws Exception {
+    public void lu(MathObject l, MathObject u) throws Exception {
         if (getHeight() != getWidth())
             throw new Exception("Can not decompose");
 
@@ -780,7 +786,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
         return sum;
     }
 
-    public Matrix eigenValues() {
+    public Matrix eigenValues() throws Exception {
         Matrix y = new Matrix(getHeight(), 1);
         y.setContent(1);
 
@@ -793,7 +799,7 @@ public class Matrix implements MathObject,Serializable, Cloneable {
         return y;
     }
 
-    public Matrix identityMatrix() {
+    public Matrix getIdentity() throws Exception {
         if (getHeight() != getWidth())
             throw new IllegalStateException("Matrix has not identity");
         double[][] v = new double[getWidth()][getWidth()];
@@ -806,9 +812,28 @@ public class Matrix implements MathObject,Serializable, Cloneable {
         return new Matrix("I").setContent(v);
     }
 
-    public Matrix copy() {
+    public Matrix copy() throws Exception {
         Matrix matrix = new Matrix(name);
         matrix.content = this.content.clone();
         return matrix;
+    }
+
+
+    public boolean isDivisionByZero(MathObject o) throws Exception {
+
+        return cast(o).contains(0);
+    }
+
+
+    public boolean isMultipliable(MathObject o) throws Exception {
+        Matrix b = cast(o);
+        return getWidth() == b.getHeight();
+    }
+
+    @Override
+    public Matrix cast(MathObject o) throws Exception {
+        if (!(o instanceof Matrix))
+            throw new TypeConversionException("Can not convert non matrix '" + o.getName() + "' to matrix");
+        return (Matrix) o;
     }
 }

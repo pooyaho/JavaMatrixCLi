@@ -5,6 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.matrix.MathObject;
 import ir.pooyahfp.matrixcli.matrix.SimpleValue;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class ValCommand extends AbstractCommand {
             throw new IllegalArgumentException("Matrix command without parameters.");
         }
 
-        SimpleValue value = null;
+        MathObject value = null;
         if (params.size() == 2) {
             double val = Double.parseDouble(params.get(1));
             String name = params.get(0);

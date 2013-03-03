@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.Matrix;
+import ir.pooyahfp.matrixcli.matrix.MathObject;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class RankCommand extends AbstractCommand {
         if (params.size() != 1)
             throw new IllegalArgumentException("Illegal parameters");
 
-        Matrix matrix = (Matrix) getMathObject(params.get(0));
+        MathObject matrix = getMathObject(params.get(0));
         getWriter().println(matrix.getRank());
     }
 

@@ -23,7 +23,6 @@ import java.util.Map;
  */
 public abstract class AbstractCommand {
 
-
     private static PrintWriter writer;
 
     public abstract void execute(List<String> params, List<String> values) throws Exception;
@@ -41,7 +40,7 @@ public abstract class AbstractCommand {
      * @param args The vararg of the objects
      * @exception MathObjectNotFoundException
      */
-    void updateMathObject(MathObject... args) throws MathObjectNotFoundException {
+    void updateMathObject(MathObject... args) throws Exception {
         for (MathObject mathObject : args)
             if (mathObjectsMap.containsKey(mathObject.getName()))
                 mathObjectsMap.put(mathObject.getName(), mathObject);
@@ -57,7 +56,7 @@ public abstract class AbstractCommand {
      * @param args The vararg of the objects
      * @exception DuplicateMathObjectException
      */
-    void createMathObject(MathObject... args) throws DuplicateMathObjectException {
+    void createMathObject(MathObject... args) throws Exception {
         for (MathObject mathObject : args)
             if (!mathObjectsMap.containsKey(mathObject.getName()))
                 mathObjectsMap.put(mathObject.getName(), mathObject);
@@ -110,7 +109,7 @@ public abstract class AbstractCommand {
     MathObject getMathObject(String name) throws MathObjectNotFoundException {
         MathObject mathObject = mathObjectsMap.get(name);
         if (mathObject == null)
-            throw new MathObjectNotFoundException("Matrix " + name + " not found!");
+            throw new MathObjectNotFoundException("Object " + name + " not found!");
         return mathObject;
     }
 

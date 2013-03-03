@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.Matrix;
+import ir.pooyahfp.matrixcli.matrix.MathObject;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class SetCommand extends AbstractCommand {
         Integer row = params.get(1).isEmpty() ? null : Integer.parseInt(params.get(1)) - 1;
         Integer col = params.get(2).isEmpty() ? null : Integer.parseInt(params.get(2)) - 1;
 
-        Matrix matrix = (Matrix) getMathObject(name);
+        MathObject matrix =  getMathObject(name);
         double[] doubles = toDouble(values);
         matrix = matrix.setContent(row, col, doubles);
 

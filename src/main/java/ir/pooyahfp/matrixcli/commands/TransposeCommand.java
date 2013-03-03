@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.Matrix;
+import ir.pooyahfp.matrixcli.matrix.MathObject;
 
 import java.util.List;
 
@@ -23,16 +23,16 @@ public class TransposeCommand extends AbstractCommand {
         if (params.size() < 1)
             throw new IllegalArgumentException("Invalid parameters");
 
-        Matrix matrix1;
-        Matrix resultMatrix = null;
+        MathObject matrix1;
+        MathObject resultMatrix = null;
         if (params.size() == 2) {
 
-            matrix1 = (Matrix) getMathObject(params.get(1));
+            matrix1 =  getMathObject(params.get(1));
             resultMatrix = matrix1.getTranspose();
             resultMatrix.setName(params.get(0));
 
         } else if (params.size() == 1) {
-            matrix1 = (Matrix) getMathObject(params.get(0));
+            matrix1 =  getMathObject(params.get(0));
             resultMatrix = matrix1.getTranspose();
 
             resultMatrix.setName(matrix1.getName());

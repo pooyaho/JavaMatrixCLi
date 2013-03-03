@@ -20,7 +20,7 @@ public class MatrixOperations {
      * @param a The first matrix
      * @param b The second one
      */
-    public static void swap(Matrix a, Matrix b) {
+    public static void swap(MathObject a, MathObject b) throws Exception {
         String temp = a.getName();
         a.setName(b.getName());
         b.setName(temp);

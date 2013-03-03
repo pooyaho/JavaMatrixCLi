@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.Matrix;
+import ir.pooyahfp.matrixcli.matrix.MathObject;
 
 import java.util.List;
 
@@ -23,9 +23,9 @@ public class CopyCommand extends AbstractCommand {
             throw new IllegalArgumentException("Copy should have 2 parameters");
 
 
-        Matrix matrix2 = (Matrix) getMathObject(params.get(1));
+        MathObject matrix2 = getMathObject(params.get(1));
 
-        Matrix matrix1 = matrix2.copy();
+        MathObject matrix1 = matrix2.copy();
         matrix1.setName(params.get(0));
 
         updateMathObject(matrix1, matrix2);
