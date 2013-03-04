@@ -56,12 +56,12 @@ public class ReadmeGenerator {
         ResourceBundle urb = ResourceBundle.getBundle("usage");
         List<Tuple> tuples = new ArrayList<Tuple>();
 
-
-        Enumeration<String> keys = urb.getKeys();
-        while (keys.hasMoreElements()) {
-            String s = keys.nextElement();
+        ArrayList<String> list = Collections.list(urb.getKeys());
+        Collections.sort(list);
+        for (String s : list) {
             tuples.add(new Tuple(urb.getString(s), hrb.getString(s.replace("usage.", "help."))));
         }
+
         Configuration cfg = new Configuration();
 
         Map<String, Object> map = new HashMap<String, Object>();
