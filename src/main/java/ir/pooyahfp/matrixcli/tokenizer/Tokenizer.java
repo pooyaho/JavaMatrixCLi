@@ -3,7 +3,7 @@
  *  Phsys PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package ir.pooyahfp.matrixcli.token;
+package ir.pooyahfp.matrixcli.tokenizer;
 
 import com.agileapes.motorex.string.scan.DocumentScanner;
 import com.agileapes.motorex.string.scan.SnippetParser;
@@ -109,7 +109,8 @@ public class Tokenizer {
                             scanner.read("\\s*");
                             if (scanner.remaining() <= 0)
                                 continue;
-                            String param = scanner.expect(Pattern.compile("(\\d+)|(\\w+)"));
+                            String param = scanner.expect(Pattern.compile("(\\.|\\w|\\d|/)+"));
+
                             token.addParam(param);
                         }
                         return null;

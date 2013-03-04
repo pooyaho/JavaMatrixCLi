@@ -24,8 +24,8 @@
             <bean class="ir.pooyahfp.matrixcli.commands.SaveCommand"/>
         </entry>
 
-        <entry key="load">
-            <bean class="ir.pooyahfp.matrixcli.commands.LoadCommand"/>
+        <entry key="read">
+            <bean class="ir.pooyahfp.matrixcli.commands.ReadCommand"/>
         </entry>
 
         <entry key="show">

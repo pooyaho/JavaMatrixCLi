@@ -3,7 +3,7 @@
  *  Phsys PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package ir.pooyahfp.matrixcli.token;
+package ir.pooyahfp.matrixcli.tokenizer;
 
 import java.util.ArrayList;
 import java.util.List;

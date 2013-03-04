@@ -46,17 +46,17 @@ public class SimpleValue implements MathObject, Serializable, Cloneable {
 
     @Override
     public MathObject getTranspose() throws Exception {
-        throw new NotSupportedException("Values hast not transpose");
+        throw new NotSupportedException("Values have not transpose");
     }
 
     @Override
     public double getDeterminant() throws Exception {
-        throw new NotSupportedException("Values hast not determinant");
+        throw new NotSupportedException("Values have not determinant");
     }
 
     @Override
     public MathObject getInvert() throws Exception {
-        throw new NotSupportedException("Values hast not invert");
+        throw new NotSupportedException("Values have not invert");
     }
 
     @Override
@@ -89,27 +89,27 @@ public class SimpleValue implements MathObject, Serializable, Cloneable {
 
     @Override
     public void lu(MathObject l, MathObject u) throws Exception {
-        throw new NotSupportedException("Values hast not lu decomposition");
+        throw new NotSupportedException("Values have not lu decomposition");
     }
 
     @Override
     public MathObject echelonForm() throws Exception {
-        throw new NotSupportedException("Values hast not echelon form");
+        throw new NotSupportedException("Values have not echelon form");
     }
 
     @Override
     public int getRank() throws Exception {
-        throw new NotSupportedException("Values hast not rank");
+        throw new NotSupportedException("Values have not rank");
     }
 
     @Override
     public double getTrace() throws Exception {
-        throw new NotSupportedException("Values hast not trace");
+        throw new NotSupportedException("Values have not trace");
     }
 
     @Override
     public MathObject eigenValues() throws Exception {
-        throw new NotSupportedException("Values hast not Eigen value");
+        throw new NotSupportedException("Values have not Eigen value");
     }
 
     @Override

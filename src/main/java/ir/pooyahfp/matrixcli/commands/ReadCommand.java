@@ -16,7 +16,7 @@ import java.util.List;
  * Date: 1/23/13
  * Time: 2:08 PM
  */
-public class LoadCommand extends AbstractCommand {
+public class ReadCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() < 2)

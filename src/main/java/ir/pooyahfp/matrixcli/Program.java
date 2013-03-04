@@ -6,8 +6,8 @@
 package ir.pooyahfp.matrixcli;
 
 import ir.pooyahfp.matrixcli.commands.AbstractCommand;
-import ir.pooyahfp.matrixcli.token.Token;
-import ir.pooyahfp.matrixcli.token.Tokenizer;
+import ir.pooyahfp.matrixcli.tokenizer.Token;
+import ir.pooyahfp.matrixcli.tokenizer.Tokenizer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.*;
