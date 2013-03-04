@@ -9,19 +9,19 @@ You can separate commands in a line with ';'. Commands are not case-sensitive.
 There is the full command list:
 
 ### add [ #store_name ] #name1 #name2
-    Adds one matrix to another
+    Adds one object to another
 
 ### copy [#store_name] #name1 #name2
-    Copies one matrix to another
+    Copies one object to another
 
 ### del #name [ #name... ]
-    Delete the given matrix
+    Deletes the given object
 
 ### echelon [#store_name] #name
-    Calculates the echelon form of the matrix
+    Calculates the echelon form of the object
 
 ### inv [ #store_name ] #name
-    Inverts the matrix
+    Inverts the object
 
 ### lu #a #l #u
     Solves the lu decomposition
@@ -30,51 +30,49 @@ There is the full command list:
     Creates a matrix with dimension of height * width. Setting width and height are optional
 
 ### mul [ #store_name ] #name1 #name2
-    Multiplies one matrix to another
+    Multiplies one object to another
 
-### pow [ #store_name ] #name #integer
-    Powers one matrix to the entered number
+### pow [ #store_name ] #name [#integer|#name]
+    Powers one object to the entered number
 
 ### rank #name
-    Prints the rank of the matrix
+    Calculates the rank of the object
 
 ### read #name #file_path
-    Reads matrix from file path and store it with the entered name
+    Reads object from file-path and stores it with the given name
 
 ### save #name #file_path
-    Stores MatrixName if desired file path
+    Stores object in the given file path
 
 ### set #name [[#row]][[#col]] [{ #values... }]
-    Fills matrix with values according to values
+    Fills object with values according to values
 
 ### show #name  [ #name... ]
-    Prints then string representation of the matrix name in console
+    Prints then string representation of the object in console
 
 ### solve #x #a #b
-    Solves the equation
+    Solves the equation of Ax=b
 
 ### sub [ #store_name ] #name1 #name2
-    Subtracts one matrix to another
+    Subtracts one object to another
 
 ### swap #name1 #name2
-    Swaps one matrix to another
+    Swaps two objects
 
 ### trace #name
-    Prints the trace of the matrix
+    Calculates the trace of the object
 
 ### trn [ #store_name ] #name
-    Transpose the matrix
+    Transpose the object
 
 ### var #name [ #value ]
-    Defines a variable with given value
+    Defines a single value with the given value
 
 ### usage #command_name [ #command_name... ]
     Prints how to use the command_name
 
 ### help #command_name [ #command_name... ]
     Prints about the command_name
-
-
 <br/>
 Best regards
 Pooya Husseini

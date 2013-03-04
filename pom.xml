@@ -8,6 +8,10 @@
     <artifactId>MatrixCommander</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <jdkLevel>1.6</jdkLevel>
+    </properties>
+
     <build>
         <plugins>
             <!--<plugin>-->
@@ -22,19 +26,45 @@
 
                 <configuration>
                     <executable>java</executable>
-                    <arguments>
-                        <argument>-classpath</argument>
-                        <!-- automatically creates the classpath using all project dependencies,
-                             also adding the project build directory -->
-                        <classpath/>
-                        <argument>ir.pooyahfp.matrixcli.generator.ReadmeGenerator</argument>
+                    <!--<arguments>-->
+                    <!--<argument>-classpath</argument>-->
+                    <!--&lt;!&ndash;&lt;!&ndash; automatically creates the classpath using all project dependencies,&ndash;&gt;-->
+                    <!--&lt;!&ndash;also adding the project build directory &ndash;&gt;&ndash;&gt;-->
+                    <!--<classpath/>-->
+                    <!--<argument>ir.pooyahfp.matrixcli.generator.ReadmeGenerator</argument>-->
 
-                    </arguments>
+                    <!--</arguments>-->
+                    <mainClass>ir.pooyahfp.matrixcli.generator.ReadmeGenerator</mainClass>
                 </configuration>
 
 
             </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>unit-test-compile</id>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <source>${jdkLevel}</source>
+                    <target>${jdkLevel}</target>
+                </configuration>
+            </plugin>
         </plugins>
+
     </build>
 
     <dependencies>
