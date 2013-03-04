@@ -8,17 +8,43 @@
     <artifactId>MatrixCommander</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!--<build>-->
-        <!--<plugins>-->
+    <build>
+        <plugins>
             <!--<plugin>-->
-                <!--<groupId>com.googlecode.fmpp-maven-plugin</groupId>-->
-                <!--<artifactId>fmpp-maven-plugin</artifactId>-->
-                <!--<version>1.0</version>-->
+            <!--<groupId>com.googlecode.fmpp-maven-plugin</groupId>-->
+            <!--<artifactId>fmpp-maven-plugin</artifactId>-->
+            <!--<version>1.0</version>-->
             <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</build>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-classpath</argument>
+                        <!-- automatically creates the classpath using all project dependencies,
+                             also adding the project build directory -->
+                        <classpath/>
+                        <argument>ir.pooyahfp.matrixcli.generator.ReadmeGenerator</argument>
+
+                    </arguments>
+                </configuration>
+
+
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
