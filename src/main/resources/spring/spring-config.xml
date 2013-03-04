@@ -52,7 +52,7 @@
             <bean class="ir.pooyahfp.matrixcli.commands.MulCommand"/>
         </entry>
 
-        <entry key="power">
+        <entry key="pow">
             <bean class="ir.pooyahfp.matrixcli.commands.PowerCommand"/>
         </entry>
 

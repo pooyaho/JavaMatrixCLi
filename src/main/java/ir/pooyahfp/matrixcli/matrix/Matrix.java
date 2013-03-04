@@ -5,6 +5,7 @@
 
 package ir.pooyahfp.matrixcli.matrix;
 
+import ir.pooyahfp.matrixcli.exception.NotSupportedException;
 import ir.pooyahfp.matrixcli.exception.TypeConversionException;
 
 import java.io.Serializable;
@@ -326,7 +327,7 @@ public class Matrix implements MathObject, Serializable, Cloneable {
      * @return the divided matrix
      */
     public Matrix divide(MathObject o) throws Exception {
-        Matrix n=cast(o);
+        Matrix n = cast(o);
         if (isDivisionByZero(n))
             throw new IllegalArgumentException("Division by zero");
 
@@ -470,7 +471,7 @@ public class Matrix implements MathObject, Serializable, Cloneable {
      * @return returns the result of addition
      */
     public Matrix add(MathObject o) throws Exception {
-        Matrix b=cast(o);
+        Matrix b = cast(o);
 
         if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
             throw new IllegalArgumentException("Input matrices should have same dimensions");
@@ -554,6 +555,16 @@ public class Matrix implements MathObject, Serializable, Cloneable {
             temp = temp.mul(this).copy();
         }
         return temp;
+    }
+
+    @Override
+    public MathObject power(MathObject o) throws Exception {
+        return power((int) Math.floor(o.getEquivalenceValue()));
+    }
+
+    @Override
+    public double getEquivalenceValue() throws Exception {
+        throw new NotSupportedException("Matrices have not equivalence value");
     }
 
     /**

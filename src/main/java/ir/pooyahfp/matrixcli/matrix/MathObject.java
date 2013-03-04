@@ -32,6 +32,8 @@ public interface MathObject {
 
     MathObject power(int c) throws Exception;
 
+    MathObject power(MathObject o) throws Exception;
+
     void lu(MathObject l, MathObject u) throws Exception;
 
     MathObject echelonForm() throws Exception;
@@ -48,5 +50,8 @@ public interface MathObject {
 
     MathObject cast(MathObject o) throws Exception;
 
-    Matrix setContent(Integer row, Integer col, double[] content) throws Exception;
+    MathObject setContent(Integer row, Integer col, double[] content) throws Exception;
+
+    double getEquivalenceValue() throws Exception;
+
 }

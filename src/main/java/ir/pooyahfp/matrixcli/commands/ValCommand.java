@@ -31,9 +31,10 @@ public class ValCommand extends AbstractCommand {
             String name = params.get(0);
             value = new SimpleValue(name, val);
         } else if (params.size() == 1) {
-            value = new SimpleValue(params.get(0),null);
+            value = new SimpleValue(params.get(0), null);
         }
 
         createMathObject(value);
     }
+
 }

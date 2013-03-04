@@ -82,6 +82,12 @@ public class SimpleValue implements MathObject, Serializable, Cloneable {
     }
 
     @Override
+    public MathObject power(MathObject o) throws Exception {
+        SimpleValue cast = cast(o);
+        return power((Integer) cast.value);
+    }
+
+    @Override
     public void lu(MathObject l, MathObject u) throws Exception {
         throw new NotSupportedException("Values hast not lu decomposition");
     }
@@ -113,7 +119,7 @@ public class SimpleValue implements MathObject, Serializable, Cloneable {
 
     @Override
     public MathObject copy() throws Exception {
-        return new SimpleValue(name,value);
+        return new SimpleValue(name, value);
     }
 
     @Override
@@ -127,6 +133,11 @@ public class SimpleValue implements MathObject, Serializable, Cloneable {
     @Override
     public Matrix setContent(Integer row, Integer col, double[] content) throws Exception {
         throw new NotSupportedException("Can not set values");
+    }
+
+    @Override
+    public double getEquivalenceValue() throws Exception {
+        return (Double)value;
     }
 
     public void setName(String name) {
