@@ -488,6 +488,19 @@ public class Matrix implements MathObject, Serializable, Cloneable {
         return temp;
     }
 
+    public Matrix add(double o) throws Exception {
+
+        Matrix temp = copy();
+
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                temp.content[i][j] += o;
+            }
+        }
+
+        return temp;
+    }
+
     /**
      * Subtracts the input matrix from this matrix
      *
@@ -497,7 +510,7 @@ public class Matrix implements MathObject, Serializable, Cloneable {
     public Matrix sub(MathObject o) throws Exception {
         Matrix b = cast(o);
         if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
-            throw new IllegalArgumentException("Input Matrixes should have same dimensions");
+            throw new IllegalArgumentException("Input Matrices should have same dimensions");
         }
 
         Matrix temp = new Matrix(getHeight(), getWidth(), getName() + "-" + b.getName());

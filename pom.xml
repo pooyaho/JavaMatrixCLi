@@ -8,34 +8,52 @@
     <artifactId>MatrixCommander</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>com.googlecode.fmpp-maven-plugin</groupId>-->
+                <!--<artifactId>fmpp-maven-plugin</artifactId>-->
+                <!--<version>1.0</version>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 
     <dependencies>
-
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>3.1.1.RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>3.1.1.RELEASE</version>
         </dependency>
+
         <!--<dependency>-->
         <!--<groupId>org.renjin</groupId>-->
         <!--<artifactId>renjin-core</artifactId>-->
         <!--<version>0.6.8-SNAPSHOT</version>-->
         <!--</dependency>-->
+
         <dependency>
             <groupId>gov.nist.math</groupId>
             <artifactId>jama</artifactId>
             <version>1.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.19</version>
         </dependency>
 
     </dependencies>
