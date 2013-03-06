@@ -102,22 +102,22 @@ public class SimpleObject extends Number {
 
     @Override
     public int intValue() {
-        return (Integer) value;
+        return value.intValue();
     }
 
     @Override
     public long longValue() {
-        return (Long) value;
+        return value.longValue();
     }
 
     @Override
     public float floatValue() {
-        return (Float) value;
+        return value.floatValue();
     }
 
     @Override
     public double doubleValue() {
-        return (Double) value;
+        return value.doubleValue();
     }
 
     public String getName() {
@@ -126,35 +126,35 @@ public class SimpleObject extends Number {
 
 
     public SimpleObject getTranspose() throws Exception {
-        throw new NotSupportedException("Values have not transpose");
+        throw new NotSupportedException("Value does not have transpose");
     }
 
 
     public double getDeterminant() throws Exception {
-        throw new NotSupportedException("Values have not determinant");
+        throw new NotSupportedException("Value does not have determinant");
     }
 
 
     public SimpleObject getInvert() throws Exception {
-        throw new NotSupportedException("Values have not invert");
+        throw new NotSupportedException("Value does not have invert");
     }
 
 
     public SimpleObject add(SimpleObject b) throws Exception {
 //       SimpleObject a = cast(b);
-        return new SimpleObject(value.doubleValue() + this.value.doubleValue());
+        return new SimpleObject(b.value.doubleValue() + this.value.doubleValue());
 
     }
 
 
     public SimpleObject sub(SimpleObject b) throws Exception {
 
-        return new SimpleObject(value.doubleValue() - this.value.doubleValue());
+        return new SimpleObject(this.value.doubleValue()-b.value.doubleValue());
     }
 
 
     public SimpleObject mul(SimpleObject b) throws Exception {
-        return new SimpleObject(value.doubleValue() * this.value.doubleValue());
+        return new SimpleObject(b.value.doubleValue() * this.value.doubleValue());
     }
 
 
@@ -165,38 +165,38 @@ public class SimpleObject extends Number {
 
     public SimpleObject power(SimpleObject o) throws Exception {
 
-        return power((Integer) o.value);
+        return power(o.value.intValue());
     }
 
 
     public void lu(SimpleObject l, SimpleObject u) throws Exception {
-        throw new NotSupportedException("Values have not lu decomposition");
+        throw new NotSupportedException("Value does not have lu decomposition");
     }
 
 
     public SimpleObject echelonForm() throws Exception {
-        throw new NotSupportedException("Values have not echelon form");
+        throw new NotSupportedException("Value does not have echelon form");
     }
 
 
     public SimpleObject getRank() throws Exception {
-        throw new NotSupportedException("Values have not rank");
+        throw new NotSupportedException("Value does not have rank");
     }
 
 
     public SimpleObject getTrace() throws Exception {
-        throw new NotSupportedException("Values have not trace");
+        throw new NotSupportedException("Value does not have trace");
     }
 
 
     public SimpleObject eigenValues() throws Exception {
-        throw new NotSupportedException("Values have not Eigen value");
+        throw new NotSupportedException("Value does not have Eigen value");
     }
 
 
-    public SimpleObject getIdentity() throws Exception {
-        return new SimpleObject(1);
-    }
+//    public SimpleObject getIdentity() throws Exception {
+//        return new SimpleObject(1);
+//    }
 
 
     public SimpleObject copy() throws Exception {
@@ -216,9 +216,8 @@ public class SimpleObject extends Number {
         throw new NotSupportedException("Can not set values");
     }
 
-
     public double getEquivalenceValue() throws Exception {
-        return (Double) value;
+        return value.doubleValue();
     }
 
     public void setName(String name) {
@@ -232,7 +231,6 @@ public class SimpleObject extends Number {
     public void setValue(Number value) {
         this.value = value;
     }
-
 
     public String toString() {
         return "[" + name + "]\n" + value;
