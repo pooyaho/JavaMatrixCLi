@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.MathObject;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class SubCommand extends AbstractCommand {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 or 3 parameters");
 
-        MathObject matrix1;
-        MathObject matrix2;
-        MathObject resultMatrix = null;
+        SimpleObject matrix1;
+        SimpleObject matrix2;
+        SimpleObject resultMatrix = null;
         if (params.size() == 3) {
 
             matrix1 =  getMathObject(params.get(1));

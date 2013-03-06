@@ -5,8 +5,8 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.MathObject;
-import ir.pooyahfp.matrixcli.matrix.Matrix;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import ir.pooyahfp.matrixcli.matrix.MatrixObject;
 
 import java.util.List;
 
@@ -25,14 +25,14 @@ public class MatrixCommand extends AbstractCommand {
             throw new IllegalArgumentException("Matrix command without parameters.");
         }
 
-        MathObject matrix;
+        SimpleObject matrix;
         if (params.size() > 1) {
             int height = Integer.parseInt(params.get(1));
             int width = Integer.parseInt(params.get(2));
 
-            matrix = new Matrix(height, width, params.get(0));
+            matrix = new MatrixObject(height, width, params.get(0));
         } else {
-            matrix = new Matrix(params.get(0));
+            matrix = new MatrixObject(params.get(0));
         }
         createMathObject(matrix);
     }

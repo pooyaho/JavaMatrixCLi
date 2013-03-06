@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.MathObject;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 import ir.pooyahfp.matrixcli.matrix.MatrixOperations;
 
 import java.util.List;
@@ -23,8 +23,8 @@ public class SwapCommand extends AbstractCommand {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 parameters");
 
-        MathObject matrix1 =  getMathObject(params.get(0));
-        MathObject matrix2 =  getMathObject(params.get(1));
+        SimpleObject matrix1 =  getMathObject(params.get(0));
+        SimpleObject matrix2 =  getMathObject(params.get(1));
 
         MatrixOperations.swap(matrix1, matrix2);
 

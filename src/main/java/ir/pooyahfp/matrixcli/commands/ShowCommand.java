@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.MathObject;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class ShowCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() == 1 && "all".equalsIgnoreCase(params.get(0))) {
-            for (MathObject matrix : getAllObjects()) {
+            for (SimpleObject matrix : getAllObjects()) {
                 getWriter().println(matrix);
             }
             return;

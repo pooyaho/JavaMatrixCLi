@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.MathObject;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
 
@@ -24,13 +24,13 @@ public class EchelonCommand extends AbstractCommand {
 
         switch (params.size()) {
             case 1:
-                MathObject matrix = getMathObject(params.get(0));
+                SimpleObject matrix = getMathObject(params.get(0));
                 matrix = matrix.echelonForm();
                 updateMathObject(matrix);
                 break;
             case 2:
                 matrix =  getMathObject(params.get(1));
-                MathObject temp = matrix.echelonForm();
+                SimpleObject temp = matrix.echelonForm();
                 temp.setName(params.get(0));
                 updateMathObject();
                 break;

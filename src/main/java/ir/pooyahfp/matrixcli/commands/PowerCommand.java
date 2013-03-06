@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.MathObject;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
 
@@ -22,16 +22,16 @@ public class PowerCommand extends AbstractCommand {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 or 3 parameters");
 
-        MathObject matrix1;
+        SimpleObject matrix1;
         int pow;
-        MathObject resultMatrix = null;
+        SimpleObject resultMatrix = null;
         if (params.size() == 3) {
 
             matrix1 = getMathObject(params.get(1));
 
             if (hasMathObject(params.get(2))) {
-                MathObject mathObject = getMathObject(params.get(2));
-                resultMatrix = matrix1.power(mathObject);
+                SimpleObject simpleObject = getMathObject(params.get(2));
+                resultMatrix = matrix1.power(simpleObject);
             } else {
 
                 pow = Integer.parseInt(params.get(2));
@@ -44,8 +44,8 @@ public class PowerCommand extends AbstractCommand {
             matrix1 = getMathObject(params.get(0));
 
             if (hasMathObject(params.get(1))) {
-                MathObject mathObject = getMathObject(params.get(1));
-                resultMatrix = matrix1.power(mathObject);
+                SimpleObject simpleObject = getMathObject(params.get(1));
+                resultMatrix = matrix1.power(simpleObject);
             } else {
 
                 pow = Integer.parseInt(params.get(1));

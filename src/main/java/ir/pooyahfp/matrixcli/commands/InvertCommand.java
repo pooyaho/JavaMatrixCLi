@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.MathObject;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
 
@@ -21,8 +21,8 @@ public class InvertCommand extends AbstractCommand {
         if (params.size() < 1)
             throw new IllegalArgumentException("Invalid parameters");
 
-        MathObject matrix1;
-        MathObject resultMatrix = null;
+        SimpleObject matrix1;
+        SimpleObject resultMatrix = null;
         if (params.size() == 2) {
 
             matrix1 = getMathObject(params.get(1));

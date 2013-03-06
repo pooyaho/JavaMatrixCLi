@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.MathObject;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ public class SolveEquationCommand extends AbstractCommand {
             throw new IllegalArgumentException("Input should has 3 parameters");
 
 
-        MathObject a = getMathObject(params.get(1));
-        MathObject b = getMathObject(params.get(2));
+        SimpleObject a = getMathObject(params.get(1));
+        SimpleObject b = getMathObject(params.get(2));
 
-        MathObject x = a.getInvert().mul(b).copy();
+        SimpleObject x = a.getInvert().mul(b).copy();
         x.setName(params.get(0));
 
         updateMathObject(x);

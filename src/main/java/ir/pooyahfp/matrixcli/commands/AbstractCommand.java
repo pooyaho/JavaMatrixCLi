@@ -7,7 +7,7 @@ package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.exception.DuplicateMathObjectException;
 import ir.pooyahfp.matrixcli.exception.MathObjectNotFoundException;
-import ir.pooyahfp.matrixcli.matrix.MathObject;
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public abstract class AbstractCommand {
     public abstract void execute(List<String> params, List<String> values) throws Exception;
 
     // contains the math objects
-    private final static Map<String, MathObject> mathObjectsMap = new HashMap<String, MathObject>();
+    private final static Map<String, SimpleObject> mathObjectsMap = new HashMap<String, SimpleObject>();
 
 //    // contains the simple values like 1, 2 ,5
 //    private final static Map<String, SimpleValue> simpleValuesMap = new HashMap<String, SimpleValue>();
@@ -40,13 +40,13 @@ public abstract class AbstractCommand {
      * @param args The vararg of the objects
      * @exception MathObjectNotFoundException
      */
-    void updateMathObject(MathObject... args) throws Exception {
-        for (MathObject mathObject : args)
-            if (mathObjectsMap.containsKey(mathObject.getName()))
-                mathObjectsMap.put(mathObject.getName(), mathObject);
+    void updateMathObject(SimpleObject... args) throws Exception {
+        for (SimpleObject simpleObject : args)
+            if (mathObjectsMap.containsKey(simpleObject.getName()))
+                mathObjectsMap.put(simpleObject.getName(), simpleObject);
             else {
                 throw new MathObjectNotFoundException(String.format("Object %s has not found!",
-                        mathObject.getName()));
+                        simpleObject.getName()));
             }
     }
 
@@ -56,13 +56,13 @@ public abstract class AbstractCommand {
      * @param args The vararg of the objects
      * @exception DuplicateMathObjectException
      */
-    void createMathObject(MathObject... args) throws Exception {
-        for (MathObject mathObject : args)
-            if (!mathObjectsMap.containsKey(mathObject.getName()))
-                mathObjectsMap.put(mathObject.getName(), mathObject);
+    void createMathObject(SimpleObject... args) throws Exception {
+        for (SimpleObject simpleObject : args)
+            if (!mathObjectsMap.containsKey(simpleObject.getName()))
+                mathObjectsMap.put(simpleObject.getName(), simpleObject);
             else {
                 throw new DuplicateMathObjectException(String.format("Object %s has already defined!",
-                        mathObject.getName()));
+                        simpleObject.getName()));
             }
     }
 //    /**
@@ -106,11 +106,11 @@ public abstract class AbstractCommand {
      * @return The object of object that stored in the map
      * @throws MathObjectNotFoundException
      */
-    MathObject getMathObject(String name) throws MathObjectNotFoundException {
-        MathObject mathObject = mathObjectsMap.get(name);
-        if (mathObject == null)
+    SimpleObject getMathObject(String name) throws MathObjectNotFoundException {
+        SimpleObject simpleObject = mathObjectsMap.get(name);
+        if (simpleObject == null)
             throw new MathObjectNotFoundException("Object " + name + " not found!");
-        return mathObject;
+        return simpleObject;
     }
 
 //    /**
@@ -152,9 +152,9 @@ public abstract class AbstractCommand {
      * Returns all defined objects by the user
      * @return A list of objects
      */
-    List<MathObject> getAllObjects() {
-        List<MathObject> result = new ArrayList<MathObject>();
-        for (MathObject o: mathObjectsMap.values()) {
+    List<SimpleObject> getAllObjects() {
+        List<SimpleObject> result = new ArrayList<SimpleObject>();
+        for (SimpleObject o: mathObjectsMap.values()) {
             result.add(o);
         }
         return result;
