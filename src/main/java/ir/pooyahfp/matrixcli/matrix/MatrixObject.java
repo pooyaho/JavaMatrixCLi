@@ -839,18 +839,15 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return matrixObject;
     }
 
-
     public boolean isDivisionByZero(SimpleObject o) throws Exception {
 
         return cast(o).contains(0);
     }
 
-
     public boolean isMultipliable(SimpleObject o) throws Exception {
         MatrixObject b = cast(o);
         return getWidth() == b.getHeight();
     }
-
 
     public MatrixObject cast(SimpleObject o) throws Exception {
         if (!(o instanceof MatrixObject))

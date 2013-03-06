@@ -166,7 +166,7 @@ public class MatrixTest {
     public void testDeterminant() throws Exception {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
-        Assert.assertEquals(x.getDeterminant(), -2L, 0);
+        Assert.assertEquals(x.getDeterminant().doubleValue(), -2L, 0);
     }
 
     @Test
@@ -186,7 +186,6 @@ public class MatrixTest {
     @Test
     public void testRemoveRowAndCol() throws Exception {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
-
 
         MatrixObject matrixObject = x.removeRowAndCol(0, 0);
         Assert.assertEquals(matrixObject.getContent()[0][0], 4L, 0);

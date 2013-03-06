@@ -141,15 +141,12 @@ public class SimpleObject extends Number {
 
 
     public SimpleObject add(SimpleObject b) throws Exception {
-//       SimpleObject a = cast(b);
         return new SimpleObject(b.value.doubleValue() + this.value.doubleValue());
-
     }
 
 
     public SimpleObject sub(SimpleObject b) throws Exception {
-
-        return new SimpleObject(this.value.doubleValue()-b.value.doubleValue());
+        return new SimpleObject(this.value.doubleValue() - b.value.doubleValue());
     }
 
 
@@ -164,7 +161,6 @@ public class SimpleObject extends Number {
 
 
     public SimpleObject power(SimpleObject o) throws Exception {
-
         return power(o.value.intValue());
     }
 
@@ -193,27 +189,15 @@ public class SimpleObject extends Number {
         throw new NotSupportedException("Value does not have Eigen value");
     }
 
-
-//    public SimpleObject getIdentity() throws Exception {
-//        return new SimpleObject(1);
-//    }
-
-
     public SimpleObject copy() throws Exception {
         return new SimpleObject(name, value);
     }
 
-
-//    public SimpleObject cast(SimpleObject o) throws Exception {
-//        if (o == null)
-//            throw new TypeConversionException("Can't convert non value " + o.getName() + " to value");
-//
-//        return (SimpleObject) o;
-//    }
-
-
     public SimpleObject setContent(Integer row, Integer col, double[] content) throws Exception {
-        throw new NotSupportedException("Can not set values");
+        if (content.length != 1)
+            throw new IllegalArgumentException("Values are more than one");
+
+        return new SimpleObject(name,content[0]);
     }
 
     public double getEquivalenceValue() throws Exception {

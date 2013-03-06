@@ -57,7 +57,6 @@ public class Program {
                 writer.println("An error occurred: " + x.getMessage());
             }
         }
-
     }
 
 
@@ -72,17 +71,18 @@ public class Program {
     }
 
     public static void main(String[] args) {
-
         new ClassPathXmlApplicationContext("classpath*:**/spring/spring-config.xml");
         Program program = new Program();
-        if (args.length > 0)
+        if (args.length > 0) {
             program.loadCommandFile(args[0]);
-        else
+        } else {
             program.start();
+        }
     }
 
     /**
      * Opens a script file and reads each line and execute them
+     *
      * @param path the path of the input
      */
     public void loadCommandFile(String path) {
@@ -93,8 +93,7 @@ public class Program {
             while ((line = reader.readLine()) != null) {
                 try {
                     runCommand(line);
-
-                } catch (Exception e) {
+                 } catch (Exception e) {
                     writer.println("An error occurred: " + e.getMessage());
                 }
             }
@@ -104,5 +103,4 @@ public class Program {
             writer.println("An error occurred: " + e.getMessage());
         }
     }
-
 }
