@@ -351,8 +351,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     /**
      * @return returns the determinant of the matrix
      */
-    public double getDeterminant() {
-        return determinant(this);
+    public SimpleObject getDeterminant() {
+        return new SimpleObject(determinant(this));
     }
 
     /**
@@ -366,7 +366,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @return is the matrix invertible
      */
     public boolean isInvertible() {
-        return getDeterminant() != 0;
+        return getDeterminant().intValue() != 0;
     }
 
     /**
@@ -431,7 +431,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
 
         if (!isInvertible())
             throw new IllegalArgumentException("MatrixObject is not invertible!");
-        double det = this.getDeterminant();
+        double det = this.getDeterminant().doubleValue();
 
         if (getHeight() == 2 && getWidth() == 2) {
 

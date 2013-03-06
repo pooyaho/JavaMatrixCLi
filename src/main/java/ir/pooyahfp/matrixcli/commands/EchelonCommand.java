@@ -24,13 +24,13 @@ public class EchelonCommand extends AbstractCommand {
 
         switch (params.size()) {
             case 1:
-                SimpleObject matrix = getMathObject(params.get(0));
-                matrix = matrix.echelonForm();
-                updateMathObject(matrix);
+                SimpleObject object = getMathObject(params.get(0));
+                object = object.echelonForm();
+                updateMathObject(object);
                 break;
             case 2:
-                matrix =  getMathObject(params.get(1));
-                SimpleObject temp = matrix.echelonForm();
+                object =  getMathObject(params.get(1));
+                SimpleObject temp = object.echelonForm();
                 temp.setName(params.get(0));
                 updateMathObject();
                 break;

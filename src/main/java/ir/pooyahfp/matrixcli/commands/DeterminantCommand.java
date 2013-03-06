@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+
 import java.util.List;
 
 /**
@@ -20,8 +22,19 @@ public class DeterminantCommand extends AbstractCommand {
         if (params.size() <= 0)
             throw new IllegalArgumentException("Input should have parameter!");
 
-        for (String param : params) {
-            getWriter().println((getMathObject(param)).getDeterminant());
+        SimpleObject operand;
+
+        if (params.size() == 1) {
+            operand = getMathObject(params.get(0));
+            getWriter().println(operand.getDeterminant());
+        } else if (params.size() == 2) {
+            operand = getMathObject(params.get(1));
+            SimpleObject result = operand.getDeterminant();
+            result.setName(params.get(0));
+            updateMathObject(result);
         }
+//        for (String param : params) {
+//            getWriter().println((getMathObject(param)).getDeterminant());
+//        }
     }
 }

@@ -21,23 +21,23 @@ public class MulCommand extends AbstractCommand {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 or 3 parameters");
 
-        SimpleObject matrix1;
-        SimpleObject matrix2;
-        SimpleObject resultMatrix = null;
+        SimpleObject simpleObject1;
+        SimpleObject simpleObject2;
+        SimpleObject resultObject = null;
         if (params.size() == 3) {
 
-            matrix1 =  getMathObject(params.get(1));
-            matrix2 =  getMathObject(params.get(2));
-            resultMatrix = matrix1.mul(matrix2);
-            resultMatrix.setName(params.get(0));
+            simpleObject1 =  getMathObject(params.get(1));
+            simpleObject2 =  getMathObject(params.get(2));
+            resultObject = simpleObject1.mul(simpleObject2);
+            resultObject.setName(params.get(0));
 
         } else if (params.size() == 2) {
-            matrix1 =  getMathObject(params.get(0));
-            matrix2 =  getMathObject(params.get(1));
-            resultMatrix = matrix1.mul(matrix2);
-            resultMatrix.setName(matrix1.getName());
+            simpleObject1 =  getMathObject(params.get(0));
+            simpleObject2 =  getMathObject(params.get(1));
+            resultObject = simpleObject1.mul(simpleObject2);
+            resultObject.setName(simpleObject1.getName());
         }
 
-        updateMathObject(resultMatrix);
+        updateMathObject(resultObject);
     }
 }

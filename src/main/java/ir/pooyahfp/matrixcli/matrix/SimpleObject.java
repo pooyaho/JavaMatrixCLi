@@ -130,7 +130,7 @@ public class SimpleObject extends Number {
     }
 
 
-    public double getDeterminant() throws Exception {
+    public SimpleObject getDeterminant() throws Exception {
         throw new NotSupportedException("Value does not have determinant");
     }
 

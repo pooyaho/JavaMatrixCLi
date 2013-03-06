@@ -21,20 +21,20 @@ public class InvertCommand extends AbstractCommand {
         if (params.size() < 1)
             throw new IllegalArgumentException("Invalid parameters");
 
-        SimpleObject matrix1;
-        SimpleObject resultMatrix = null;
+        SimpleObject simpleObject;
+        SimpleObject resultObject = null;
         if (params.size() == 2) {
 
-            matrix1 = getMathObject(params.get(1));
-            resultMatrix = matrix1.getInvert();
-            resultMatrix.setName(params.get(0));
+            simpleObject = getMathObject(params.get(1));
+            resultObject = simpleObject.getInvert();
+            resultObject.setName(params.get(0));
 
         } else if (params.size() == 1) {
-            matrix1 =  getMathObject(params.get(0));
-            resultMatrix = matrix1.getInvert();
+            simpleObject =  getMathObject(params.get(0));
+            resultObject = simpleObject.getInvert();
 
-            resultMatrix.setName(matrix1.getName());
+            resultObject.setName(simpleObject.getName());
         }
-        updateMathObject(resultMatrix);
+        updateMathObject(resultObject);
     }
 }

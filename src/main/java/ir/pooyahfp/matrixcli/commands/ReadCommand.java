@@ -24,10 +24,10 @@ public class ReadCommand extends AbstractCommand {
         String name = params.get(0);
         String path = params.get(1);
 
-        SimpleObject matrix = (SimpleObject) SaveLoad.readObject(path);
-        matrix.setName(name);
+        SimpleObject simpleObject = (SimpleObject) SaveLoad.readObject(path);
+        simpleObject.setName(name);
 
-        updateMathObject(matrix);
+        updateMathObject(simpleObject);
     }
 
 }

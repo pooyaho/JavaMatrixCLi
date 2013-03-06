@@ -22,41 +22,37 @@ public class PowerCommand extends AbstractCommand {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 or 3 parameters");
 
-        SimpleObject matrix1;
+        SimpleObject simpleObject1;
         int pow;
-        SimpleObject resultMatrix = null;
+        SimpleObject resultObject = null;
+
         if (params.size() == 3) {
 
-            matrix1 = getMathObject(params.get(1));
+            simpleObject1 = getMathObject(params.get(1));
 
             if (hasMathObject(params.get(2))) {
                 SimpleObject simpleObject = getMathObject(params.get(2));
-                resultMatrix = matrix1.power(simpleObject);
+                resultObject = simpleObject1.power(simpleObject);
             } else {
 
                 pow = Integer.parseInt(params.get(2));
-                resultMatrix = matrix1.power(pow);
+                resultObject = simpleObject1.power(pow);
             }
 
-            resultMatrix.setName(params.get(0));
+            resultObject.setName(params.get(0));
 
         } else if (params.size() == 2) {
-            matrix1 = getMathObject(params.get(0));
+            simpleObject1 = getMathObject(params.get(0));
 
             if (hasMathObject(params.get(1))) {
                 SimpleObject simpleObject = getMathObject(params.get(1));
-                resultMatrix = matrix1.power(simpleObject);
+                resultObject = simpleObject1.power(simpleObject);
             } else {
-
                 pow = Integer.parseInt(params.get(1));
-                resultMatrix = matrix1.power(pow);
+                resultObject = simpleObject1.power(pow);
             }
-//            pow = Integer.parseInt(params.get(1));
-
-//            resultMatrix = matrix1.power(pow);
-
-            resultMatrix.setName(matrix1.getName());
+            resultObject.setName(simpleObject1.getName());
         }
-        updateMathObject(resultMatrix);
+        updateMathObject(resultObject);
     }
 }
