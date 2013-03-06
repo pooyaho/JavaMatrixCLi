@@ -33,8 +33,6 @@ public class ValCommand extends AbstractCommand {
         } else if (params.size() == 1) {
             value = new SimpleObject(params.get(0), null);
         }
-
-        createMathObject(value);
+         createMathObject(value);
     }
-
 }

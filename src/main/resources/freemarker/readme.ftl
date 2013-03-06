@@ -7,6 +7,7 @@ First of all Run Program.java class,for example write Matrix a 3 3, and see that
 You can separate commands in a line with ';'. Commands are not case-sensitive.
 
 There is the full command list:
+<b>#object is both values and matrices</b>
 
 <#list items as item>
 ### ${item.getTitle()}

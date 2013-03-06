@@ -39,5 +39,4 @@ public class UsageCommand extends AbstractCommand {
             getWriter().println(rb.getString("usage." + param));
         }
     }
-
 }

@@ -7,6 +7,7 @@ First of all Run Program.java class,for example write Matrix a 3 3, and see that
 You can separate commands in a line with ';'. Commands are not case-sensitive.
 
 There is the full command list:
+<b>#object is both values and matrices</b>
 
 ### add [ #matrix_store_name ] #object_name1 #object_name2
     Adds one object to another
@@ -30,7 +31,7 @@ There is the full command list:
     Solves the lu decomposition
 
 ### matrix #matrix_name [#height #width]
-    Creates a matrix with dimension of height * width. Setting width and height are optional
+    Creates a matrix with dimension of height * width.
 
 ### mul [ #matrix_store_name ] #object_name1 #object_name2
     Multiplies one object to another

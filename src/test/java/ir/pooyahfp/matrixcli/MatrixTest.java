@@ -350,9 +350,6 @@ public class MatrixTest {
     @Test
     public void testEigenValues() {
         MatrixObject matrixObject = new MatrixObject(3, 3, "A");
-
-
-//        System.out.println(matrix.eigenValues());
     }
 
     @Test
