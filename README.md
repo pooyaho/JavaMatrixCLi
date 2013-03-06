@@ -8,64 +8,64 @@ You can separate commands in a line with ';'. Commands are not case-sensitive.
 
 There is the full command list:
 
-### add [ #store_name ] #name1 #name2
+### add [ #matrix_store_name ] #object_name1 #object_name2
     Adds one object to another
 
-### copy [#store_name] #name1 #name2
+### copy [#matrix_store_name] #object_name1 #object_name2
     Copies one object to another
 
-### del #name [ #name... ]
+### del #object_name [ #object_name... ]
     Deletes the given object
 
-### echelon [#store_name] #name
+### echelon [ #matrix_name ] #matrix_name
     Calculates the echelon form of the object
 
-### inv [ #store_name ] #name
+### inv [ #matrix_store_name ] #matrix_name
     Inverts the object
 
-### lu #a #l #u
+### lu #matrix_a #matrix_l #matrix_u
     Solves the lu decomposition
 
-### matrix #name [#height #width]
+### matrix #matrix_name [#height #width]
     Creates a matrix with dimension of height * width. Setting width and height are optional
 
-### mul [ #store_name ] #name1 #name2
+### mul [ #matrix_store_name ] #object_name1 #object_name2
     Multiplies one object to another
 
-### pow [ #store_name ] #name [#integer|#name]
-    Powers one object to the entered number
+### pow [ #matrix_store_name ] #object_name [#integer|#val_name]
+    Powers one object to the entered number or value
 
-### rank #name
+### rank [ #val_store_name ] #matrix_name
     Calculates the rank of the object
 
-### read #name #file_path
+### read #object_name #file_path
     Reads object from file-path and stores it with the given name
 
-### save #name #file_path
+### save #object_name #file_path
     Stores object in the given file path
 
-### set #name [[#row]][[#col]] [{ #values... }]
+### set #object_name [[#row]][[#col]] [{ #values... }]
     Fills object with values according to values
 
-### show #name  [ #name... ]
+### show #object_name  [ #object_name... ]
     Prints then string representation of the object in console
 
-### solve #x #a #b
+### solve #matrix_x #matrix_a #matrix_b
     Solves the equation of Ax=b
 
-### sub [ #store_name ] #name1 #name2
+### sub [ #matrix_store_name ] #object_name1 #object_name2
     Subtracts one object to another
 
-### swap #name1 #name2
+### swap #object_name1 #object_name2
     Swaps two objects
 
-### trace #name
-    Calculates the trace of the object
+### trace [ #val_store_name ] #matrix_name
+    Calculates the trace of the object and puts in the given value
 
-### trn [ #store_name ] #name
-    Transpose the object
+### trn [ #matrix_store_name ] #matrix_name
+    Transpose the object and puts it in the given val
 
-### var #name [ #value ]
+### var #val_name [ #number ]
     Defines a single value with the given value
 
 ### usage #command_name [ #command_name... ]
