@@ -22,12 +22,11 @@ public class CopyCommand extends AbstractCommand {
         if (params.size() < 2)
             throw new IllegalArgumentException("Copy should have 2 parameters");
 
+        SimpleObject object2 = getMathObject(params.get(1));
 
-        SimpleObject matrix2 = getMathObject(params.get(1));
+        SimpleObject object1 = object2.copy();
+        object1.setName(params.get(0));
 
-        SimpleObject matrix1 = matrix2.copy();
-        matrix1.setName(params.get(0));
-
-        updateMathObject(matrix1, matrix2);
+        updateMathObject(object1, object2);
     }
 }

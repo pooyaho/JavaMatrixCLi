@@ -16,6 +16,7 @@ import java.util.List;
  *         Time: 2:16 PM
  */
 public class ShowCommand extends AbstractCommand {
+
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() == 1 && "all".equalsIgnoreCase(params.get(0))) {

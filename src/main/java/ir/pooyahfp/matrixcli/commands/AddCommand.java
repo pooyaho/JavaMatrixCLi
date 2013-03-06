@@ -17,30 +17,31 @@ import java.util.List;
  */
 public class AddCommand extends AbstractCommand {
 
+
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() < 2)
             throw new IllegalArgumentException("Input should has 2 or 3 parameters");
 
-        SimpleObject matrix1;
-        SimpleObject matrix2;
-        SimpleObject resultMatrix = null;
+        SimpleObject object1;
+        SimpleObject object2;
+        SimpleObject resultObject = null;
         if (params.size() == 3) {
 
-            matrix1 = getMathObject(params.get(1));
-            matrix2 = getMathObject(params.get(2));
-            resultMatrix = matrix1.add(matrix2);
-            resultMatrix.setName(params.get(0));
+            object1 = getMathObject(params.get(1));
+            object2 = getMathObject(params.get(2));
+            resultObject = object1.add(object2);
+            resultObject.setName(params.get(0));
 
         } else if (params.size() == 2) {
-            matrix1 = getMathObject(params.get(0));
-            matrix2 = getMathObject(params.get(1));
-            resultMatrix = matrix1.add(matrix2);
+            object1 = getMathObject(params.get(0));
+            object2 = getMathObject(params.get(1));
+            resultObject = object1.add(object2);
 
-            resultMatrix.setName(matrix1.getName());
+            resultObject.setName(object1.getName());
         }
 
-        updateMathObject(resultMatrix);
+        updateMathObject(resultObject);
 
     }
 }

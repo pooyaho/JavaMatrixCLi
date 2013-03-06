@@ -17,6 +17,9 @@ There is the full command list:
 ### del #object_name [ #object_name... ]
     Deletes the given object
 
+### det [ #val_store_name ] #matrix_name
+    Calculates determinant of the matrix and puts in the given value
+
 ### echelon [ #matrix_name ] #matrix_name
     Calculates the echelon form of the object
 
