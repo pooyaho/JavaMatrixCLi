@@ -10,14 +10,13 @@ import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-
 /**
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
  *         Date: 3/7/13
  *         Time: 3:05 PM
  */
+@Command(targetClass = CopyCommand.class)
 public class CopyCommandTest extends AbstractCommandTest {
     public CopyCommandTest() throws Exception {
     }
@@ -84,11 +83,5 @@ public class CopyCommandTest extends AbstractCommandTest {
     public void testCopyWithManyOperands() throws Exception {
         executeAndExpectException("e", "a", "e", "a");
         executeAndExpectException("e");
-    }
-
-    @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
-        AbstractCommand addCommand = new CopyCommand();
-        addCommand.execute(params, values);
     }
 }

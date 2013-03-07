@@ -33,8 +33,5 @@ public class DeterminantCommand extends AbstractCommand {
             result.setName(params.get(0));
             updateMathObject(result);
         }
-//        for (String param : params) {
-//            getWriter().println((getMathObject(param)).getDeterminant());
-//        }
     }
 }

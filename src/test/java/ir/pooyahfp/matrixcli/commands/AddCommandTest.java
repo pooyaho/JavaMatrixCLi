@@ -10,24 +10,18 @@ import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-
 /**
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
  *         Date: 3/6/13
  *         Time: 7:40 PM
  */
+@Command(targetClass = AddCommand.class)
 public class AddCommandTest extends AbstractCommandTest {
 
     public AddCommandTest() throws Exception {
 
     }
-
-//    @Before
-//    public void cleanup() throws Exception {
-//        fillMap();
-//    }
 
     @Test
     public void testAddMultipleOperands() throws Exception {
@@ -71,11 +65,5 @@ public class AddCommandTest extends AbstractCommandTest {
         Assert.assertArrayEquals(a.getContent()[0], new double[]{10, 10, 10}, 0);
         Assert.assertArrayEquals(a.getContent()[1], new double[]{10, 10, 10}, 0);
         Assert.assertArrayEquals(a.getContent()[2], new double[]{10, 10, 10}, 0);
-    }
-
-    @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
-        AbstractCommand addCommand = new AddCommand();
-        addCommand.execute(params, values);
     }
 }

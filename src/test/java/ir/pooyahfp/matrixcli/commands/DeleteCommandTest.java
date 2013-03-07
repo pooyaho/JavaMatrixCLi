@@ -7,14 +7,13 @@ package ir.pooyahfp.matrixcli.commands;
 
 import org.junit.Test;
 
-import java.util.List;
-
 /**
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
  *         Date: 3/7/13
  *         Time: 3:41 PM
  */
+@Command(targetClass = DeleteCommand.class)
 public class DeleteCommandTest extends AbstractCommandTest {
 
     public DeleteCommandTest() throws Exception {
@@ -29,13 +28,9 @@ public class DeleteCommandTest extends AbstractCommandTest {
             throw new Exception("Hey, They are alive!");
         }
     }
+
     @Test
     public void testDeleteWithoutOperands() throws Exception {
         executeAndExpectException();
-    }
-    @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
-        AbstractCommand addCommand = new DeleteCommand();
-        addCommand.execute(params, values);
     }
 }

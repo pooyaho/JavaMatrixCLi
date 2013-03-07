@@ -50,6 +50,8 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     }
 
     protected void executeWithOperands(String... params) throws Exception {
+
+
         Collections.addAll(this.params, params);
         execute(this.params, values);
     }
@@ -72,5 +74,13 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     @Before
     public void cleanup() throws Exception {
         fillMap();
+    }
+
+    @Override
+    public void execute(List<String> params, List<String> values) throws Exception {
+        Command annotation = this.getClass().getAnnotation(Command.class);
+
+        AbstractCommand addCommand = (AbstractCommand) annotation.targetClass().newInstance();
+        addCommand.execute(params, values);
     }
 }
