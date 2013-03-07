@@ -8,7 +8,6 @@ package ir.pooyahfp.matrixcli.commands;
 import ir.pooyahfp.matrixcli.matrix.MatrixObject;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -25,10 +24,10 @@ public class AddCommandTest extends AbstractCommandTest {
 
     }
 
-    @Before
-    public void cleanup() throws Exception {
-        fillMap();
-    }
+//    @Before
+//    public void cleanup() throws Exception {
+//        fillMap();
+//    }
 
     @Test
     public void testAddMultipleOperands() throws Exception {
@@ -53,6 +52,7 @@ public class AddCommandTest extends AbstractCommandTest {
         executeWithOperands("a", "d");
 
         MatrixObject a = (MatrixObject) getMathObject("a");
+
         Assert.assertArrayEquals(a.getContent()[0], new double[]{2, 3, 4}, 0);
         Assert.assertArrayEquals(a.getContent()[1], new double[]{5, 6, 7}, 0);
         Assert.assertArrayEquals(a.getContent()[2], new double[]{8, 9, 10}, 0);
@@ -65,7 +65,7 @@ public class AddCommandTest extends AbstractCommandTest {
 
     @Test
     public void testAddTwoMatrices() throws Exception {
-        executeWithOperands("a","b");
+        executeWithOperands("a", "b");
         MatrixObject a = (MatrixObject) getMathObject("a");
 
         Assert.assertArrayEquals(a.getContent()[0], new double[]{10, 10, 10}, 0);

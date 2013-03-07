@@ -7,6 +7,7 @@ package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.matrix.MatrixObject;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.junit.Before;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,5 +67,10 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         if (!errorRaised) {
             throw new Exception("Expected an error!");
         }
+    }
+
+    @Before
+    public void cleanup() throws Exception {
+        fillMap();
     }
 }

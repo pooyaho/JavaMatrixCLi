@@ -14,19 +14,13 @@ import java.util.List;
  *         Time: 2:14 PM
  */
 public class DeleteCommand extends AbstractCommand {
-
-
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() < 1)
-            throw new IllegalArgumentException("Input should has 2 or 3 parameters");
+            throw new IllegalArgumentException("Delete should have parameters");
 
         for (String param : params) {
             deleteMathObject(param);
         }
-
-
     }
-
-
 }

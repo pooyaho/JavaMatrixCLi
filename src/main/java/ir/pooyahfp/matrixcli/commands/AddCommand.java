@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class AddCommand extends AbstractCommand {
 
-
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
         if (params.size() < 2 || params.size() > 3)
@@ -40,8 +39,6 @@ public class AddCommand extends AbstractCommand {
 
             resultObject.setName(object1.getName());
         }
-
         updateMathObject(resultObject);
-
     }
 }

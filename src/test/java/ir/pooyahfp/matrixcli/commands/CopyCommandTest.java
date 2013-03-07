@@ -8,7 +8,6 @@ package ir.pooyahfp.matrixcli.commands;
 import ir.pooyahfp.matrixcli.matrix.MatrixObject;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -23,10 +22,10 @@ public class CopyCommandTest extends AbstractCommandTest {
     public CopyCommandTest() throws Exception {
     }
 
-    @Before
-    public void cleanup() throws Exception {
-        fillMap();
-    }
+//    @Before
+//    public void cleanup() throws Exception {
+//        fillMap();
+//    }
 
     @Test
     public void testCopyTwoMatrices() throws Exception {
@@ -34,9 +33,10 @@ public class CopyCommandTest extends AbstractCommandTest {
 
         MatrixObject a = (MatrixObject) getMathObject("a");
         MatrixObject b = (MatrixObject) getMathObject("b");
-        Assert.assertArrayEquals(a.getContent()[0], b.getContent()[0], 0);
-        Assert.assertArrayEquals(a.getContent()[1], b.getContent()[1], 0);
-        Assert.assertArrayEquals(a.getContent()[2], b.getContent()[2], 0);
+
+        for (int i = 0; i < a.getHeight(); i++) {
+            Assert.assertArrayEquals(a.getContent()[i], b.getContent()[i], 0);
+        }
     }
 
     @Test
@@ -46,9 +46,9 @@ public class CopyCommandTest extends AbstractCommandTest {
         MatrixObject a = (MatrixObject) getMathObject("a");
         MatrixObject c = (MatrixObject) getMathObject("c");
 
-        Assert.assertArrayEquals(a.getContent()[0], c.getContent()[0], 0);
-        Assert.assertArrayEquals(a.getContent()[1], c.getContent()[1], 0);
-
+        for (int i = 0; i < a.getHeight(); i++) {
+            Assert.assertArrayEquals(a.getContent()[i], c.getContent()[i], 0);
+        }
     }
 
     @Test
@@ -78,6 +78,12 @@ public class CopyCommandTest extends AbstractCommandTest {
         for (int i = 0; i < a.getHeight(); i++) {
             Assert.assertArrayEquals(e.getContent()[i], a.getContent()[i], 0);
         }
+    }
+
+    @Test
+    public void testCopyWithManyOperands() throws Exception {
+        executeAndExpectException("e", "a", "e", "a");
+        executeAndExpectException("e");
     }
 
     @Override
