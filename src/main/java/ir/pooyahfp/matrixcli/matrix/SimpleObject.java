@@ -219,4 +219,11 @@ public class SimpleObject extends Number {
     public String toString() {
         return "[" + name + "]\n" + value;
     }
+
+    public SimpleObject tryCast(SimpleObject o){
+        throw new NotSupportedException("Simple object could not try to cast");
+    }
+    public MatrixObject cast(SimpleObject o) throws Exception{
+        throw new NotSupportedException("Simple object could not cast");
+    }
 }

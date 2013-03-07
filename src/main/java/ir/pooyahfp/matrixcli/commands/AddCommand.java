@@ -20,8 +20,8 @@ public class AddCommand extends AbstractCommand {
 
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
-        if (params.size() < 2)
-            throw new IllegalArgumentException("Input should has 2 or 3 parameters");
+        if (params.size() < 2 || params.size() > 3)
+            throw new IllegalArgumentException("Add command should have 2 or 3 parameters");
 
         SimpleObject object1;
         SimpleObject object2;
