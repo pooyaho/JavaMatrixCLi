@@ -5,6 +5,10 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
@@ -17,5 +21,30 @@ public class DeterminantCommandTest extends AbstractCommandTest {
     public DeterminantCommandTest() throws Exception {
     }
 
+    @Test
+    public void testDeterminant() throws Exception {
+        executeWithOperands("a");
+    }
 
+    @Test
+    public void testDeterminantAndPutToValue() throws Exception {
+        executeWithOperands("f", "a");
+        SimpleObject f = getMathObject("f");
+        Assert.assertEquals(f.doubleValue(), 0, 0);
+    }
+
+    @Test
+    public void testDeterminantAndPutToMatrix() throws Exception {
+        executeAndExpectException("c", "a");
+    }
+
+    @Test
+    public void testDeterminantOfMultipleOperand() throws Exception {
+        executeAndExpectException("e", "a", "f");
+    }
+
+    @Test
+    public void testDeterminantOfNonSquareMatrix() throws Exception {
+        executeAndExpectException("e");
+    }
 }

@@ -41,13 +41,19 @@ public abstract class AbstractCommand {
      * @throws MathObjectNotFoundException
      */
     protected void updateMathObject(SimpleObject... args) throws Exception {
-        for (SimpleObject simpleObject : args)
-            if (mathObjectsMap.containsKey(simpleObject.getName()))
-                mathObjectsMap.put(simpleObject.getName(), simpleObject);
-            else {
+        for (SimpleObject simpleObject : args) {
+            if (mathObjectsMap.containsKey(simpleObject.getName())) {
+                SimpleObject old = getMathObject(simpleObject.getName());
+                if (old.getClass().getSimpleName().equals(simpleObject.getClass().getSimpleName())) {
+                    mathObjectsMap.put(simpleObject.getName(), simpleObject);
+                } else {
+                    throw new IllegalArgumentException("Objects do not have the same types");
+                }
+            } else {
                 throw new MathObjectNotFoundException(String.format("Object %s has not found!",
                         simpleObject.getName()));
             }
+        }
     }
 
     /**
@@ -57,13 +63,14 @@ public abstract class AbstractCommand {
      * @throws DuplicateMathObjectException
      */
     protected void createMathObject(SimpleObject... args) throws Exception {
-        for (SimpleObject simpleObject : args)
-            if (!mathObjectsMap.containsKey(simpleObject.getName()))
+        for (SimpleObject simpleObject : args) {
+            if (!mathObjectsMap.containsKey(simpleObject.getName())) {
                 mathObjectsMap.put(simpleObject.getName(), simpleObject);
-            else {
+            } else {
                 throw new DuplicateMathObjectException(String.format("Object %s has already defined!",
                         simpleObject.getName()));
             }
+        }
     }
 //    /**
 //     * Persists the values that user wants, like val a 1, so it creates the 'a' with value of '1'
@@ -90,9 +97,9 @@ public abstract class AbstractCommand {
      */
     protected void deleteMathObject(String... args) throws MathObjectNotFoundException {
         for (String mathObjectName : args) {
-            if (!mathObjectsMap.containsKey(mathObjectName))
+            if (!mathObjectsMap.containsKey(mathObjectName)) {
                 throw new MathObjectNotFoundException("Object " + mathObjectName + " not found!");
-            else {
+            } else {
                 mathObjectsMap.remove(mathObjectName);
             }
         }
@@ -107,8 +114,9 @@ public abstract class AbstractCommand {
      */
     protected SimpleObject getMathObject(String name) throws MathObjectNotFoundException {
         SimpleObject simpleObject = mathObjectsMap.get(name);
-        if (simpleObject == null)
+        if (simpleObject == null) {
             throw new MathObjectNotFoundException("Object " + name + " not found!");
+        }
         return simpleObject;
     }
 

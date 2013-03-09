@@ -21,11 +21,6 @@ public class CopyCommandTest extends AbstractCommandTest {
     public CopyCommandTest() throws Exception {
     }
 
-//    @Before
-//    public void cleanup() throws Exception {
-//        fillMap();
-//    }
-
     @Test
     public void testCopyTwoMatrices() throws Exception {
         executeWithOperands("a", "b");
@@ -61,22 +56,12 @@ public class CopyCommandTest extends AbstractCommandTest {
 
     @Test
     public void testCopyValueAndOtherTypes() throws Exception {
-        executeWithOperands("a", "e");
-
-        SimpleObject a = getMathObject("a");
-        SimpleObject e = getMathObject("e");
-        Assert.assertEquals(a.doubleValue(), e.doubleValue(), 0);
+        executeAndExpectException("a", "e");
     }
 
     @Test
     public void testCopyOtherTypeAndValue() throws Exception {
-        executeWithOperands("e", "a");
-
-        MatrixObject e = (MatrixObject) getMathObject("e");
-        MatrixObject a = (MatrixObject) getMathObject("a");
-        for (int i = 0; i < a.getHeight(); i++) {
-            Assert.assertArrayEquals(e.getContent()[i], a.getContent()[i], 0);
-        }
+        executeAndExpectException("e", "a");
     }
 
     @Test

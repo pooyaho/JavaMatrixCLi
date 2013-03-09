@@ -9,6 +9,7 @@ import ir.pooyahfp.matrixcli.matrix.MatrixObject;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 import org.junit.Before;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,6 +26,7 @@ public abstract class AbstractCommandTest extends AbstractCommand {
 
     public AbstractCommandTest() throws Exception {
         fillMap();
+        setWriter(new PrintWriter(System.out));
     }
 
     protected void fillMap() throws Exception {
@@ -50,8 +52,6 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     }
 
     protected void executeWithOperands(String... params) throws Exception {
-
-
         Collections.addAll(this.params, params);
         execute(this.params, values);
     }
