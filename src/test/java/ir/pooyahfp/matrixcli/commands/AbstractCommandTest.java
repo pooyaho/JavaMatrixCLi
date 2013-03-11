@@ -39,6 +39,7 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         SimpleObject o1 = new SimpleObject("d", 3);
         SimpleObject o2 = new SimpleObject("e", 4);
         SimpleObject o3 = new SimpleObject("f", 5);
+        SimpleObject o4 = new SimpleObject("g", 5);
 
         createMathObject(
                 m1.setContent(null, null, new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9}),
@@ -47,7 +48,8 @@ public abstract class AbstractCommandTest extends AbstractCommand {
 
                 o1.setContent(null, null, new double[]{1}),
                 o2.setContent(null, null, new double[]{67}),
-                o3.setContent(null, null, new double[]{69})
+                o3.setContent(null, null, new double[]{69}),
+                o4.setContent(null, null, new double[]{3})
         );
     }
 

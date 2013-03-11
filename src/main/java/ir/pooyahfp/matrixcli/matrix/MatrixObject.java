@@ -589,7 +589,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
 
     @Override
     public SimpleObject power(SimpleObject o) throws Exception {
-        return power((int) Math.floor(o.getEquivalenceValue()));
+        return power(o.intValue());
     }
 
     @Override
