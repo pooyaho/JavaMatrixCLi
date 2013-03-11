@@ -141,27 +141,27 @@ public class SimpleObject extends Number {
 
 
     public SimpleObject add(SimpleObject b) throws Exception {
-        return new SimpleObject(b.value.doubleValue() + this.value.doubleValue());
+        return new SimpleObject(b.doubleValue() + this.doubleValue());
     }
 
 
     public SimpleObject sub(SimpleObject b) throws Exception {
-        return new SimpleObject(this.value.doubleValue() - b.value.doubleValue());
+        return new SimpleObject(this.doubleValue() - b.doubleValue());
     }
 
 
     public SimpleObject mul(SimpleObject b) throws Exception {
-        return new SimpleObject(b.value.doubleValue() * this.value.doubleValue());
+        return new SimpleObject(b.doubleValue() * this.doubleValue());
     }
 
 
     public SimpleObject power(int c) throws Exception {
-        return new SimpleObject(Math.pow(this.value.doubleValue(), c));
+        return new SimpleObject(Math.pow(this.doubleValue(), c));
     }
 
 
     public SimpleObject power(SimpleObject o) throws Exception {
-        return power(o.value.intValue());
+        return power(o.intValue());
     }
 
 

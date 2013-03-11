@@ -21,13 +21,13 @@ public class MatrixCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
 
-        if (params.isEmpty()) {
-            throw new IllegalArgumentException("Matrix command without parameters.");
+        if (params.size() < 1 || params.size() > 3 || params.size() == 2) {
+            throw new IllegalArgumentException("Invalid parameters!");
         }
 
         SimpleObject simpleObject;
 
-        if (params.size() > 1) {
+        if (params.size() == 3) {
             int height = Integer.parseInt(params.get(1));
             int width = Integer.parseInt(params.get(2));
 

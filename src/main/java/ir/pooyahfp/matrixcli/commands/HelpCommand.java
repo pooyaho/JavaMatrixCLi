@@ -29,16 +29,17 @@ public class HelpCommand extends AbstractCommand {
             Enumeration<String> keys = rb.getKeys();
             while (keys.hasMoreElements()) {
                 builder.append(keys.nextElement().replace(".", " ")).append("\n");
-
             }
-            getWriter().println(
-                    builder.toString()
-            );
-
+            getWriter().println(builder.toString());
         }
 
         for (String param : params) {
-            getWriter().println(rb.getString("help." + param));
+            String key = "help." + param;
+            if (rb.containsKey(key)) {
+                getWriter().println(rb.getString(key));
+            } else {
+                getWriter().println("Command not found!");
+            }
         }
     }
 }
