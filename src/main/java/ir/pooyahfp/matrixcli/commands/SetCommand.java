@@ -19,10 +19,17 @@ public class SetCommand extends AbstractCommand {
 
     @Override
     public void execute(List<String> params, List<String> values) throws Exception {
+        if (params.size() < 1 || params.size() > 3) {
+            throw new IllegalArgumentException("Illegal arguments!");
+        }
         String name = params.get(0);
+        Integer row = null;
+        Integer col = null;
 
-        Integer row = params.get(1).isEmpty() ? null : Integer.parseInt(params.get(1)) - 1;
-        Integer col = params.get(2).isEmpty() ? null : Integer.parseInt(params.get(2)) - 1;
+        if (params.size() == 3) {
+            row = params.get(1).isEmpty() ? null : Integer.parseInt(params.get(1)) - 1;
+            col = params.get(2).isEmpty() ? null : Integer.parseInt(params.get(2)) - 1;
+        }
 
         SimpleObject mathObject = getMathObject(name);
         double[] doubles = toDouble(values);

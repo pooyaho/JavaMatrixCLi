@@ -7,6 +7,7 @@ package ir.pooyahfp.matrixcli.matrix;
 
 import ir.pooyahfp.matrixcli.exception.NotSupportedException;
 import ir.pooyahfp.matrixcli.exception.TypeConversionException;
+import ir.pooyahfp.matrixcli.matrix.util.ArrayUtil;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
@@ -51,17 +52,25 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @return the matrix with given data
      */
     public MatrixObject setContent(double[][] content) {
+
         MatrixObject x = new MatrixObject(content.length, content[0].length, this.name);
 
         for (int i = 0; i < content.length; i++) {
             System.arraycopy(content[i], 0, x.content[i], 0, content[0].length);
         }
-//        x.getHeight() = content.length;
-//        x.width = content[0].length;
-//
         return x;
     }
 
+
+    public MatrixObject setContent(Double[][] content) {
+
+        MatrixObject x = new MatrixObject(content.length, content[0].length, this.name);
+
+        for (int i = 0; i < content.length; i++) {
+            System.arraycopy(content[i], 0, x.content[i], 0, content[0].length);
+        }
+        return x;
+    }
 
     /**
      * Changes the content of the MatrixObject with a 1d double array
@@ -70,6 +79,11 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param content 1d double array
      */
     public MatrixObject setContent(double[] content) throws Exception {
+
+        if (content.length < getHeight() * getWidth()) {
+            throw new IllegalArgumentException("Input data length is not equal to matrix size");
+        }
+
         MatrixObject x = this.copy();
 
         for (int i = 0; i < getHeight(); i++) {
@@ -77,6 +91,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         }
 
         return x;
+//        return setContent(ArrayUtil.splitArray(ArrayUtil.toObject(content), getWidth()));
     }
 
     /**
@@ -128,6 +143,9 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @return the width of MatrixObject
      */
     public int getWidth() {
+//        if (content[0].length == 0) {
+//            return Integer.MAX_VALUE;
+//        }
         return content[0].length;
     }
 
@@ -158,6 +176,9 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @return getHeight() of the matrix
      */
     public int getHeight() {
+//        if (content.length == 0) {
+//            return Integer.MAX_VALUE;
+//        }
         return content.length;
     }
 
@@ -705,103 +726,16 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
 
         for (int r = 0; r < matrixObject.content.length; r++) {
             if (matrixObject.content[r][r] != 1 && matrixObject.content[r][r] != 0) {
-                matrixObject.content[r] = divide(matrixObject.content[r], matrixObject.content[r][r]);
+                matrixObject.content[r] = ArrayUtil.divide(matrixObject.content[r], matrixObject.content[r][r]);
             }
             for (int i = r + 1; i < matrixObject.content.length; i++) {
-                matrixObject.content[i] = sub(matrixObject.content[i], multiply(matrixObject.content[r],
+                matrixObject.content[i] = ArrayUtil.sub(matrixObject.content[i],
+                        ArrayUtil.multiply(matrixObject.content[r],
                         matrixObject.content[i][r])).clone();
             }
         }
 
         return matrixObject;
-    }
-
-    private double[] divide(double[] content, double divisor) {
-        double[] clone = content.clone();
-        for (int i = 0; i < content.length; i++) {
-            clone[i] /= divisor;
-        }
-        return clone;
-    }
-
-    private double[] multiply(double[] content, double multiplier) {
-        double[] clone = content.clone();
-        for (int i = 0; i < content.length; i++) {
-            clone[i] *= multiplier;
-        }
-        return clone;
-    }
-
-    private double[] sub(double[] content, double operand) {
-        double[] clone = content.clone();
-        for (int i = 0; i < content.length; i++) {
-            clone[i] -= operand;
-
-        }
-        return clone;
-    }
-
-    private double[] divide(double[] a, double[] b) {
-        double[] clone = a.clone();
-        for (int i = 0; i < a.length; i++) {
-            clone[i] /= b[i];
-        }
-        return clone;
-    }
-
-    private double[] multiply(double[] a, double[] b) {
-        double[] clone = a.clone();
-        for (int i = 0; i < a.length; i++) {
-            clone[i] *= b[i];
-        }
-        return clone;
-    }
-
-    private double[] sub(double[] a, double[] b) {
-        double[] clone = a.clone();
-        for (int i = 0; i < a.length; i++) {
-            clone[i] -= b[i];
-
-        }
-        return clone;
-    }
-
-    private double[] add(double[] a, double[] b) {
-        double[] clone = a.clone();
-        for (int i = 0; i < a.length; i++) {
-            clone[i] += b[i];
-        }
-        return clone;
-    }
-
-    private double[] add(double[] content, double operand) {
-        double[] clone = content.clone();
-        for (int i = 0; i < content.length; i++) {
-            clone[i] += operand;
-        }
-        return clone;
-    }
-
-    public double[] concat(double[] first, double[] second) {
-        double[] result = Arrays.copyOf(first, first.length + second.length);
-        System.arraycopy(second, 0, result, first.length, second.length);
-
-        return result;
-    }
-
-    private double gcd(double[] content) {
-        double result = content[0];
-        for (int i = 1; i < content.length; i++) {
-            result = gcd(result, content[i]);
-        }
-        return result;
-    }
-
-    private double gcd(double a, double b) {
-        if (b == 0) {
-            return a;
-        }
-        return gcd(b, a % b);
     }
 
     public SimpleObject getRank() {
@@ -908,5 +842,14 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     @Override
     public double doubleValue() {
         throw new NotSupportedException("Matrix has not single value");
+    }
+
+    private double[][] splitArray(double[] input, int length) {
+        double[][] temp = new double[input.length / length][length];
+
+        for (int i = 0; i < input.length / length; i++) {
+            temp[i] = Arrays.copyOfRange(input, i * length, length);
+        }
+        return temp;
     }
 }

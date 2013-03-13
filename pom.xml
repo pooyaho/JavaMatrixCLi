@@ -14,11 +14,7 @@
 
     <build>
         <plugins>
-            <!--<plugin>-->
-            <!--<groupId>com.googlecode.fmpp-maven-plugin</groupId>-->
-            <!--<artifactId>fmpp-maven-plugin</artifactId>-->
-            <!--<version>1.0</version>-->
-            <!--</plugin>-->
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -26,20 +22,9 @@
 
                 <configuration>
                     <executable>java</executable>
-                    <!--<arguments>-->
-                    <!--<argument>-classpath</argument>-->
-                    <!--&lt;!&ndash;&lt;!&ndash; automatically creates the classpath using all project dependencies,&ndash;&gt;-->
-                    <!--&lt;!&ndash;also adding the project build directory &ndash;&gt;&ndash;&gt;-->
-                    <!--<classpath/>-->
-                    <!--<argument>ir.pooyahfp.matrixcli.generator.ReadmeGenerator</argument>-->
-
-                    <!--</arguments>-->
                     <mainClass>ir.pooyahfp.matrixcli.generator.ReadmeGenerator</mainClass>
                 </configuration>
-
-
             </plugin>
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.1</version>
@@ -93,12 +78,6 @@
             <artifactId>spring-context</artifactId>
             <version>3.1.1.RELEASE</version>
         </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.renjin</groupId>-->
-        <!--<artifactId>renjin-core</artifactId>-->
-        <!--<version>0.6.8-SNAPSHOT</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>org.freemarker</groupId>

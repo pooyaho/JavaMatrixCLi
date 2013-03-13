@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.SaveLoad;
+import ir.pooyahfp.matrixcli.matrix.SaveLoadUtil;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
@@ -27,6 +27,6 @@ public class SaveCommand extends AbstractCommand {
         String path = params.get(1);
 
         SimpleObject mathObject = getMathObject(name);
-        SaveLoad.saveObject(path, mathObject);
+        SaveLoadUtil.saveObject(path, mathObject);
     }
 }

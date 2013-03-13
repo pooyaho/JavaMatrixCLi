@@ -14,7 +14,7 @@ import java.io.*;
  * Date: 1/26/13
  * Time: 11:24 AM
  */
-public class SaveLoad {
+public class SaveLoadUtil {
 
     /**
      * Read the object from the given file. if file does not exist or it is not convertible to an object,

@@ -49,8 +49,7 @@ public abstract class AbstractCommandTest extends AbstractCommand {
                 o1.setContent(null, null, new double[]{1}),
                 o2.setContent(null, null, new double[]{67}),
                 o3.setContent(null, null, new double[]{69}),
-                o4.setContent(null, null, new double[]{3})
-        );
+                o4.setContent(null, null, new double[]{3}));
     }
 
     protected void executeWithOperands(String... params) throws Exception {
@@ -58,7 +57,52 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         execute(this.params, values);
     }
 
+    protected void executeWithOperands(String[] params, Integer[] values) throws Exception {
+        Collections.addAll(this.params, params);
+
+        for (Integer value : values) {
+            this.values.add(String.valueOf(value));
+        }
+
+        execute(this.params, this.values);
+    }
+
+    protected void executeWithOperands(String name, Integer[] values) throws Exception {
+        executeWithOperands(new String[]{name}, values);
+    }
+
+    protected void executeWithOperands(String name, String i, String j, Integer[] values) throws Exception {
+        executeWithOperands(new String[]{name, i, j}, values);
+    }
+
+//    protected void executeWithOperands(String param) throws Exception {
+//        this.params.add(param);
+//        execute(this.params, values);
+//    }
+
+//    protected void executeWithOperands(String name, Integer... values) throws Exception {
+//
+//        for (Integer value : values) {
+//            this.values.add(String.valueOf(value));
+//        }
+//
+//        this.params.add(name);
+//        execute(this.params, this.values);
+//    }
+//    //
+//    protected void executeWithOperands(String name, String i, String j, Integer... values) throws Exception {
+//        executeWithOperands(name, i, j, values);
+////        for (Integer value : values) {
+////            this.values.add(String.valueOf(value));
+////        }
+////        params.add(name);
+////        params.add(i);
+////        params.add(j);
+////        execute(this.params, this.values);
+//    }
+
     protected void executeAndExpectException(String... params) throws Exception {
+
         Collections.addAll(this.params, params);
         boolean errorRaised = false;
 
@@ -71,6 +115,29 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         if (!errorRaised) {
             throw new Exception("Expected an error!");
         }
+
+    }
+
+    protected void executeAndExpectException(int[] values, String... params) throws Exception {
+
+        Collections.addAll(this.params, params);
+
+        for (Integer value : values) {
+            this.values.add(String.valueOf(value));
+        }
+
+        boolean errorRaised = false;
+
+        try {
+            execute(this.params, this.values);
+        } catch (Exception x) {
+            errorRaised = true;
+        }
+
+        if (!errorRaised) {
+            throw new Exception("Expected an error!");
+        }
+
     }
 
     @Before
@@ -85,4 +152,5 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         AbstractCommand addCommand = (AbstractCommand) annotation.targetClass().newInstance();
         addCommand.execute(params, values);
     }
+
 }

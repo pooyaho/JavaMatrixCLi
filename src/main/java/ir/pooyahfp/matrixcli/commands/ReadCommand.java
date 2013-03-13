@@ -5,7 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.matrix.SaveLoad;
+import ir.pooyahfp.matrixcli.matrix.SaveLoadUtil;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class ReadCommand extends AbstractCommand {
         String name = params.get(0);
         String path = params.get(1);
 
-        SimpleObject simpleObject = (SimpleObject) SaveLoad.readObject(path);
+        SimpleObject simpleObject = (SimpleObject) SaveLoadUtil.readObject(path);
         simpleObject.setName(name);
 
         updateMathObject(simpleObject);

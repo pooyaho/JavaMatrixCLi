@@ -15,73 +15,8 @@ import ir.pooyahfp.matrixcli.exception.NotSupportedException;
  */
 public class SimpleObject extends Number {
 
-//    public abstract String toString();
-//
-//    public abstract String getName() throws Exception;
-//
-//    public abstract void setName(String name) throws Exception;
-//
-//    public abstract SimpleObject getTranspose() throws Exception;
-//
-//    public abstract double getDeterminant() throws Exception;
-//
-//    public abstract SimpleObject getInvert() throws Exception;
-//
-//    public abstract SimpleObject add(SimpleObject b) throws Exception;
-//
-//    public abstract SimpleObject sub(SimpleObject b) throws Exception;
-//
-//    public abstract SimpleObject mul(SimpleObject b) throws Exception;
-//
-//    public abstract SimpleObject power(int c) throws Exception;
-//
-//    public abstract SimpleObject power(SimpleObject o) throws Exception;
-//
-//    public abstract void lu(SimpleObject l, SimpleObject u) throws Exception;
-//
-//    public abstract SimpleObject echelonForm() throws Exception;
-//
-//    public abstract SimpleObject getRank() throws Exception;
-//
-//    public abstract SimpleObject getTrace() throws Exception;
-//
-//    public abstract SimpleObject eigenValues() throws Exception;
-//
-//    public abstract SimpleObject getIdentity() throws Exception;
-//
-//    public abstract SimpleObject copy() throws Exception;
-//
-//    public abstract SimpleObject cast(SimpleObject o) throws Exception;
-//
-//    public abstract SimpleObject setContent(Integer row, Integer col, double[] content) throws Exception;
-//
-//    public abstract double getEquivalenceValue() throws Exception;
-
-//    
-//    public int intValue() {
-//        throw new NotImplementedException();
-//    }
-//
-//    
-//    public long longValue() {
-//        throw new NotImplementedException();
-//    }
-//
-//    
-//    public float floatValue() {
-//        throw new NotImplementedException();
-//    }
-//
-//    
-//    public double doubleValue() {
-//        throw new NotImplementedException();
-//
-//    }
-
-
     private String name;
     private Number value;
-
 
     public SimpleObject(String name, Number value) {
         this.name = name;
