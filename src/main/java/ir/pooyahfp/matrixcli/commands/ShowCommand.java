@@ -27,8 +27,9 @@ public class ShowCommand extends AbstractCommand {
         }
 
         for (String name : params) {
-            if(hasMathObject(name))
+            if (hasMathObject(name)) {
                 getWriter().println(getMathObject(name));
+            }
         }
     }
 }

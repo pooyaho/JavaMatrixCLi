@@ -87,4 +87,5 @@ public class SetCommandTest extends AbstractCommandTest {
         executeAndExpectException(new int[]{}, "a");
 
     }
+    //TODO make more tests
 }

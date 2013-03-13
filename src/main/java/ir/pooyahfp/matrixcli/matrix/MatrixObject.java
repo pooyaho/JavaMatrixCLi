@@ -176,9 +176,6 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @return getHeight() of the matrix
      */
     public int getHeight() {
-//        if (content.length == 0) {
-//            return Integer.MAX_VALUE;
-//        }
         return content.length;
     }
 
@@ -193,15 +190,11 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         }
 
         MatrixObject matrixObject = new MatrixObject(height, this.getWidth(), name);
-//        double[][] newArray = new double[getHeight()][width];
         int destHeight = Math.min(height, this.getHeight());
 
         for (int i = 0; i < destHeight; i++) {
             System.arraycopy(content[i], 0, matrixObject.content[i], 0, this.getWidth());
         }
-//        for (int i = 0; i < this.getHeight(); i++) {
-//            System.arraycopy(content[i], 0, matrixObject.content[i], 0, getWidth());
-//        }
         return matrixObject;
     }
 

@@ -21,6 +21,7 @@ import java.util.List;
  *         Time: 7:40 PM
  */
 public abstract class AbstractCommandTest extends AbstractCommand {
+
     protected List<String> params = new ArrayList<String>();
     protected List<String> values = new ArrayList<String>();
 
@@ -36,6 +37,8 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         SimpleObject m1 = new MatrixObject(3, 3, "a");
         SimpleObject m2 = new MatrixObject(3, 3, "b");
         SimpleObject m3 = new MatrixObject(3, 2, "c");
+        SimpleObject m4 = new MatrixObject(3, 1, "m");
+        SimpleObject m5 = new MatrixObject(3, 1, "x");
         SimpleObject o1 = new SimpleObject("d", 3);
         SimpleObject o2 = new SimpleObject("e", 4);
         SimpleObject o3 = new SimpleObject("f", 5);
@@ -45,11 +48,14 @@ public abstract class AbstractCommandTest extends AbstractCommand {
                 m1.setContent(null, null, new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9}),
                 m2.setContent(null, null, new double[]{9, 8, 7, 6, 5, 4, 3, 2, 1}),
                 m3.setContent(null, null, new double[]{9, 8, 7, 6, 5, 4}),
+                m4.setContent(null, null, new double[]{9, 8, 7}),
+                m5.setContent(null, null, new double[]{0, 0, 0}),
 
                 o1.setContent(null, null, new double[]{1}),
                 o2.setContent(null, null, new double[]{67}),
                 o3.setContent(null, null, new double[]{69}),
-                o4.setContent(null, null, new double[]{3}));
+                o4.setContent(null, null, new double[]{3})
+        );
     }
 
     protected void executeWithOperands(String... params) throws Exception {
@@ -75,32 +81,6 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         executeWithOperands(new String[]{name, i, j}, values);
     }
 
-//    protected void executeWithOperands(String param) throws Exception {
-//        this.params.add(param);
-//        execute(this.params, values);
-//    }
-
-//    protected void executeWithOperands(String name, Integer... values) throws Exception {
-//
-//        for (Integer value : values) {
-//            this.values.add(String.valueOf(value));
-//        }
-//
-//        this.params.add(name);
-//        execute(this.params, this.values);
-//    }
-//    //
-//    protected void executeWithOperands(String name, String i, String j, Integer... values) throws Exception {
-//        executeWithOperands(name, i, j, values);
-////        for (Integer value : values) {
-////            this.values.add(String.valueOf(value));
-////        }
-////        params.add(name);
-////        params.add(i);
-////        params.add(j);
-////        execute(this.params, this.values);
-//    }
-
     protected void executeAndExpectException(String... params) throws Exception {
 
         Collections.addAll(this.params, params);
@@ -119,7 +99,6 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     }
 
     protected void executeAndExpectException(int[] values, String... params) throws Exception {
-
         Collections.addAll(this.params, params);
 
         for (Integer value : values) {
@@ -152,5 +131,4 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         AbstractCommand addCommand = (AbstractCommand) annotation.targetClass().newInstance();
         addCommand.execute(params, values);
     }
-
 }
