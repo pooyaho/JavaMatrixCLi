@@ -22,6 +22,7 @@ import java.util.List;
  *         Email : info@pooya-hfp.ir
  *         Date: 1/26/13
  *         Time: 10:58 AM
+ *         TODO update comments
  */
 public class MatrixObject extends SimpleObject implements Serializable, Cloneable {
 
@@ -525,16 +526,23 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @return returns the result of this-b
      */
     public MatrixObject sub(SimpleObject o) throws Exception {
-        MatrixObject b = cast(o);
-        if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
-            throw new IllegalArgumentException("Input Matrices should have same dimensions");
-        }
+        MatrixObject b = tryCast(o);
+        MatrixObject temp = new MatrixObject(getHeight(), getWidth());
+        if (b != null) {
+            if (getWidth() != b.getWidth() || getHeight() != b.getHeight()) {
+                throw new IllegalArgumentException("Input matrices should have same dimensions");
+            }
 
-        MatrixObject temp = new MatrixObject(getHeight(), getWidth(), getName() + "-" + b.getName());
-
-        for (int i = 0; i < getHeight(); i++) {
-            for (int j = 0; j < getWidth(); j++) {
-                temp.content[i][j] = this.content[i][j] - b.content[i][j];
+            for (int i = 0; i < getHeight(); i++) {
+                for (int j = 0; j < getWidth(); j++) {
+                    temp.content[i][j] = this.content[i][j] - b.content[i][j];
+                }
+            }
+        } else {
+            for (int i = 0; i < getHeight(); i++) {
+                for (int j = 0; j < getWidth(); j++) {
+                    temp.content[i][j] = this.content[i][j] - o.doubleValue();
+                }
             }
         }
 
@@ -724,7 +732,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
             for (int i = r + 1; i < matrixObject.content.length; i++) {
                 matrixObject.content[i] = ArrayUtil.sub(matrixObject.content[i],
                         ArrayUtil.multiply(matrixObject.content[r],
-                        matrixObject.content[i][r])).clone();
+                                matrixObject.content[i][r])).clone();
             }
         }
 

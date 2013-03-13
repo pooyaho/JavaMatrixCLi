@@ -22,16 +22,16 @@ public class MatrixCommandTest extends AbstractCommandTest {
 
     @Test
     public void testCreateNamedMatrix() throws Exception {
-        executeWithOperands("x");
-        Assert.assertTrue(hasMathObject("x"));
+        executeWithOperands("y");
+        Assert.assertTrue(hasMathObject("y"));
     }
 
     @Test
     public void testSizedMatrix() throws Exception {
-        executeWithOperands("x", "3", "2");
-        Assert.assertTrue(hasMathObject("x"));
+        executeWithOperands("y", "3", "2");
+        Assert.assertTrue(hasMathObject("y"));
 
-        MatrixObject x = (MatrixObject) getMathObject("x");
+        MatrixObject x = (MatrixObject) getMathObject("y");
 
         Assert.assertEquals(x.getWidth(), 2);
         Assert.assertEquals(x.getHeight(), 3);

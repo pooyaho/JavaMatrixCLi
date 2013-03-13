@@ -63,26 +63,23 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         execute(this.params, values);
     }
 
-    protected void executeWithOperands(String[] params, Integer[] values) throws Exception {
+    protected void executeWithOperands(String[] params, int[] values) throws Exception {
         Collections.addAll(this.params, params);
 
-        for (Integer value : values) {
-            this.values.add(String.valueOf(value));
-        }
+        fillValues(values);
 
         execute(this.params, this.values);
     }
 
-    protected void executeWithOperands(String name, Integer[] values) throws Exception {
+    protected void executeWithOperands(String name, int[] values) throws Exception {
         executeWithOperands(new String[]{name}, values);
     }
 
-    protected void executeWithOperands(String name, String i, String j, Integer[] values) throws Exception {
+    protected void executeWithOperands(String name, String i, String j, int[] values) throws Exception {
         executeWithOperands(new String[]{name, i, j}, values);
     }
 
     protected void executeAndExpectException(String... params) throws Exception {
-
         Collections.addAll(this.params, params);
         boolean errorRaised = false;
 
@@ -101,9 +98,7 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     protected void executeAndExpectException(int[] values, String... params) throws Exception {
         Collections.addAll(this.params, params);
 
-        for (Integer value : values) {
-            this.values.add(String.valueOf(value));
-        }
+        fillValues(values);
 
         boolean errorRaised = false;
 
@@ -117,6 +112,12 @@ public abstract class AbstractCommandTest extends AbstractCommand {
             throw new Exception("Expected an error!");
         }
 
+    }
+
+    private void fillValues(int[] values) {
+        for (Integer value : values) {
+            this.values.add(String.valueOf(value));
+        }
     }
 
     @Before

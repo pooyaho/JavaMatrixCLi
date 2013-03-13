@@ -22,7 +22,7 @@ public class SetCommandTest extends AbstractCommandTest {
 
     @Test
     public void testSetMatrix() throws Exception {
-        executeWithOperands("a", new Integer[]{11, 12, 13, 14, 15, 16, 17, 18, 19});
+        executeWithOperands("a", new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
 
@@ -33,7 +33,7 @@ public class SetCommandTest extends AbstractCommandTest {
 
     @Test
     public void testSetWithRowIndexMatrix() throws Exception {
-        executeWithOperands("a", "1", "", new Integer[]{11, 12, 13});
+        executeWithOperands("a", "1", "", new int[]{11, 12, 13});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
 
@@ -45,7 +45,7 @@ public class SetCommandTest extends AbstractCommandTest {
 
     @Test
     public void testSetWithColIndexMatrix() throws Exception {
-        executeWithOperands("a", "", "1", new Integer[]{11, 12, 13});
+        executeWithOperands("a", "", "1", new int[]{11, 12, 13});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
 
@@ -56,7 +56,7 @@ public class SetCommandTest extends AbstractCommandTest {
 
     @Test
     public void testSetWithEmptyIndexMatrix() throws Exception {
-        executeWithOperands("a", "", "", new Integer[]{11, 12, 13, 14, 15, 16, 17, 18, 19});
+        executeWithOperands("a", "", "", new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
 
@@ -67,7 +67,7 @@ public class SetCommandTest extends AbstractCommandTest {
 
     @Test
     public void testSetWithColAndRowIndexMatrix() throws Exception {
-        executeWithOperands("a", "1", "1", new Integer[]{11});
+        executeWithOperands("a", "1", "1", new int[]{11});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
 
