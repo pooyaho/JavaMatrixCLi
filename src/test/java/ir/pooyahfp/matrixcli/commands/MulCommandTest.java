@@ -18,11 +18,11 @@ import org.junit.Test;
  */
 @Command(targetClass = MulCommand.class)
 public class MulCommandTest extends AbstractCommandTest {
-    public MulCommandTest() throws Exception {
+    public MulCommandTest()  {
     }
 
     @Test
-    public void testMulTwoOperand() throws Exception {
+    public void testMulTwoOperand() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a", "b");
 
         MatrixObject object = (MatrixObject) getMathObject("a");
@@ -32,7 +32,7 @@ public class MulCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testMulThreeOperand() throws Exception {
+    public void testMulThreeOperand() throws IllegalAccessException, InstantiationException {
         executeWithOperands("c", "a", "b");
 
         MatrixObject object = (MatrixObject) getMathObject("c");
@@ -42,17 +42,17 @@ public class MulCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testMulNotSizedOperand() throws Exception {
+    public void testMulNotSizedOperand()  {
         executeAndExpectException("c", "a");
     }
 
     @Test
-    public void testUnexpectedOperands() throws Exception {
+    public void testUnexpectedOperands()  {
         executeAndExpectException("c", "a", "d", "d");
     }
 
     @Test
-    public void testMulMatrixAndNumber() throws Exception {
+    public void testMulMatrixAndNumber() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a", "d");
         MatrixObject a = (MatrixObject) getMathObject("a");
 
@@ -62,12 +62,12 @@ public class MulCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testMulNumberAndMatrix() throws Exception {
+    public void testMulNumberAndMatrix()  {
         executeAndExpectException("d", "a");
     }
 
     @Test
-    public void testMulNumberAndNumber() throws Exception {
+    public void testMulNumberAndNumber() throws IllegalAccessException, InstantiationException {
         executeWithOperands("d", "e");
         SimpleObject d = getMathObject("d");
         Assert.assertEquals(d.doubleValue(), 67.0, 0);

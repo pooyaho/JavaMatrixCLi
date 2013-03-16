@@ -20,7 +20,7 @@ import java.util.Map;
  *         Date: 1/26/13
  *         Time: 11:25 AM
  */
-public class Program {
+public final class Program {
 
     private static PrintWriter writer;
 
@@ -31,12 +31,13 @@ public class Program {
     private static Map<String, AbstractCommand> commandMap;
 
 
-    public void runCommand(String line) throws Exception {
+    public void runCommand(String line) throws InstantiationException, IllegalAccessException {
         List<Token> tokens = Tokenizer.createToken(line);
         for (Token token : tokens) {
             AbstractCommand abstractCommand = commandMap.get(token.getCommand());
-            if (abstractCommand == null)
+            if (abstractCommand == null) {
                 throw new IllegalArgumentException("Command not found!");
+            }
             abstractCommand.execute(token.getParams(), token.getValues());
         }
     }
@@ -93,7 +94,7 @@ public class Program {
             while ((line = reader.readLine()) != null) {
                 try {
                     runCommand(line);
-                 } catch (Exception e) {
+                } catch (Exception e) {
                     writer.println("An error occurred: " + e.getMessage());
                 }
             }

@@ -18,11 +18,11 @@ import org.junit.Test;
  */
 @Command(targetClass = SwapCommand.class)
 public class SwapCommandTest extends AbstractCommandTest {
-    public SwapCommandTest() throws Exception {
+    public SwapCommandTest()  {
     }
 
     @Test
-    public void testSwapMatrices() throws Exception {
+    public void testSwapMatrices() throws IllegalAccessException, InstantiationException {
         MatrixObject oldA = (MatrixObject) getMathObject("a");
         MatrixObject oldB = (MatrixObject) getMathObject("b");
         executeWithOperands("a", "b");
@@ -35,19 +35,20 @@ public class SwapCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSwapMatrixAndNumber() throws Exception {
+    public void testSwapMatrixAndNumber()  {
         executeAndExpectException("a", "d");
     }
 
     @Test
-    public void testSwapNumberAndMatrix() throws Exception {
+    public void testSwapNumberAndMatrix()  {
         executeAndExpectException("d", "a");
     }
 
     @Test
-    public void testSwapNumbers() throws Exception {
+    public void testSwapNumbers() throws IllegalAccessException, InstantiationException {
         SimpleObject oldD = getMathObject("d");
         SimpleObject oldE = getMathObject("e");
+
         executeWithOperands("d", "e");
         SimpleObject d = getMathObject("d");
         SimpleObject e = getMathObject("e");
@@ -57,7 +58,7 @@ public class SwapCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testNonCorrectParameters() throws Exception {
+    public void testNonCorrectParameters()  {
        executeAndExpectException("a","b","c");
        executeAndExpectException("a");
        executeAndExpectException();

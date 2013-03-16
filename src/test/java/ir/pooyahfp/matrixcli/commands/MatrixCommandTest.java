@@ -17,17 +17,17 @@ import org.junit.Test;
  */
 @Command(targetClass = MatrixCommand.class)
 public class MatrixCommandTest extends AbstractCommandTest {
-    public MatrixCommandTest() throws Exception {
+    public MatrixCommandTest()  {
     }
 
     @Test
-    public void testCreateNamedMatrix() throws Exception {
+    public void testCreateNamedMatrix() throws IllegalAccessException, InstantiationException {
         executeWithOperands("y");
         Assert.assertTrue(hasMathObject("y"));
     }
 
     @Test
-    public void testSizedMatrix() throws Exception {
+    public void testSizedMatrix() throws IllegalAccessException, InstantiationException {
         executeWithOperands("y", "3", "2");
         Assert.assertTrue(hasMathObject("y"));
 
@@ -38,7 +38,7 @@ public class MatrixCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testGiveUnexpectedParameters() throws Exception {
+    public void testGiveUnexpectedParameters()  {
         executeAndExpectException();
         executeAndExpectException("");
         executeAndExpectException("a", "b");

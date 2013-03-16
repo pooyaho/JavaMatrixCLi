@@ -25,7 +25,7 @@ public abstract class AbstractCommand {
 
     private static PrintWriter writer;
 
-    public abstract void execute(List<String> params, List<String> values) throws Exception;
+    public abstract void execute(List<String> params, List<String> values) throws IllegalAccessException, InstantiationException;
 
     // contains the math objects
     private final static Map<String, SimpleObject> mathObjectsMap = new HashMap<String, SimpleObject>();
@@ -38,9 +38,8 @@ public abstract class AbstractCommand {
      * object. if the given object not defined earlier, it will raise an exception.
      *
      * @param args The vararg of the objects
-     * @throws MathObjectNotFoundException
      */
-    protected void updateMathObject(SimpleObject... args) throws Exception {
+    protected void updateMathObject(SimpleObject... args) {
         for (SimpleObject simpleObject : args) {
             if (mathObjectsMap.containsKey(simpleObject.getName())) {
                 SimpleObject old = getMathObject(simpleObject.getName());
@@ -60,9 +59,8 @@ public abstract class AbstractCommand {
      * Creates the given math objects. if the given object has already defined, it will raise an exception.
      *
      * @param args The vararg of the objects
-     * @throws DuplicateMathObjectException
      */
-    protected void createMathObject(SimpleObject... args) throws Exception {
+    protected void createMathObject(SimpleObject... args) {
         for (SimpleObject simpleObject : args) {
             if (!mathObjectsMap.containsKey(simpleObject.getName())) {
                 mathObjectsMap.put(simpleObject.getName(), simpleObject);
@@ -95,7 +93,7 @@ public abstract class AbstractCommand {
      * @param args objects names
      * @throws MathObjectNotFoundException
      */
-    protected void deleteMathObject(String... args) throws MathObjectNotFoundException {
+    protected void deleteMathObject(String... args) {
         for (String mathObjectName : args) {
             if (!mathObjectsMap.containsKey(mathObjectName)) {
                 throw new MathObjectNotFoundException("Object " + mathObjectName + " not found!");
@@ -112,7 +110,7 @@ public abstract class AbstractCommand {
      * @return The object of object that stored in the map
      * @throws MathObjectNotFoundException
      */
-    protected SimpleObject getMathObject(String name) throws MathObjectNotFoundException {
+    protected SimpleObject getMathObject(String name) {
         SimpleObject simpleObject = mathObjectsMap.get(name);
         if (simpleObject == null) {
             throw new MathObjectNotFoundException("Object " + name + " not found!");

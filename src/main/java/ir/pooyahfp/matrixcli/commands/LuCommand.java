@@ -11,13 +11,14 @@ import java.util.List;
 
 public class LuCommand extends AbstractCommand {
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
-        if (params.size() < 3)
+    public void execute(List<String> params, List<String> values) {
+        if (params.size() < 3) {
             throw new IllegalArgumentException("Input should has 3 parameters");
+        }
 
-        SimpleObject a =  getMathObject(params.get(0));
-        SimpleObject l =  getMathObject(params.get(1));
-        SimpleObject u =  getMathObject(params.get(2));
+        SimpleObject a = getMathObject(params.get(0));
+        SimpleObject l = getMathObject(params.get(1));
+        SimpleObject u = getMathObject(params.get(2));
 
         a.lu(l, u);
 

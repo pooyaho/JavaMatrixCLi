@@ -11,7 +11,7 @@ package ir.pooyahfp.matrixcli.exception;
  *         Date: 2/27/13
  *         Time: 5:06 PM
  */
-public class MathObjectNotFoundException extends Exception {
+public class MathObjectNotFoundException extends RuntimeException {
     public MathObjectNotFoundException() {
     }
 

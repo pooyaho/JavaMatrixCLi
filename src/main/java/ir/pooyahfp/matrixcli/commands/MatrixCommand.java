@@ -19,7 +19,7 @@ import java.util.List;
 public class MatrixCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
+    public void execute(List<String> params, List<String> values)  {
 
         if (params.size() < 1 || params.size() > 3 || params.size() == 2) {
             throw new IllegalArgumentException("Invalid parameters!");

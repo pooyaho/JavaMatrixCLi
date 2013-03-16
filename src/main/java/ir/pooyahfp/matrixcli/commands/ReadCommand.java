@@ -8,6 +8,7 @@ package ir.pooyahfp.matrixcli.commands;
 import ir.pooyahfp.matrixcli.matrix.SaveLoadUtil;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -19,14 +20,21 @@ import java.util.List;
 public class ReadCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
+    public void execute(List<String> params, List<String> values) {
         if (params.size() != 2) {
             throw new IllegalArgumentException("Save should have 2 parameters");
         }
         String name = params.get(0);
         String path = params.get(1);
 
-        SimpleObject simpleObject = (SimpleObject) SaveLoadUtil.readObject(path);
+        SimpleObject simpleObject;
+        try {
+            simpleObject = (SimpleObject) SaveLoadUtil.readObject(path);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         simpleObject.setName(name);
 
         updateMathObject(simpleObject);

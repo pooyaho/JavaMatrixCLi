@@ -19,17 +19,17 @@ import org.junit.Test;
 @Command(targetClass = AddCommand.class)
 public class AddCommandTest extends AbstractCommandTest {
 
-    public AddCommandTest() throws Exception {
+    public AddCommandTest()  {
 
     }
 
     @Test
-    public void testAddMultipleOperands() throws Exception {
+    public void testAddMultipleOperands()  {
         executeAndExpectException("e", "d", "d", "d");
     }
 
     @Test
-    public void testValueAndValue() throws Exception {
+    public void testValueAndValue() throws IllegalAccessException, InstantiationException {
         executeWithOperands("e", "d");
 
         SimpleObject e = getMathObject("e");
@@ -37,12 +37,12 @@ public class AddCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testValueAndMatrix() throws Exception {
+    public void testValueAndMatrix()  {
         executeAndExpectException("d", "a");
     }
 
     @Test
-    public void testMatrixAndValue() throws Exception {
+    public void testMatrixAndValue() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a", "d");
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -53,12 +53,12 @@ public class AddCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testAddWrongSizedMatrices() throws Exception {
+    public void testAddWrongSizedMatrices()  {
         executeAndExpectException("a", "c");
     }
 
     @Test
-    public void testAddTwoMatrices() throws Exception {
+    public void testAddTwoMatrices() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a", "b");
         MatrixObject a = (MatrixObject) getMathObject("a");
 

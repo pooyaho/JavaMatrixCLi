@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  */
 public class MatrixTest {
     @Test
-    public void testSetContent() throws Exception {
+    public void testSetContent()  {
         MatrixObject x = new MatrixObject(3, 3, "a").setContent(1);
 
         for (double[] doubles : x.getContent()) {
@@ -38,27 +38,27 @@ public class MatrixTest {
 
 
     @Test
-    public void testGetName() throws Exception {
+    public void testGetName()  {
         MatrixObject x = new MatrixObject("A");
         Assert.assertEquals(x.getName(), "A");
     }
 
     @Test
-    public void testSetName() throws Exception {
+    public void testSetName()  {
         MatrixObject x = new MatrixObject("A");
         x.setName("B");
         Assert.assertEquals(x.getName(), "B");
     }
 
     @Test
-    public void testGetWidth() throws Exception {
+    public void testGetWidth()  {
         MatrixObject x = new MatrixObject(10, 10, "A");
 
         Assert.assertEquals(x.getWidth(), 10);
     }
 
     @Test
-    public void testSetWidth() throws Exception {
+    public void testSetWidth()  {
 
         MatrixObject x = new MatrixObject(10, 10, "A");
         boolean ex = false;
@@ -76,14 +76,14 @@ public class MatrixTest {
     }
 
     @Test
-    public void testGetHeight() throws Exception {
+    public void testGetHeight()  {
         MatrixObject x = new MatrixObject(10, 10, "A");
 
         Assert.assertEquals(x.getHeight(), 10);
     }
 
     @Test
-    public void testSetHeight() throws Exception {
+    public void testSetHeight()  {
         MatrixObject x = new MatrixObject(10, 10, "A");
         boolean ex = false;
 
@@ -100,7 +100,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testGetContent() throws Exception {
+    public void testGetContent()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
         Assert.assertArrayEquals(x.getContent()[0], new double[]{1, 2}, 0);
         Assert.assertArrayEquals(x.getContent()[1], new double[]{3, 4}, 0);
@@ -108,7 +108,7 @@ public class MatrixTest {
 
 
     @Test
-    public void testSetMatrixObject() throws Exception {
+    public void testSetMatrixObject()  {
 
         MatrixObject y = new MatrixObject(2, 2, "B").setContent(new double[]{1, 2, 3, 4});
 
@@ -119,7 +119,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testRemoveRow() throws Exception {
+    public void testRemoveRow()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject matrixObject = x.removeRow(0);
@@ -127,7 +127,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testRemoveColumn() throws Exception {
+    public void testRemoveColumn()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject matrixObject = x.removeColumn(0);
@@ -136,7 +136,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testGetTranspose() throws Exception {
+    public void testGetTranspose()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject transpose = x.getTranspose();
@@ -145,14 +145,14 @@ public class MatrixTest {
     }
 
     @Test
-    public void testToString() throws Exception {
+    public void testToString()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         System.out.println(x);
     }
 
     @Test
-    public void testDivide() throws Exception {
+    public void testDivide()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject y = new MatrixObject(2, 2, "B").setContent(new double[]{4, 4, 2, 1});
@@ -163,28 +163,28 @@ public class MatrixTest {
     }
 
     @Test
-    public void testDeterminant() throws Exception {
+    public void testDeterminant()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         Assert.assertEquals(x.getDeterminant().doubleValue(), -2L, 0);
     }
 
     @Test
-    public void testIsDeterministic() throws Exception {
+    public void testIsDeterministic()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         Assert.assertTrue(x.hasDeterminant());
     }
 
     @Test
-    public void testIsInvertible() throws Exception {
+    public void testIsInvertible()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         Assert.assertTrue(x.isInvertible());
     }
 
     @Test
-    public void testRemoveRowAndCol() throws Exception {
+    public void testRemoveRowAndCol()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject matrixObject = x.removeRowAndCol(0, 0);
@@ -192,12 +192,12 @@ public class MatrixTest {
     }
 
     @Test
-    public void testCofactor() throws Exception {
+    public void testCofactor()  {
 
     }
 
     @Test
-    public void testInvert() throws Exception {
+    public void testInvert()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject invert = x.getInvert();
@@ -218,7 +218,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testGetRow() throws Exception {
+    public void testGetRow()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
         Assert.assertArrayEquals(x.getRow(0), new double[]{1L, 2L}, 0);
 
@@ -235,7 +235,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testAdd() throws Exception {
+    public void testAdd()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject y = new MatrixObject(2, 2, "A").setContent(new double[]{4, 3, 2, 1});
@@ -260,7 +260,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testSub() throws Exception {
+    public void testSub()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject y = new MatrixObject(2, 2, "A").setContent(new double[]{4, 3, 2, 1});
@@ -285,7 +285,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testMul() throws Exception {
+    public void testMul()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject y = new MatrixObject(2, 2, "A").setContent(new double[]{4, 3, 2, 1});
@@ -310,7 +310,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testPower() throws Exception {
+    public void testPower()  {
         MatrixObject x = new MatrixObject(2, 2, "A").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject power = x.power(3);
@@ -331,7 +331,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testLu() throws Exception {
+    public void testLu()  {
 
     }
 
@@ -433,7 +433,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void testIdentityMatrixObject() throws Exception {
+    public void testIdentityMatrixObject()  {
         MatrixObject matrixObject = new MatrixObject(4, 4, "A");
         System.out.println(matrixObject.getIdentity());
 

@@ -18,10 +18,11 @@ import java.util.List;
 public class CopyCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
+    public void execute(List<String> params, List<String> values) {
 
-        if (params.size() != 2)
+        if (params.size() != 2) {
             throw new IllegalArgumentException("Copy should have 2 parameters");
+        }
 
         SimpleObject object2 = getMathObject(params.get(1));
 

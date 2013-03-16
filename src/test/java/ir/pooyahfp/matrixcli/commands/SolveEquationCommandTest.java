@@ -18,11 +18,11 @@ import org.junit.Test;
 @Command(targetClass = SolveEquationCommand.class)
 public class SolveEquationCommandTest extends AbstractCommandTest {
 
-    public SolveEquationCommandTest() throws Exception {
+    public SolveEquationCommandTest()  {
     }
 
     @Test
-    public void testSolveEquation() throws Exception {
+    public void testSolveEquation() throws IllegalAccessException, InstantiationException {
         MatrixObject a = (MatrixObject) getMathObject("a");
 
         updateMathObject(a.setContent(5, 0, 0));
@@ -35,7 +35,7 @@ public class SolveEquationCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testMultipleParameters() throws Exception {
+    public void testMultipleParameters()  {
         executeAndExpectException("a");
         executeAndExpectException("a", "b");
 

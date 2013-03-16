@@ -15,11 +15,11 @@ import org.junit.Test;
  */
 @Command(targetClass = HelpCommand.class)
 public class HelpCommandTest extends AbstractCommandTest {
-    public HelpCommandTest() throws Exception {
+    public HelpCommandTest()  {
     }
 
     @Test
-    public void  testHelpCommand() throws Exception {
+    public void  testHelpCommand() throws IllegalAccessException, InstantiationException {
         executeWithOperands("add","sub","OOOOO");
     }
 

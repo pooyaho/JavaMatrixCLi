@@ -18,11 +18,11 @@ import org.junit.Test;
 @Command(targetClass = InvertCommand.class)
 public class InvertCommandTest extends AbstractCommandTest {
 
-    public InvertCommandTest() throws Exception {
+    public InvertCommandTest()  {
     }
 
     @Test
-    public void testInvertMatrix() throws Exception {
+    public void testInvertMatrix() throws IllegalAccessException, InstantiationException {
         MatrixObject matrixObject = ((MatrixObject) getMathObject("b")).setHeight(2).setWidth(2);
 
         matrixObject.setContent(new double[]{1, 2, 3, 4});
@@ -35,19 +35,19 @@ public class InvertCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testNonInvertibleMatrix() throws Exception {
+    public void testNonInvertibleMatrix()  {
         executeAndExpectException("a");
     }
 
 
     @Test
-    public void testNonAppropriateParameters() throws Exception {
+    public void testNonAppropriateParameters()  {
         executeAndExpectException("a", "b", "c");
         executeAndExpectException();
     }
 
     @Test
-    public void testInvertAndPushResult() throws Exception {
+    public void testInvertAndPushResult() throws IllegalAccessException, InstantiationException {
         MatrixObject z = new MatrixObject(2, 2, "z");
 
         z.setContent(new double[]{1, 2, 3, 4});
@@ -62,7 +62,7 @@ public class InvertCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testInvertValue() throws Exception {
+    public void testInvertValue()  {
         executeAndExpectException("f");
     }
 }

@@ -18,11 +18,11 @@ import org.junit.Test;
  */
 @Command(targetClass = PowerCommand.class)
 public class PowerCommandTest extends AbstractCommandTest {
-    public PowerCommandTest() throws Exception {
+    public PowerCommandTest()  {
     }
 
     @Test
-    public void testPowerOfMatrixNumber() throws Exception {
+    public void testPowerOfMatrixNumber() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a", "g");
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -32,22 +32,22 @@ public class PowerCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testPowerOfMatrixMatrix() throws Exception {
+    public void testPowerOfMatrixMatrix()  {
         executeAndExpectException("a", "b");
     }
 
     @Test
-    public void testPowerOfNumberNumber() throws Exception {
+    public void testPowerOfNumberNumber() throws IllegalAccessException, InstantiationException {
         executeWithOperands("e", "g");
         SimpleObject e = getMathObject("e");
         Assert.assertEquals(e.doubleValue(),300763,0);
     }
     @Test
-    public void testPowerOfNumberMatrix() throws Exception {
+    public void testPowerOfNumberMatrix()  {
         executeAndExpectException("e", "a");
     }
     @Test
-    public void testNonCorrectParameters() throws Exception {
+    public void testNonCorrectParameters()  {
         executeAndExpectException();
         executeAndExpectException("e");
         executeAndExpectException("e","g","g");

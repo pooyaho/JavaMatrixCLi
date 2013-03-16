@@ -60,82 +60,83 @@ public class SimpleObject extends Number {
     }
 
 
-    public SimpleObject getTranspose() throws Exception {
+    public SimpleObject getTranspose() {
         throw new NotSupportedException("Value does not have transpose");
     }
 
 
-    public SimpleObject getDeterminant() throws Exception {
+    public SimpleObject getDeterminant() {
         throw new NotSupportedException("Value does not have determinant");
     }
 
 
-    public SimpleObject getInvert() throws Exception {
+    public SimpleObject getInvert() {
         throw new NotSupportedException("Value does not have invert");
     }
 
 
-    public SimpleObject add(SimpleObject b) throws Exception {
+    public SimpleObject add(SimpleObject b) {
         return new SimpleObject(b.doubleValue() + this.doubleValue());
     }
 
 
-    public SimpleObject sub(SimpleObject b) throws Exception {
+    public SimpleObject sub(SimpleObject b) {
         return new SimpleObject(this.doubleValue() - b.doubleValue());
     }
 
 
-    public SimpleObject mul(SimpleObject b) throws Exception {
+    public SimpleObject mul(SimpleObject b) {
         return new SimpleObject(b.doubleValue() * this.doubleValue());
     }
 
 
-    public SimpleObject power(int c) throws Exception {
+    public SimpleObject power(int c) {
         return new SimpleObject(Math.pow(this.doubleValue(), c));
     }
 
 
-    public SimpleObject power(SimpleObject o) throws Exception {
+    public SimpleObject power(SimpleObject o) {
         return power(o.intValue());
     }
 
 
-    public void lu(SimpleObject l, SimpleObject u) throws Exception {
+    public void lu(SimpleObject l, SimpleObject u) {
         throw new NotSupportedException("Value does not have lu decomposition");
     }
 
 
-    public SimpleObject echelonForm() throws Exception {
+    public SimpleObject echelonForm() {
         throw new NotSupportedException("Value does not have echelon form");
     }
 
 
-    public SimpleObject getRank() throws Exception {
+    public SimpleObject getRank() {
         throw new NotSupportedException("Value does not have rank");
     }
 
 
-    public SimpleObject getTrace() throws Exception {
+    public SimpleObject getTrace() {
         throw new NotSupportedException("Value does not have trace");
     }
 
 
-    public SimpleObject eigenValues() throws Exception {
+    public SimpleObject eigenValues() {
         throw new NotSupportedException("Value does not have Eigen value");
     }
 
-    public SimpleObject copy() throws Exception {
+    public SimpleObject copy() {
         return new SimpleObject(name, value);
     }
 
-    public SimpleObject setContent(Integer row, Integer col, double[] content) throws Exception {
-        if (content.length != 1)
+    public SimpleObject setContent(Integer row, Integer col, double[] content) {
+        if (content.length != 1) {
             throw new IllegalArgumentException("Values are more than one");
+        }
 
-        return new SimpleObject(name,content[0]);
+        return new SimpleObject(name, content[0]);
     }
 
-    public double getEquivalenceValue() throws Exception {
+    public double getEquivalenceValue() {
         return value.doubleValue();
     }
 
@@ -155,10 +156,11 @@ public class SimpleObject extends Number {
         return "[" + name + "]\n" + value;
     }
 
-    public SimpleObject tryCast(SimpleObject o){
+    public SimpleObject tryCast(SimpleObject o) {
         throw new NotSupportedException("Simple object could not try to cast");
     }
-    public MatrixObject cast(SimpleObject o) throws Exception{
+
+    public MatrixObject cast(SimpleObject o) {
         throw new NotSupportedException("Simple object could not cast");
     }
 }

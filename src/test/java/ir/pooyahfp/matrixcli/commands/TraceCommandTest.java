@@ -18,16 +18,16 @@ import org.junit.Test;
 @Command(targetClass = TraceCommand.class)
 public class TraceCommandTest extends AbstractCommandTest {
 
-    public TraceCommandTest() throws Exception {
+    public TraceCommandTest()  {
     }
 
     @Test
-    public void testTraceMatrix() throws Exception {
+    public void testTraceMatrix() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a");
     }
 
     @Test
-    public void testTraceMatrixAndPush() throws Exception {
+    public void testTraceMatrixAndPush() throws IllegalAccessException, InstantiationException {
         executeWithOperands("d", "a");
         SimpleObject d = getMathObject("d");
 
@@ -35,12 +35,12 @@ public class TraceCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testTraceMatrixAndPushToMatrix() throws Exception {
+    public void testTraceMatrixAndPushToMatrix()  {
         executeAndExpectException("b", "a");
     }
 
     @Test
-    public void testNonCorrectParameters() throws Exception {
+    public void testNonCorrectParameters()  {
         executeAndExpectException("a", "c", "d");
         executeAndExpectException();
         executeAndExpectException("d");

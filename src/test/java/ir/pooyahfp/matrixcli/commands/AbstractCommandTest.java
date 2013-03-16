@@ -25,12 +25,12 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     protected List<String> params = new ArrayList<String>();
     protected List<String> values = new ArrayList<String>();
 
-    public AbstractCommandTest() throws Exception {
+    public AbstractCommandTest() {
         fillMap();
         setWriter(new PrintWriter(System.out));
     }
 
-    protected void fillMap() throws Exception {
+    protected void fillMap() {
         dropAll();
         params.clear();
         values.clear();
@@ -58,12 +58,12 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         );
     }
 
-    protected void executeWithOperands(String... params) throws Exception {
+    protected void executeWithOperands(String... params) throws InstantiationException, IllegalAccessException {
         Collections.addAll(this.params, params);
         execute(this.params, values);
     }
 
-    protected void executeWithOperands(String[] params, int[] values) throws Exception {
+    protected void executeWithOperands(String[] params, int[] values) throws InstantiationException, IllegalAccessException {
         Collections.addAll(this.params, params);
 
         fillValues(values);
@@ -71,15 +71,15 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         execute(this.params, this.values);
     }
 
-    protected void executeWithOperands(String name, int[] values) throws Exception {
+    protected void executeWithOperands(String name, int[] values) throws IllegalAccessException, InstantiationException {
         executeWithOperands(new String[]{name}, values);
     }
 
-    protected void executeWithOperands(String name, String i, String j, int[] values) throws Exception {
+    protected void executeWithOperands(String name, String i, String j, int[] values) throws IllegalAccessException, InstantiationException {
         executeWithOperands(new String[]{name, i, j}, values);
     }
 
-    protected void executeAndExpectException(String... params) throws Exception {
+    protected void executeAndExpectException(String... params) {
         Collections.addAll(this.params, params);
         boolean errorRaised = false;
 
@@ -90,12 +90,12 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         }
 
         if (!errorRaised) {
-            throw new Exception("Expected an error!");
+            throw new RuntimeException("Expected an error!");
         }
 
     }
 
-    protected void executeAndExpectException(int[] values, String... params) throws Exception {
+    protected void executeAndExpectException(int[] values, String... params) {
         Collections.addAll(this.params, params);
 
         fillValues(values);
@@ -109,7 +109,7 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         }
 
         if (!errorRaised) {
-            throw new Exception("Expected an error!");
+            throw new RuntimeException("Expected an error!");
         }
 
     }
@@ -121,12 +121,12 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     }
 
     @Before
-    public void cleanup() throws Exception {
+    public void cleanup() {
         fillMap();
     }
 
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
+    public void execute(List<String> params, List<String> values) throws IllegalAccessException, InstantiationException {
         Command annotation = this.getClass().getAnnotation(Command.class);
 
         AbstractCommand addCommand = (AbstractCommand) annotation.targetClass().newInstance();

@@ -19,7 +19,7 @@ import java.util.List;
 public class ValCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
+    public void execute(List<String> params, List<String> values)  {
 
         if (params.isEmpty()) {
             throw new IllegalArgumentException("Matrix command without parameters.");

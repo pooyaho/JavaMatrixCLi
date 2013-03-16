@@ -18,33 +18,33 @@ import org.junit.Test;
 @Command(targetClass = DeterminantCommand.class)
 public class DeterminantCommandTest extends AbstractCommandTest {
 
-    public DeterminantCommandTest() throws Exception {
+    public DeterminantCommandTest()  {
     }
 
     @Test
-    public void testDeterminant() throws Exception {
+    public void testDeterminant() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a");
     }
 
     @Test
-    public void testDeterminantAndPutToValue() throws Exception {
+    public void testDeterminantAndPutToValue() throws IllegalAccessException, InstantiationException {
         executeWithOperands("f", "a");
         SimpleObject f = getMathObject("f");
         Assert.assertEquals(f.doubleValue(), 0, 0);
     }
 
     @Test
-    public void testDeterminantAndPutToMatrix() throws Exception {
+    public void testDeterminantAndPutToMatrix()  {
         executeAndExpectException("c", "a");
     }
 
     @Test
-    public void testDeterminantOfMultipleOperand() throws Exception {
+    public void testDeterminantOfMultipleOperand()  {
         executeAndExpectException("e", "a", "f");
     }
 
     @Test
-    public void testDeterminantOfNonSquareMatrix() throws Exception {
+    public void testDeterminantOfNonSquareMatrix()  {
         executeAndExpectException("e");
     }
 }

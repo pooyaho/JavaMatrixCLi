@@ -15,9 +15,10 @@ import java.util.List;
  */
 public class DeleteCommand extends AbstractCommand {
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
-        if (params.size() < 1)
+    public void execute(List<String> params, List<String> values) {
+        if (params.size() < 1) {
             throw new IllegalArgumentException("Delete should have parameters");
+        }
 
         for (String param : params) {
             deleteMathObject(param);

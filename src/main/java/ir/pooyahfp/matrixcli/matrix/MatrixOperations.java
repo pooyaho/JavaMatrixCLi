@@ -14,13 +14,15 @@ package ir.pooyahfp.matrixcli.matrix;
  *         Time: 10:58 AM
  */
 public class MatrixOperations {
+    private MatrixOperations() {
+    }
 
     /**
      * It swaps two given matrices,
      * @param a The first matrix
      * @param b The second one
      */
-    public static void swap(SimpleObject a, SimpleObject b) throws Exception {
+    public static void swap(SimpleObject a, SimpleObject b)  {
         String temp = a.getName();
         a.setName(b.getName());
         b.setName(temp);

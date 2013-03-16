@@ -18,7 +18,7 @@ import java.util.List;
 public class ShowCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
+    public void execute(List<String> params, List<String> values)  {
         if (params.size() == 1 && "all".equalsIgnoreCase(params.get(0))) {
             for (SimpleObject matrix : getAllObjects()) {
                 getWriter().println(matrix);

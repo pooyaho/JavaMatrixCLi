@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class TokenizerTest {
     @Test
-    public void testCreateToken() throws Exception {
+    public void testCreateToken()  {
         String command="set x[1][2]{1,2,3,4,5,6}";
         List<Token> tokens = Tokenizer.createToken(command);
         for (Token t : tokens) {

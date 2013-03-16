@@ -18,11 +18,11 @@ import org.junit.Test;
  */
 @Command(targetClass = SubCommand.class)
 public class SubCommandTest extends AbstractCommandTest {
-    public SubCommandTest() throws Exception {
+    public SubCommandTest()  {
     }
 
     @Test
-    public void testSubMatrices() throws Exception {
+    public void testSubMatrices() throws IllegalAccessException, InstantiationException {
         executeWithOperands("b", "a");
         MatrixObject b = (MatrixObject) getMathObject("b");
 
@@ -32,7 +32,7 @@ public class SubCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSubMatricesAndFill() throws Exception {
+    public void testSubMatricesAndFill() throws IllegalAccessException, InstantiationException {
         executeWithOperands("c", "b", "a");
         MatrixObject c = (MatrixObject) getMathObject("c");
 
@@ -42,7 +42,7 @@ public class SubCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSubNumber() throws Exception {
+    public void testSubNumber() throws IllegalAccessException, InstantiationException {
         executeWithOperands("e", "d");
         SimpleObject e = getMathObject("e");
 
@@ -51,7 +51,7 @@ public class SubCommandTest extends AbstractCommandTest {
 
 
     @Test
-    public void testSubNumberAndPut() throws Exception {
+    public void testSubNumberAndPut() throws IllegalAccessException, InstantiationException {
         executeWithOperands("f","e", "d");
         SimpleObject f = getMathObject("f");
 
@@ -59,7 +59,7 @@ public class SubCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSubMatrixAndNumber() throws Exception {
+    public void testSubMatrixAndNumber() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a","d");
         MatrixObject a = (MatrixObject) getMathObject("a");
 
@@ -69,12 +69,12 @@ public class SubCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSubNumberAndMatrix() throws Exception {
-        executeAndExpectException("d","a");
+    public void testSubNumberAndMatrix()  {
+        executeAndExpectException("d", "a");
     }
 
     @Test
-    public void testNonCorrectParameters() throws Exception {
+    public void testNonCorrectParameters()  {
         executeAndExpectException("a","c");
         executeAndExpectException("a","c","a","a");
         executeAndExpectException("a");

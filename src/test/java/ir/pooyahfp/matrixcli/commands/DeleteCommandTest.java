@@ -16,21 +16,21 @@ import org.junit.Test;
 @Command(targetClass = DeleteCommand.class)
 public class DeleteCommandTest extends AbstractCommandTest {
 
-    public DeleteCommandTest() throws Exception {
+    public DeleteCommandTest()  {
 
     }
 
     @Test
-    public void testDeleteItems() throws Exception {
+    public void testDeleteItems() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a", "b");
 
         if (hasMathObject("a") || hasMathObject("b")) {
-            throw new Exception("Hey, They are alive!");
+            throw new RuntimeException("Hey, They are alive!");
         }
     }
 
     @Test
-    public void testDeleteWithoutOperands() throws Exception {
+    public void testDeleteWithoutOperands()  {
         executeAndExpectException();
     }
 }

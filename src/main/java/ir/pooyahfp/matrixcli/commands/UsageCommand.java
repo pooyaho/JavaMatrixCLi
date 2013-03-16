@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class UsageCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
+    public void execute(List<String> params, List<String> values) {
         ResourceBundle rb = ResourceBundle.getBundle("usage");
 
         if (params.size() <= 0) {
@@ -33,7 +33,7 @@ public class UsageCommand extends AbstractCommand {
             getWriter().println(
                     builder.toString()
             );
-         }
+        }
 
         for (String param : params) {
             getWriter().println(rb.getString("usage." + param));

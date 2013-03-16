@@ -17,16 +17,16 @@ import org.junit.Test;
  */
 @Command(targetClass = RankCommand.class)
 public class RankCommandTest extends AbstractCommandTest {
-    public RankCommandTest() throws Exception {
+    public RankCommandTest()  {
     }
 
     @Test
-    public void testRankMatrix() throws Exception {
+    public void testRankMatrix() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a");
     }
 
     @Test
-    public void testRankMatrixAndPush() throws Exception {
+    public void testRankMatrixAndPush() throws IllegalAccessException, InstantiationException {
         executeWithOperands("d", "a");
         SimpleObject d = getMathObject("d");
 
@@ -34,12 +34,12 @@ public class RankCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testRankNumber() throws Exception {
+    public void testRankNumber()  {
         executeAndExpectException("d");
     }
 
     @Test
-    public void testNonCorrectParameters() throws Exception {
+    public void testNonCorrectParameters()  {
         executeAndExpectException();
         executeAndExpectException("a","a","a");
     }

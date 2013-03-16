@@ -22,6 +22,10 @@ import java.util.*;
  *         Time: 3:27 PM
  */
 public class ReadmeGenerator {
+
+    private ReadmeGenerator() {
+    }
+
     public static class Tuple {
         private String title;
         private String detail;

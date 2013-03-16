@@ -18,11 +18,11 @@ import org.junit.Test;
  */
 @Command(targetClass = CopyCommand.class)
 public class CopyCommandTest extends AbstractCommandTest {
-    public CopyCommandTest() throws Exception {
+    public CopyCommandTest()  {
     }
 
     @Test
-    public void testCopyTwoMatrices() throws Exception {
+    public void testCopyTwoMatrices() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a", "b");
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -34,7 +34,7 @@ public class CopyCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testCopyTwoNotSameSizedMatrices() throws Exception {
+    public void testCopyTwoNotSameSizedMatrices() throws IllegalAccessException, InstantiationException {
         executeWithOperands("a", "c");
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -46,7 +46,7 @@ public class CopyCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testCopyTwoValues() throws Exception {
+    public void testCopyTwoValues() throws IllegalAccessException, InstantiationException {
         executeWithOperands("d", "e");
 
         SimpleObject d = getMathObject("d");
@@ -55,17 +55,17 @@ public class CopyCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testCopyValueAndOtherTypes() throws Exception {
+    public void testCopyValueAndOtherTypes()  {
         executeAndExpectException("a", "e");
     }
 
     @Test
-    public void testCopyOtherTypeAndValue() throws Exception {
+    public void testCopyOtherTypeAndValue()  {
         executeAndExpectException("e", "a");
     }
 
     @Test
-    public void testCopyWithManyOperands() throws Exception {
+    public void testCopyWithManyOperands()  {
         executeAndExpectException("e", "a", "e", "a");
         executeAndExpectException("e");
     }

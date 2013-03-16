@@ -17,7 +17,7 @@ import java.util.Arrays;
  */
 public class ArrayUtilTest {
     @Test
-    public void testSplitArray() throws Exception {
+    public void testSplitArray()  {
         Double[] arr = new Double[9];
         Arrays.fill(arr, 0, 9, 12.0);
 
@@ -26,17 +26,17 @@ public class ArrayUtilTest {
     }
 
     @Test
-    public void testDivide() throws Exception {
+    public void testDivide()  {
 
     }
 
     @Test
-    public void testMultiply() throws Exception {
+    public void testMultiply()  {
 
     }
 
     @Test
-    public void testSub() throws Exception {
+    public void testSub()  {
 
     }
 

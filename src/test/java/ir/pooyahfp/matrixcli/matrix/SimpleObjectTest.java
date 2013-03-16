@@ -16,41 +16,41 @@ import org.junit.Test;
  */
 public class SimpleObjectTest {
     @Test
-    public void testIntValue() throws Exception {
+    public void testIntValue()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         Assert.assertEquals(simpleObject.longValue(), 12);
 
     }
 
     @Test
-    public void testLongValue() throws Exception {
+    public void testLongValue()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         Assert.assertEquals(simpleObject.longValue(), 12, 0);
 
     }
 
     @Test
-    public void testFloatValue() throws Exception {
+    public void testFloatValue()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         Assert.assertEquals(simpleObject.floatValue(), 12L, 0);
 
     }
 
     @Test
-    public void testDoubleValue() throws Exception {
+    public void testDoubleValue()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         Assert.assertEquals(simpleObject.doubleValue(), 12L, 0);
 
     }
 
     @Test
-    public void testGetName() throws Exception {
+    public void testGetName()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         Assert.assertEquals(simpleObject.getName(), "a");
     }
 
     @Test
-    public void testAdd() throws Exception {
+    public void testAdd()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         SimpleObject a = new SimpleObject("b", 3);
 
@@ -58,7 +58,7 @@ public class SimpleObjectTest {
     }
 
     @Test
-    public void testSub() throws Exception {
+    public void testSub()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         SimpleObject a = new SimpleObject("b", 3);
 
@@ -66,7 +66,7 @@ public class SimpleObjectTest {
     }
 
     @Test
-    public void testMul() throws Exception {
+    public void testMul()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         SimpleObject a = new SimpleObject("b", 3);
 
@@ -75,7 +75,7 @@ public class SimpleObjectTest {
 
 
     @Test
-    public void testPower() throws Exception {
+    public void testPower()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         SimpleObject power = new SimpleObject("b", 3);
         Assert.assertEquals(simpleObject.power(2).intValue(), 144);
@@ -84,7 +84,7 @@ public class SimpleObjectTest {
     }
 
     @Test
-    public void testCopy() throws Exception {
+    public void testCopy()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         SimpleObject o = simpleObject.copy();
 
@@ -93,7 +93,7 @@ public class SimpleObjectTest {
 
 
     @Test
-    public void testGetEquivalenceValue() throws Exception {
+    public void testGetEquivalenceValue()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
 
 
@@ -101,7 +101,7 @@ public class SimpleObjectTest {
     }
 
     @Test
-    public void testSetName() throws Exception {
+    public void testSetName()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         simpleObject.setName("b");
 
@@ -109,7 +109,7 @@ public class SimpleObjectTest {
     }
 
     @Test
-    public void testGetValue() throws Exception {
+    public void testGetValue()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
 
 
@@ -117,7 +117,7 @@ public class SimpleObjectTest {
     }
 
     @Test
-    public void testSetValue() throws Exception {
+    public void testSetValue()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         simpleObject.setValue(13);
 
@@ -125,7 +125,7 @@ public class SimpleObjectTest {
     }
 
     @Test
-    public void testToString() throws Exception {
+    public void testToString()  {
         SimpleObject simpleObject = new SimpleObject("a", 12);
         System.out.println(simpleObject);
     }

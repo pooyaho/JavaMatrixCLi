@@ -18,9 +18,10 @@ import java.util.List;
 public class EchelonCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values) throws Exception {
-        if (params.size() <= 0)
+    public void execute(List<String> params, List<String> values) {
+        if (params.size() <= 0) {
             throw new IllegalArgumentException("Illegal parameter");
+        }
 
         switch (params.size()) {
             case 1:
@@ -29,7 +30,7 @@ public class EchelonCommand extends AbstractCommand {
                 updateMathObject(object);
                 break;
             case 2:
-                object =  getMathObject(params.get(1));
+                object = getMathObject(params.get(1));
                 SimpleObject temp = object.echelonForm();
                 temp.setName(params.get(0));
                 updateMathObject();

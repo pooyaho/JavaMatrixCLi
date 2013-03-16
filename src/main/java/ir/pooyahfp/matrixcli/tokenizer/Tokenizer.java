@@ -23,6 +23,9 @@ import java.util.regex.Pattern;
  */
 public class Tokenizer {
 
+    private Tokenizer() {
+    }
+
     /**
      * It create a list of token according to the given string. a line can contain infinite commands that separated
      * with semicolon. In this program command has two structure,one of them has {} like set command and others have
@@ -107,8 +110,9 @@ public class Tokenizer {
 
                         while (scanner.remaining() > 0) {
                             scanner.read("\\s*");
-                            if (scanner.remaining() <= 0)
+                            if (scanner.remaining() <= 0) {
                                 continue;
+                            }
                             String param = scanner.expect(Pattern.compile("(\\.|\\w|\\d|/)+"));
 
                             token.addParam(param);

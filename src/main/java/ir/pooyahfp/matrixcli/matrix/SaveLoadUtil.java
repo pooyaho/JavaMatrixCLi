@@ -16,6 +16,9 @@ import java.io.*;
  */
 public class SaveLoadUtil {
 
+    private SaveLoadUtil() {
+    }
+
     /**
      * Read the object from the given file. if file does not exist or it is not convertible to an object,
      * It will throw the exceptions

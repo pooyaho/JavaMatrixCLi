@@ -14,6 +14,10 @@ import java.util.Arrays;
  *         Time: 7:29 PM
  */
 public class ArrayUtil {
+
+    private ArrayUtil() {
+    }
+
     public static <T> T[][] splitArray(T[] input, int length) {
 
         T[][] temp = (T[][]) new Object[input.length / length][length];

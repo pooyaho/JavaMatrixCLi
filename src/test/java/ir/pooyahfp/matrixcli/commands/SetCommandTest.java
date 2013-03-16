@@ -17,11 +17,11 @@ import org.junit.Test;
  */
 @Command(targetClass = SetCommand.class)
 public class SetCommandTest extends AbstractCommandTest {
-    public SetCommandTest() throws Exception {
+    public SetCommandTest()  {
     }
 
     @Test
-    public void testSetMatrix() throws Exception {
+    public void testSetMatrix() throws InstantiationException, IllegalAccessException {
         executeWithOperands("a", new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -32,7 +32,7 @@ public class SetCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSetWithRowIndexMatrix() throws Exception {
+    public void testSetWithRowIndexMatrix() throws InstantiationException, IllegalAccessException {
         executeWithOperands("a", "1", "", new int[]{11, 12, 13});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -44,7 +44,7 @@ public class SetCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSetWithColIndexMatrix() throws Exception {
+    public void testSetWithColIndexMatrix() throws InstantiationException, IllegalAccessException {
         executeWithOperands("a", "", "1", new int[]{11, 12, 13});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -55,7 +55,7 @@ public class SetCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSetWithEmptyIndexMatrix() throws Exception {
+    public void testSetWithEmptyIndexMatrix() throws InstantiationException, IllegalAccessException {
         executeWithOperands("a", "", "", new int[]{11, 12, 13, 14, 15, 16, 17, 18, 19});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -66,7 +66,7 @@ public class SetCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testSetWithColAndRowIndexMatrix() throws Exception {
+    public void testSetWithColAndRowIndexMatrix() throws InstantiationException, IllegalAccessException {
         executeWithOperands("a", "1", "1", new int[]{11});
 
         MatrixObject a = (MatrixObject) getMathObject("a");
@@ -77,7 +77,7 @@ public class SetCommandTest extends AbstractCommandTest {
     }
 
     @Test
-    public void testNonCorrectParameters() throws Exception {
+    public void testNonCorrectParameters()  {
         executeAndExpectException(new int[]{11, 12, 13, 14, 15, 16, 17, 18}, "a");
         fillMap();
         executeAndExpectException(new int[]{16, 17, 18}, "a");
