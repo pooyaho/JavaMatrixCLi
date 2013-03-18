@@ -46,11 +46,10 @@ public abstract class AbstractCommand {
                 if (old.getClass().getSimpleName().equals(simpleObject.getClass().getSimpleName())) {
                     mathObjectsMap.put(simpleObject.getName(), simpleObject);
                 } else {
-                    throw new IllegalArgumentException("Objects do not have the same types");
+                    throw new IllegalArgumentException();
                 }
             } else {
-                throw new MathObjectNotFoundException(String.format("Object %s has not found!",
-                        simpleObject.getName()));
+                throw new MathObjectNotFoundException();
             }
         }
     }
@@ -65,8 +64,7 @@ public abstract class AbstractCommand {
             if (!mathObjectsMap.containsKey(simpleObject.getName())) {
                 mathObjectsMap.put(simpleObject.getName(), simpleObject);
             } else {
-                throw new DuplicateMathObjectException(String.format("Object %s has already defined!",
-                        simpleObject.getName()));
+                throw new DuplicateMathObjectException();
             }
         }
     }
@@ -96,7 +94,7 @@ public abstract class AbstractCommand {
     protected void deleteMathObject(String... args) {
         for (String mathObjectName : args) {
             if (!mathObjectsMap.containsKey(mathObjectName)) {
-                throw new MathObjectNotFoundException("Object " + mathObjectName + " not found!");
+                throw new MathObjectNotFoundException();
             } else {
                 mathObjectsMap.remove(mathObjectName);
             }
@@ -113,7 +111,7 @@ public abstract class AbstractCommand {
     protected SimpleObject getMathObject(String name) {
         SimpleObject simpleObject = mathObjectsMap.get(name);
         if (simpleObject == null) {
-            throw new MathObjectNotFoundException("Object " + name + " not found!");
+            throw new MathObjectNotFoundException();
         }
         return simpleObject;
     }

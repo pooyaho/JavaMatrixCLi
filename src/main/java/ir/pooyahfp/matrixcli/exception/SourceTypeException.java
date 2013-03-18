@@ -11,21 +11,20 @@ package ir.pooyahfp.matrixcli.exception;
  *         Date: 2/27/13
  *         Time: 5:06 PM
  */
-public class MathObjectNotFoundException extends RuntimeException {
-    public MathObjectNotFoundException() {
-        super("Object not found!");
+public class SourceTypeException extends RuntimeException {
+    public SourceTypeException() {
+        super("Objects do not have the same types!");
     }
 
-    public MathObjectNotFoundException(String message) {
+    public SourceTypeException(String message) {
         super(message);
     }
 
-    public MathObjectNotFoundException(String message, Throwable cause) {
+    public SourceTypeException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public MathObjectNotFoundException(Throwable cause) {
-        super("Object not found!",cause);
+    public SourceTypeException(Throwable cause) {
+        super("Objects do not have the same types!",cause);
     }
-
 }

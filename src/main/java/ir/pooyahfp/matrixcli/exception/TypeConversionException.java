@@ -13,6 +13,7 @@ package ir.pooyahfp.matrixcli.exception;
  */
 public class TypeConversionException extends RuntimeException {
     public TypeConversionException() {
+        super("Can not convert non matrix to matrix object!");
     }
 
     public TypeConversionException(String message) {
@@ -24,10 +25,6 @@ public class TypeConversionException extends RuntimeException {
     }
 
     public TypeConversionException(Throwable cause) {
-        super(cause);
-    }
-
-    public TypeConversionException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+        super("Can not convert non matrix to matrix object!",cause);
     }
 }

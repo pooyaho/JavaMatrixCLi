@@ -13,6 +13,7 @@ package ir.pooyahfp.matrixcli.exception;
  */
 public class DuplicateMathObjectException extends RuntimeException {
     public DuplicateMathObjectException() {
+        super("Object has already defined!");
     }
 
     public DuplicateMathObjectException(String message) {
@@ -24,10 +25,6 @@ public class DuplicateMathObjectException extends RuntimeException {
     }
 
     public DuplicateMathObjectException(Throwable cause) {
-        super(cause);
-    }
-
-    public DuplicateMathObjectException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+        super("Object has already defined!",cause);
     }
 }

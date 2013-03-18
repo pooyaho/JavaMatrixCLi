@@ -78,7 +78,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      *
      * @param content 1d double array
      */
-    public MatrixObject setContent(double[] content)  {
+    public MatrixObject setContent(double[] content) {
 
         if (content.length < getHeight() * getWidth()) {
             throw new IllegalArgumentException("Input data length is not equal to matrix size");
@@ -106,7 +106,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param content 1d double array
      */
     @Override
-    public MatrixObject setContent(Integer row, Integer col, double[] content)  {
+    public MatrixObject setContent(Integer row, Integer col, double[] content) {
         MatrixObject x = this.copy();
 
         if (row == null && col != null) {
@@ -442,7 +442,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     /**
      * @return returns the invert of the matrix
      */
-    public MatrixObject getInvert()  {
+    public MatrixObject getInvert() {
 
         if (!isInvertible()) {
             throw new NonInvertibleMatrixException();
@@ -481,7 +481,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param o input matrix
      * @return returns the result of addition
      */
-    public MatrixObject add(SimpleObject o)  {
+    public MatrixObject add(SimpleObject o) {
         MatrixObject b = tryCast(o);
         MatrixObject temp = new MatrixObject(getHeight(), getWidth());
         if (b != null) {
@@ -504,7 +504,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return temp;
     }
 
-    public MatrixObject add(double o)  {
+    public MatrixObject add(double o) {
         MatrixObject temp = copy();
 
         for (int i = 0; i < getHeight(); i++) {
@@ -620,9 +620,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      *
      * @param l output parameter of l in lu decomposition
      * @param u output parameter of u in lu decomposition
-
      */
-    public void lu(SimpleObject l, SimpleObject u)  {
+    public void lu(SimpleObject l, SimpleObject u) {
         if (getHeight() != getWidth()) {
             throw new NonDecomposableMatrixException("Can not decompose");
         }
@@ -751,7 +750,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return new SimpleObject(x.content.length - rank);
     }
 
-    public SimpleObject getTrace()  {
+    public SimpleObject getTrace() {
         if (getHeight() != getWidth()) {
             throw new NonSquareMatrixException("Matrix should be square matrix!");
         }
@@ -764,7 +763,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return new SimpleObject(sum);
     }
 
-    public MatrixObject eigenValues()  {
+    public MatrixObject eigenValues() {
         MatrixObject y = new MatrixObject(getHeight(), 1);
         y.setContent(1);
 
@@ -791,24 +790,24 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return new MatrixObject("I").setContent(v);
     }
 
-    public MatrixObject copy()  {
+    public MatrixObject copy() {
         MatrixObject matrixObject = new MatrixObject(name);
         matrixObject.content = this.content.clone();
         return matrixObject;
     }
 
-    public boolean isDivisionByZero(SimpleObject o)  {
+    public boolean isDivisionByZero(SimpleObject o) {
         return cast(o).contains(0);
     }
 
-    public boolean isMultipliable(SimpleObject o)  {
+    public boolean isMultipliable(SimpleObject o) {
         MatrixObject b = cast(o);
         return getWidth() == b.getHeight();
     }
 
     public MatrixObject cast(SimpleObject o) {
         if (!(o instanceof MatrixObject)) {
-            throw new TypeConversionException("Can not convert non matrix '" + o.getName() + "' to matrix");
+            throw new TypeConversionException();
         }
         return (MatrixObject) o;
     }
