@@ -13,6 +13,7 @@ package ir.pooyahfp.matrixcli.exception;
  */
 public class NonSquareMatrixException extends RuntimeException {
     public NonSquareMatrixException() {
+        super("Matrix should be square matrix!");
     }
 
     public NonSquareMatrixException(String message) {
@@ -24,7 +25,7 @@ public class NonSquareMatrixException extends RuntimeException {
     }
 
     public NonSquareMatrixException(Throwable cause) {
-        super(cause);
+        super("Matrix should be square matrix!",cause);
     }
 
     public NonSquareMatrixException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {

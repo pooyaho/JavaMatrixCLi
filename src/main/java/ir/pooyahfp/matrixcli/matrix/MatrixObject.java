@@ -718,7 +718,6 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     public MatrixObject echelonForm() {
         MatrixObject matrixObject = new MatrixObject(name);
         matrixObject.content = this.content.clone();
-//        double[][] a = content.clone();
 
         for (int r = 0; r < matrixObject.content.length; r++) {
             if (matrixObject.content[r][r] != 1 && matrixObject.content[r][r] != 0) {
@@ -730,7 +729,6 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
                                 matrixObject.content[i][r])).clone();
             }
         }
-
         return matrixObject;
     }
 
@@ -752,7 +750,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
 
     public SimpleObject getTrace() {
         if (getHeight() != getWidth()) {
-            throw new NonSquareMatrixException("Matrix should be square matrix!");
+            throw new NonSquareMatrixException();
         }
 
         double sum = 0;
@@ -778,7 +776,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
 
     public MatrixObject getIdentity() {
         if (getHeight() != getWidth()) {
-            throw new NonSquareMatrixException("Matrix has not identify!");
+            throw new NonSquareMatrixException();
         }
         double[][] v = new double[getWidth()][getWidth()];
 
