@@ -19,18 +19,16 @@ public class TransposeCommand extends AbstractCommand {
 
     @Override
     public void execute(List<String> params, List<String> values) {
-        if (params.size() < 1) {
+        if (params.size() < 1 || params.size() > 2) {
             throw new IllegalArgumentException("Invalid parameters");
         }
 
         SimpleObject simpleObject;
         SimpleObject resultMatrix = null;
         if (params.size() == 2) {
-
             simpleObject = getMathObject(params.get(1));
             resultMatrix = simpleObject.getTranspose();
             resultMatrix.setName(params.get(0));
-
         } else if (params.size() == 1) {
             simpleObject = getMathObject(params.get(0));
             resultMatrix = simpleObject.getTranspose();
@@ -38,8 +36,5 @@ public class TransposeCommand extends AbstractCommand {
             resultMatrix.setName(simpleObject.getName());
         }
         updateMathObject(resultMatrix);
-
     }
-
 }
-

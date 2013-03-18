@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
  *         Time: 3:11 PM
  */
 public class MatrixTest {
+
     @Test
     public void testSetContent()  {
         MatrixObject x = new MatrixObject(3, 3, "a").setContent(1);
@@ -33,9 +34,7 @@ public class MatrixTest {
         for (double[] doubles : x.getContent()) {
             Assert.assertArrayEquals(doubles, new double[]{1, 1, 1}, 0);
         }
-
     }
-
 
     @Test
     public void testGetName()  {
@@ -59,7 +58,6 @@ public class MatrixTest {
 
     @Test
     public void testSetWidth()  {
-
         MatrixObject x = new MatrixObject(10, 10, "A");
         boolean ex = false;
 
@@ -106,10 +104,8 @@ public class MatrixTest {
         Assert.assertArrayEquals(x.getContent()[1], new double[]{3, 4}, 0);
     }
 
-
     @Test
     public void testSetMatrixObject()  {
-
         MatrixObject y = new MatrixObject(2, 2, "B").setContent(new double[]{1, 2, 3, 4});
 
         MatrixObject x = y.copy();

@@ -501,12 +501,10 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
                 }
             }
         }
-
         return temp;
     }
 
     public MatrixObject add(double o)  {
-
         MatrixObject temp = copy();
 
         for (int i = 0; i < getHeight(); i++) {
@@ -546,7 +544,6 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         }
 
         return temp;
-
     }
 
     /**
