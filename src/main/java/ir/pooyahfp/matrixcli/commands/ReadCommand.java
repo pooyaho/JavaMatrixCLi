@@ -9,7 +9,6 @@ import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SaveLoadUtil;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -29,13 +28,8 @@ public class ReadCommand extends AbstractCommand {
         String path = params.get(1);
 
         SimpleObject simpleObject;
-        try {
-            simpleObject = (SimpleObject) SaveLoadUtil.readObject(path);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        simpleObject = (SimpleObject) SaveLoadUtil.readObject(path);
+
         simpleObject.setName(name);
 
         updateMathObject(simpleObject);

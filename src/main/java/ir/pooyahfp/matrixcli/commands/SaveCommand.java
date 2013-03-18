@@ -9,7 +9,6 @@ import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SaveLoadUtil;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -29,11 +28,7 @@ public class SaveCommand extends AbstractCommand {
         String path = params.get(1);
 
         SimpleObject mathObject = getMathObject(name);
+        SaveLoadUtil.saveObject(path, mathObject);
 
-        try {
-            SaveLoadUtil.saveObject(path, mathObject);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
