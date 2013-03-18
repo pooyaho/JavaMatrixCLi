@@ -5,6 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class MulCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values)  {
         if (params.size() < 2 || params.size() > 3) {
-            throw new IllegalArgumentException("Input should has 2 or 3 parameters");
+            throw new IllegalCommandArguments();
         }
 
         SimpleObject simpleObject1;

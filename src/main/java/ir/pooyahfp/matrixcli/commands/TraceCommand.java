@@ -5,6 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class TraceCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values)  {
         if (params.size() < 1 || params.size() > 2) {
-            throw new IllegalArgumentException("Illegal parameters");
+            throw new IllegalCommandArguments();
         }
 
         SimpleObject operand;

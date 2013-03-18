@@ -5,8 +5,8 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
-
 
 import java.util.List;
 
@@ -19,10 +19,10 @@ import java.util.List;
 public class ValCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values)  {
+    public void execute(List<String> params, List<String> values) {
 
-        if (params.isEmpty()) {
-            throw new IllegalArgumentException("Matrix command without parameters.");
+        if (params.size() < 1 || params.size() > 2) {
+            throw new IllegalCommandArguments();
         }
 
         SimpleObject value = null;
@@ -33,6 +33,6 @@ public class ValCommand extends AbstractCommand {
         } else if (params.size() == 1) {
             value = new SimpleObject(params.get(0), null);
         }
-         createMathObject(value);
+        createMathObject(value);
     }
 }

@@ -5,6 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class EchelonCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values) {
         if (params.size() <= 0) {
-            throw new IllegalArgumentException("Illegal parameter");
+            throw new IllegalCommandArguments();
         }
 
         switch (params.size()) {

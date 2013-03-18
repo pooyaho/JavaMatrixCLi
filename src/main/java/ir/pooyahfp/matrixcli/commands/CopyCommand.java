@@ -5,6 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class CopyCommand extends AbstractCommand {
     public void execute(List<String> params, List<String> values) {
 
         if (params.size() != 2) {
-            throw new IllegalArgumentException("Copy should have 2 parameters");
+            throw new IllegalCommandArguments();
         }
 
         SimpleObject object2 = getMathObject(params.get(1));

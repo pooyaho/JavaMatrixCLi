@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
+
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public class DeleteCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values) {
         if (params.size() < 1) {
-            throw new IllegalArgumentException("Delete should have parameters");
+            throw new IllegalCommandArguments();
         }
 
         for (String param : params) {

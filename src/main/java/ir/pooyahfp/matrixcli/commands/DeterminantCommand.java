@@ -5,6 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class DeterminantCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values)  {
         if (params.size() <= 0 || params.size() > 2) {
-            throw new IllegalArgumentException("Input should have one or two parameters!");
+            throw new IllegalCommandArguments();
         }
 
         SimpleObject operand;

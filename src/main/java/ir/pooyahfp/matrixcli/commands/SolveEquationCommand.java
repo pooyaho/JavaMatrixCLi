@@ -5,6 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class SolveEquationCommand extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values)  {
         if (params.size() != 3) {
-            throw new IllegalArgumentException("Input should have 3 parameters");
+            throw new IllegalCommandArguments();
         }
 
         SimpleObject a = getMathObject(params.get(1));
