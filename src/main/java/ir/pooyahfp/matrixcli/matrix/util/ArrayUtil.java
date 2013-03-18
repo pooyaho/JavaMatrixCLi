@@ -31,18 +31,14 @@ public class ArrayUtil {
     public static Double[][] toObject(double[][] input) {
         Double[][] temp = new Double[input.length][input[0].length];
         for (int i = 0; i < input.length; i++) {
-            for (int j = 0; j < input[0].length; j++) {
-                temp[i][j] = input[i][j];
-            }
+            temp[i] = toObject(input[i]);
         }
         return temp;
     }
 
     public static Double[] toObject(double[] input) {
         Double[] temp = new Double[input.length];
-        for (int i = 0; i < input.length; i++) {
-            temp[i] = input[i];
-        }
+        System.arraycopy(input, 0, temp, 0, input.length);
         return temp;
     }
 
@@ -62,8 +58,8 @@ public class ArrayUtil {
         return clone;
     }
 
-    public static double [] sub(double [] content, double operand) {
-        double [] clone = content.clone();
+    public static double[] sub(double[] content, double operand) {
+        double[] clone = content.clone();
         for (int i = 0; i < content.length; i++) {
             clone[i] -= operand;
         }
@@ -95,7 +91,7 @@ public class ArrayUtil {
         return clone;
     }
 
-    public static  double[] add(double[] a, double[] b) {
+    public static double[] add(double[] a, double[] b) {
         double[] clone = a.clone();
         for (int i = 0; i < a.length; i++) {
             clone[i] += b[i];
@@ -103,7 +99,7 @@ public class ArrayUtil {
         return clone;
     }
 
-    public static  double[] add(double[] content, double operand) {
+    public static double[] add(double[] content, double operand) {
         double[] clone = content.clone();
         for (int i = 0; i < content.length; i++) {
             clone[i] += operand;
@@ -111,14 +107,14 @@ public class ArrayUtil {
         return clone;
     }
 
-    public static  double[] concat(double[] first, double[] second) {
+    public static double[] concat(double[] first, double[] second) {
         double[] result = Arrays.copyOf(first, first.length + second.length);
         System.arraycopy(second, 0, result, first.length, second.length);
 
         return result;
     }
 
-    public static  double gcd(double[] content) {
+    public static double gcd(double[] content) {
         double result = content[0];
         for (int i = 1; i < content.length; i++) {
             result = gcd(result, content[i]);
@@ -126,7 +122,7 @@ public class ArrayUtil {
         return result;
     }
 
-    private static  double gcd(double a, double b) {
+    private static double gcd(double a, double b) {
         if (b == 0) {
             return a;
         }

@@ -5,8 +5,7 @@
 
 package ir.pooyahfp.matrixcli.matrix;
 
-import ir.pooyahfp.matrixcli.exception.NotSupportedException;
-import ir.pooyahfp.matrixcli.exception.TypeConversionException;
+import ir.pooyahfp.matrixcli.exception.*;
 import ir.pooyahfp.matrixcli.matrix.util.ArrayUtil;
 
 import java.io.Serializable;
@@ -346,7 +345,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     public MatrixObject divide(SimpleObject o) {
         MatrixObject n = cast(o);
         if (isDivisionByZero(n)) {
-            throw new IllegalArgumentException("Division by zero");
+            throw new ArithmeticException("Division by zero");
         }
         MatrixObject matrixObject = this.copy();
 
@@ -398,7 +397,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      */
     private double determinant(MatrixObject a) {
         if (!a.hasDeterminant()) {
-            throw new IllegalArgumentException("MatrixObject has not determinant");
+            throw new MatrixHasNotDeterminantException();
         }
         if (a.getHeight() == 2 && a.getWidth() == 2) {
             return a.content[0][0] * a.content[1][1] - a.content[0][1] * a.content[1][0];
@@ -446,7 +445,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     public MatrixObject getInvert()  {
 
         if (!isInvertible()) {
-            throw new IllegalArgumentException("MatrixObject is not invertible!");
+            throw new NonInvertibleMatrixException();
         }
         double det = this.getDeterminant().doubleValue();
 
@@ -628,7 +627,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      */
     public void lu(SimpleObject l, SimpleObject u)  {
         if (getHeight() != getWidth()) {
-            throw new RuntimeException("Can not decompose");
+            throw new NonDecomposableMatrixException("Can not decompose");
         }
 
         double[][] lu;
@@ -757,7 +756,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
 
     public SimpleObject getTrace()  {
         if (getHeight() != getWidth()) {
-            throw new RuntimeException("Matrix should be square matrix!");
+            throw new NonSquareMatrixException("Matrix should be square matrix!");
         }
 
         double sum = 0;
@@ -783,7 +782,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
 
     public MatrixObject getIdentity() {
         if (getHeight() != getWidth()) {
-            throw new IllegalStateException("MatrixObject has not identity");
+            throw new NonSquareMatrixException("Matrix has not identify!");
         }
         double[][] v = new double[getWidth()][getWidth()];
 
