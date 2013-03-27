@@ -50,7 +50,7 @@ public class PowerCommandTest extends AbstractCommandTest {
     public void testNonCorrectParameters()  {
         executeAndExpectException();
         executeAndExpectException("e");
-        executeAndExpectException("e","g","g");
+        executeAndExpectException("e","g","g","5");
     }
 
 }

@@ -59,11 +59,15 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     }
 
     protected void executeWithOperands(String... params) throws InstantiationException, IllegalAccessException {
+        this.params.clear();
+        this.values.clear();
         Collections.addAll(this.params, params);
         execute(this.params, values);
     }
 
     protected void executeWithOperands(String[] params, int[] values) throws InstantiationException, IllegalAccessException {
+        this.params.clear();
+        this.values.clear();
         Collections.addAll(this.params, params);
 
         fillValues(values);
@@ -72,6 +76,7 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     }
 
     protected void executeWithOperands(String name, int[] values) throws IllegalAccessException, InstantiationException {
+
         executeWithOperands(new String[]{name}, values);
     }
 
@@ -80,6 +85,8 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     }
 
     protected void executeAndExpectException(String... params) {
+        this.params.clear();
+        this.values.clear();
         Collections.addAll(this.params, params);
         boolean errorRaised = false;
 
@@ -96,6 +103,8 @@ public abstract class AbstractCommandTest extends AbstractCommand {
     }
 
     protected void executeAndExpectException(int[] values, String... params) {
+        this.params.clear();
+        this.values.clear();
         Collections.addAll(this.params, params);
 
         fillValues(values);
