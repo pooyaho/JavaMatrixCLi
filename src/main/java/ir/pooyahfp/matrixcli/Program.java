@@ -10,7 +10,13 @@ import ir.pooyahfp.matrixcli.tokenizer.Token;
 import ir.pooyahfp.matrixcli.tokenizer.Tokenizer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -25,8 +31,8 @@ public final class Program {
     private static PrintWriter writer;
 
 
-    private Program() {
-    }
+//    private Program() {
+//    }
 
     private static Map<String, AbstractCommand> commandMap;
 

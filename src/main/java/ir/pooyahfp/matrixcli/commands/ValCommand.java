@@ -35,4 +35,5 @@ public class ValCommand extends AbstractCommand {
         }
         createMathObject(value);
     }
+
 }
