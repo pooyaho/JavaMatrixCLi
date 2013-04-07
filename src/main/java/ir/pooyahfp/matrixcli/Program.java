@@ -10,13 +10,7 @@ import ir.pooyahfp.matrixcli.tokenizer.Token;
 import ir.pooyahfp.matrixcli.tokenizer.Tokenizer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +23,7 @@ import java.util.Map;
 public final class Program {
 
     private static PrintWriter writer;
-
+    private static final String ERROR_MESSAGE = "An error occurred: ";
 
 //    private Program() {
 //    }
@@ -61,7 +55,8 @@ public final class Program {
                     runCommand(curLine);
                 }
             } catch (Exception x) {
-                writer.println("An error occurred: " + x.getMessage());
+
+                writer.println(ERROR_MESSAGE + x.getMessage());
             }
         }
     }
@@ -101,13 +96,13 @@ public final class Program {
                 try {
                     runCommand(line);
                 } catch (Exception e) {
-                    writer.println("An error occurred: " + e.getMessage());
+                    writer.println(ERROR_MESSAGE + e.getMessage());
                 }
             }
         } catch (FileNotFoundException e) {
-            writer.println("An error occurred: " + e.getMessage());
+            writer.println(ERROR_MESSAGE + e.getMessage());
         } catch (IOException e) {
-            writer.println("An error occurred: " + e.getMessage());
+            writer.println(ERROR_MESSAGE + e.getMessage());
         }
     }
 }

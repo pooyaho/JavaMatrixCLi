@@ -52,6 +52,7 @@ public class MissingExpectedTokenException extends ScannerException {
 
     private static Character[] convertPrimitive(char[] chars) {
         final Character[] characters = new Character[chars.length];
+        //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < chars.length; i++) {
             characters[i] = chars[i];
         }

@@ -25,6 +25,7 @@ import java.util.List;
  */
 public class MatrixObject extends SimpleObject implements Serializable, Cloneable {
 
+    private final static String MESSAGE="Matrix has not single value";
     private double[][] content;
     private String name;
 
@@ -640,29 +641,29 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
             piv[i] = i;
         }
         int pivsign = 1;
-        double[] LUrowi;
-        double[] LUcolj = new double[getHeight()];
+        double[] lUrowi;
+        double[] lUcolj = new double[getHeight()];
 
         for (int j = 0; j < width; j++) {
 
             for (int i = 0; i < getHeight(); i++) {
-                LUcolj[i] = lu[i][j];
+                lUcolj[i] = lu[i][j];
             }
 
             for (int i = 0; i < getHeight(); i++) {
-                LUrowi = lu[i];
+                lUrowi = lu[i];
 
                 int kmax = Math.min(i, j);
                 double s = 0.0;
                 for (int k = 0; k < kmax; k++) {
-                    s += LUrowi[k] * LUcolj[k];
+                    s += lUrowi[k] * lUcolj[k];
                 }
 
-                LUrowi[j] = LUcolj[i] -= s;
+                lUrowi[j] = lUcolj[i] -= s;
             }
             int p = j;
             for (int i = j + 1; i < getHeight(); i++) {
-                if (Math.abs(LUcolj[i]) > Math.abs(LUcolj[p])) {
+                if (Math.abs(lUcolj[i]) > Math.abs(lUcolj[p])) {
                     p = i;
                 }
             }
@@ -818,24 +819,27 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     }
 
 
+
     @Override
     public int intValue() {
-        throw new NotSupportedException("Matrix has not single value");
+        throw new NotSupportedException(MESSAGE);
     }
 
     @Override
     public long longValue() {
-        throw new NotSupportedException("Matrix has not single value");
+        throw new NotSupportedException(MESSAGE);
     }
+
 
     @Override
     public float floatValue() {
-        throw new NotSupportedException("Matrix has not single value");
+
+        throw new NotSupportedException();
     }
 
     @Override
     public double doubleValue() {
-        throw new NotSupportedException("Matrix has not single value");
+        throw new NotSupportedException(MESSAGE);
     }
 
 //    private double[][] splitArray(double[] input, int length) {

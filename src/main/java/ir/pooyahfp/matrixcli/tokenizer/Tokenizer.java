@@ -40,7 +40,8 @@ public final class Tokenizer {
         List<Token> tokenArrayList = new ArrayList<Token>();
 
         final DocumentScanner lineScanner = new PositionAwareDocumentScanner(s);
-        lineScanner.read("\\s*");
+        final String pattern = "\\s*";
+        lineScanner.read(pattern);
 
         String command;
         while (!(command = lineScanner.readUntil(";")).isEmpty()) {
@@ -48,21 +49,21 @@ public final class Tokenizer {
             final Token token = new Token();
 
             final DocumentScanner scanner = new PositionAwareDocumentScanner(command);
-            lineScanner.read("\\s*");
+            lineScanner.read(pattern);
 
             if (scanner.contains("[", "{")) {
                 scanner.parse(new SnippetParser() {
                     @Override
                     public com.agileapes.motorex.string.token.Token parse(DocumentScanner scanner) {
-                        scanner.read("\\s*");
+                        scanner.read(pattern);
                         String commandName = scanner.expect(Pattern.compile(IdentifierParser.IDENTIFIER_PATTERN));
                         token.setCommand(commandName);
 
-                        scanner.read("\\s*");
+                        scanner.read(pattern);
                         String identifier = scanner.expect(Pattern.compile(IdentifierParser.IDENTIFIER_PATTERN));
                         token.addParam(identifier);
 
-                        scanner.read("\\s*");
+                        scanner.read(pattern);
 
                         String firstDimension = "";
 
@@ -72,7 +73,7 @@ public final class Tokenizer {
                         }
                         token.addParam(firstDimension);
 
-                        scanner.read("\\s*");
+                        scanner.read(pattern);
                         String secondDimension = "";
 
                         if (scanner.has("[")) {
@@ -81,13 +82,13 @@ public final class Tokenizer {
                         }
                         token.addParam(secondDimension);
 
-                        scanner.read("\\s*");
+                        scanner.read(pattern);
                         scanner.expect("{");
 
                         while (!scanner.has("}")) {
-                            scanner.read("\\s*");
+                            scanner.read(pattern);
                             token.addValue(scanner.expect(Pattern.compile("\\d+")));
-                            scanner.read("\\s*");
+                            scanner.read(pattern);
                             if (!scanner.has("}")) {
                                 scanner.expect(Pattern.compile("\\s*,\\s*"));
                             }
@@ -98,18 +99,18 @@ public final class Tokenizer {
                 });
 
             } else {
-                scanner.read("\\s*");
+                scanner.read(pattern);
 
                 scanner.parse(new SnippetParser() {
 
                     @Override
                     public com.agileapes.motorex.string.token.Token parse(DocumentScanner scanner) {
-                        scanner.read("\\s*");
+                        scanner.read(pattern);
                         String commandName = scanner.expect(Pattern.compile(IdentifierParser.IDENTIFIER_PATTERN));
                         token.setCommand(commandName);
 
                         while (scanner.remaining() > 0) {
-                            scanner.read("\\s*");
+                            scanner.read(pattern);
                             if (scanner.remaining() <= 0) {
                                 continue;
                             }
