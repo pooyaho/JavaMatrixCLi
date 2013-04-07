@@ -13,7 +13,7 @@ import java.util.Arrays;
  *         Date: 3/11/13
  *         Time: 7:29 PM
  */
-public class ArrayUtil {
+public final class ArrayUtil {
 
     private ArrayUtil() {
     }
@@ -38,7 +38,11 @@ public class ArrayUtil {
 
     public static Double[] toObject(double[] input) {
         Double[] temp = new Double[input.length];
-        System.arraycopy(input, 0, temp, 0, input.length);
+        //noinspection ForLoopReplaceableByForEach
+        for (int i = 0; i < input.length; i++) {
+            temp[i] = input[i];
+        }
+//        System.arraycopy(input, 0, temp, 0, input.length);
         return temp;
     }
 

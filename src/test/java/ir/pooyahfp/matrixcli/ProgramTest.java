@@ -26,14 +26,14 @@ public class ProgramTest {
 
     @Test
     public void testRunCommand() throws Exception {
-        program.runCommand("matrix x 3 3");
+        program.runCommand("matrix zz 3 3");
     }
 
     @Test
     public void testSetWriter() throws Exception {
         program.setWriter(new PrintWriter(System.err));
-        program.runCommand("matrix x 3 3");
-        program.runCommand("show x");
+        program.runCommand("matrix y 3 3");
+        program.runCommand("show y");
     }
 
     @Test

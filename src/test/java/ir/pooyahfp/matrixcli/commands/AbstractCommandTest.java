@@ -22,8 +22,8 @@ import java.util.List;
  */
 public abstract class AbstractCommandTest extends AbstractCommand {
 
-    protected List<String> params = new ArrayList<String>();
-    protected List<String> values = new ArrayList<String>();
+    protected final List<String> params = new ArrayList<String>();
+    protected final List<String> values = new ArrayList<String>();
 
     public AbstractCommandTest() {
         fillMap();

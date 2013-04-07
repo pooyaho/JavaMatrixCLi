@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  *         Date: 1/23/13
  *         Time: 2:50 PM
  */
-public class Tokenizer {
+public final class Tokenizer {
 
     private Tokenizer() {
     }

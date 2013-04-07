@@ -18,7 +18,7 @@ import java.io.*;
  *         Date: 1/26/13
  *         Time: 11:24 AM
  */
-public class SaveLoadUtil {
+public final class SaveLoadUtil {
 
     private SaveLoadUtil() {
     }

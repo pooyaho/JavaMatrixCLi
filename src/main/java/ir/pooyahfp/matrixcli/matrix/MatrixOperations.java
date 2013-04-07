@@ -13,8 +13,9 @@ package ir.pooyahfp.matrixcli.matrix;
  *         Date: 1/26/13
  *         Time: 10:58 AM
  */
-public class MatrixOperations {
+public final class MatrixOperations {
     private MatrixOperations() {
+
     }
 
     /**
@@ -23,8 +24,10 @@ public class MatrixOperations {
      * @param b The second one
      */
     public static void swap(SimpleObject a, SimpleObject b)  {
+
         String temp = a.getName();
         a.setName(b.getName());
         b.setName(temp);
+
     }
 }
