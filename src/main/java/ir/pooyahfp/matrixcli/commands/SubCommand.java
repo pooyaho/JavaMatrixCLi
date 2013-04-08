@@ -5,10 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
-
-import java.util.List;
 
 /**
  * @author : Pooya husseini
@@ -16,30 +13,35 @@ import java.util.List;
  *         Date: 1/23/13
  *         Time: 2:12 PM
  */
-public class SubCommand extends AbstractCommand {
+public class SubCommand extends AbstractBinaryOperation {
+//    @Override
+//    public void execute(List<String> params, List<String> values)  {
+//        if (params.size() < 2 || params.size() > 3) {
+//            throw new IllegalCommandArguments();
+//        }
+//
+//        SimpleObject simpleObject1;
+//        SimpleObject simpleObject2;
+//        SimpleObject resultMatrix = null;
+//        if (params.size() == 3) {
+//
+//            simpleObject1 = getMathObject(params.get(1));
+//            simpleObject2 = getMathObject(params.get(2));
+//            resultMatrix = simpleObject1.sub(simpleObject2);
+//            resultMatrix.setName(params.get(0));
+//
+//        } else if (params.size() == 2) {
+//            simpleObject1 = getMathObject(params.get(0));
+//            simpleObject2 = getMathObject(params.get(1));
+//            resultMatrix = simpleObject1.sub(simpleObject2);
+//
+//            resultMatrix.setName(simpleObject1.getName());
+//        }
+//        updateMathObject(resultMatrix);
+//    }
+
     @Override
-    public void execute(List<String> params, List<String> values)  {
-        if (params.size() < 2 || params.size() > 3) {
-            throw new IllegalCommandArguments();
-        }
-
-        SimpleObject simpleObject1;
-        SimpleObject simpleObject2;
-        SimpleObject resultMatrix = null;
-        if (params.size() == 3) {
-
-            simpleObject1 = getMathObject(params.get(1));
-            simpleObject2 = getMathObject(params.get(2));
-            resultMatrix = simpleObject1.sub(simpleObject2);
-            resultMatrix.setName(params.get(0));
-
-        } else if (params.size() == 2) {
-            simpleObject1 = getMathObject(params.get(0));
-            simpleObject2 = getMathObject(params.get(1));
-            resultMatrix = simpleObject1.sub(simpleObject2);
-
-            resultMatrix.setName(simpleObject1.getName());
-        }
-        updateMathObject(resultMatrix);
+    public SimpleObject operation(SimpleObject a, SimpleObject b) {
+        return a.sub(b);
     }
 }

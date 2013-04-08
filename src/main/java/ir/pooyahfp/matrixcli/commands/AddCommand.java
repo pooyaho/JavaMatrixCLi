@@ -13,7 +13,7 @@ import ir.pooyahfp.matrixcli.matrix.SimpleObject;
  *         Date: 1/23/13
  *         Time: 2:14 PM
  */
-public class AddCommand extends AbstractMathBasicOperations {
+public class AddCommand extends AbstractBinaryOperation {
     @Override
     public SimpleObject operation(SimpleObject a, SimpleObject b) {
         return a.add(b);

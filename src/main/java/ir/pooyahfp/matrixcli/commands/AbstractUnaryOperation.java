@@ -14,27 +14,30 @@ import java.util.List;
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
  *         Date: 4/8/13
- *         Time: 4:08 PM
+ *         Time: 4:45 PM
  */
-public abstract class AbstractPrintableCommand extends AbstractCommand {
+public abstract class AbstractUnaryOperation extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values) throws IllegalAccessException, InstantiationException {
         if (params.size() < 1 || params.size() > 2) {
             throw new IllegalCommandArguments();
         }
 
-        SimpleObject operand;
+        SimpleObject simpleObject;
+        SimpleObject resultObject = null;
+        if (params.size() == 2) {
+            simpleObject = getMathObject(params.get(1));
+            resultObject = operation(simpleObject);
+            resultObject.setName(params.get(0));
 
-        if (params.size() == 1) {
-            operand = getMathObject(params.get(0));
-            getWriter().println(operation(operand));
-        } else if (params.size() == 2) {
-            operand = getMathObject(params.get(1));
-            SimpleObject result = operation(operand);
-            result.setName(params.get(0));
-            updateMathObject(result);
+        } else if (params.size() == 1) {
+            simpleObject = getMathObject(params.get(0));
+            resultObject = operation(simpleObject);
+
+            resultObject.setName(simpleObject.getName());
         }
+        updateMathObject(resultObject);
     }
 
-    public abstract SimpleObject operation(SimpleObject simpleObject);
+    public abstract SimpleObject operation(SimpleObject object);
 }

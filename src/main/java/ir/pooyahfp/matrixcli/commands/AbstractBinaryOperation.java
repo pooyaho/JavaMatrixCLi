@@ -14,10 +14,9 @@ import java.util.List;
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
  *         Date: 4/8/13
- *         Time: 12:38 PM
+ *         Time: 4:58 PM
  */
-public abstract class AbstractMathBasicOperations extends AbstractCommand {
-
+public abstract class AbstractBinaryOperation extends AbstractCommand {
     @Override
     public void execute(List<String> params, List<String> values) throws IllegalAccessException, InstantiationException {
         if (params.size() < 2 || params.size() > 3) {
