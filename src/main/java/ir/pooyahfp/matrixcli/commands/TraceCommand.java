@@ -5,10 +5,7 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
-import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
-
-import java.util.List;
 
 /**
  * @author : Pooya husseini
@@ -16,25 +13,29 @@ import java.util.List;
  *         Date: 2/21/13
  *         Time: 2:48 PM
  */
-public class TraceCommand extends AbstractCommand {
+public class TraceCommand extends AbstractPrintableCommand {
     @Override
-    public void execute(List<String> params, List<String> values)  {
-        if (params.size() < 1 || params.size() > 2) {
-            throw new IllegalCommandArguments();
-        }
-
-        SimpleObject operand;
-
-        if (params.size() == 1) {
-            operand = getMathObject(params.get(0));
-            getWriter().println(operand.getTrace());
-        } else if (params.size() == 2) {
-            operand = getMathObject(params.get(1));
-            SimpleObject result = operand.getTrace();
-            result.setName(params.get(0));
-            updateMathObject(result);
-        }
-//        SimpleObject matrix =  getMathObject(params.get(0));
-//        getWriter().println(matrix.getTrace());
+    public SimpleObject operation(SimpleObject simpleObject) {
+        return simpleObject.getTrace();
     }
+//    @Override
+//    public void execute(List<String> params, List<String> values)  {
+//        if (params.size() < 1 || params.size() > 2) {
+//            throw new IllegalCommandArguments();
+//        }
+//
+//        SimpleObject operand;
+//
+//        if (params.size() == 1) {
+//            operand = getMathObject(params.get(0));
+//            getWriter().println(operand.getTrace());
+//        } else if (params.size() == 2) {
+//            operand = getMathObject(params.get(1));
+//            SimpleObject result = operand.getTrace();
+//            result.setName(params.get(0));
+//            updateMathObject(result);
+//        }
+////        SimpleObject matrix =  getMathObject(params.get(0));
+////        getWriter().println(matrix.getTrace());
+//    }
 }
