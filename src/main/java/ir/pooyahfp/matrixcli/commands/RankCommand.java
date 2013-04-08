@@ -14,6 +14,7 @@ import ir.pooyahfp.matrixcli.matrix.SimpleObject;
  *         Time: 2:13 PM
  */
 public class RankCommand extends AbstractPrintableCommand {
+
     @Override
     public SimpleObject operation(SimpleObject simpleObject) {
         return simpleObject.getRank();
