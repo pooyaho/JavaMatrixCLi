@@ -18,24 +18,4 @@ public class DeterminantCommand extends AbstractPrintableCommand {
     public SimpleObject operation(SimpleObject simpleObject) {
         return simpleObject.getDeterminant();
     }
-
-//    @Override
-//    public void execute(List<String> params, List<String> values)  {
-//        if (params.size() <= 0 || params.size() > 2) {
-//            throw new IllegalCommandArguments();
-//        }
-//
-//        SimpleObject operand;
-//
-//        if (params.size() == 1) {
-//            operand = getMathObject(params.get(0));
-//            getWriter().println(operand.getDeterminant());
-//        } else if (params.size() == 2) {
-//            operand = getMathObject(params.get(1));
-//            SimpleObject result = operand.getDeterminant();
-//            result.setName(params.get(0));
-//            updateMathObject(result);
-//        }
-//    }
-
 }

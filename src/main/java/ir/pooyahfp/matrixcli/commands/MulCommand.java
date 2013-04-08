@@ -18,29 +18,4 @@ public class MulCommand extends AbstractBinaryOperation {
     public SimpleObject operation(SimpleObject a, SimpleObject b) {
         return a.mul(b);
     }
-//    @Override
-//    public void execute(List<String> params, List<String> values)  {
-//        if (params.size() < 2 || params.size() > 3) {
-//            throw new IllegalCommandArguments();
-//        }
-//
-//        SimpleObject simpleObject1;
-//        SimpleObject simpleObject2;
-//        SimpleObject resultObject = null;
-//        if (params.size() == 3) {
-//
-//            simpleObject1 = getMathObject(params.get(1));
-//            simpleObject2 = getMathObject(params.get(2));
-//            resultObject = simpleObject1.mul(simpleObject2);
-//            resultObject.setName(params.get(0));
-//
-//        } else if (params.size() == 2) {
-//            simpleObject1 = getMathObject(params.get(0));
-//            simpleObject2 = getMathObject(params.get(1));
-//            resultObject = simpleObject1.mul(simpleObject2);
-//            resultObject.setName(simpleObject1.getName());
-//        }
-//
-//        updateMathObject(resultObject);
-//    }
 }

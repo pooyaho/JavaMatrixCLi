@@ -16,30 +16,4 @@ public class HelpCommand extends AbstractInfoCommand {
     public String getInfoType() {
         return "help";
     }
-
-//    @Override
-//    public void execute(List<String> params, List<String> values) {
-//        ResourceBundle rb = ResourceBundle.getBundle("help");
-//
-//        if (params.size() <= 0) {
-//            StringBuilder builder = new StringBuilder();
-//            builder.append("Command line Matrix manipulation program\n")
-//                    .append("Help: \n\n")
-//                    .append("Choose one of these options:\n");
-//            Enumeration<String> keys = rb.getKeys();
-//            while (keys.hasMoreElements()) {
-//                builder.append(keys.nextElement().replace(".", " ")).append("\n");
-//            }
-//            getWriter().println(builder.toString());
-//        }
-//
-//        for (String param : params) {
-//            String key = "help." + param;
-//            if (rb.containsKey(key)) {
-//                getWriter().println(rb.getString(key));
-//            } else {
-//                getWriter().println("Command not found!");
-//            }
-//        }
-//    }
 }

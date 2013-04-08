@@ -20,22 +20,4 @@ public class RankCommand extends AbstractPrintableCommand {
         return simpleObject.getRank();
     }
 
-//    @Override
-//    public void execute(List<String> params, List<String> values)  {
-//        if (params.size() < 1 || params.size() > 2) {
-//            throw new IllegalCommandArguments();
-//        }
-//
-//        SimpleObject operand;
-//
-//        if (params.size() == 1) {
-//            operand = getMathObject(params.get(0));
-//            getWriter().println(operand.getRank());
-//        } else if (params.size() == 2) {
-//            operand = getMathObject(params.get(1));
-//            SimpleObject result = operand.getRank();
-//            result.setName(params.get(0));
-//            updateMathObject(result);
-//        }
-//    }
 }
