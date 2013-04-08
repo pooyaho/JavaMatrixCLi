@@ -28,7 +28,7 @@ public abstract class AbstractCommand {
     public abstract void execute(List<String> params, List<String> values) throws IllegalAccessException, InstantiationException;
 
     // contains the math objects
-    private final static Map<String, SimpleObject> mathObjectsMap = new HashMap<String, SimpleObject>();
+    private final static Map<String, SimpleObject> MATH_OBJECTS_MAP = new HashMap<String, SimpleObject>();
 
 //    // contains the simple values like 1, 2 ,5
 //    private final static Map<String, SimpleValue> simpleValuesMap = new HashMap<String, SimpleValue>();
@@ -41,10 +41,10 @@ public abstract class AbstractCommand {
      */
     protected void updateMathObject(SimpleObject... args) {
         for (SimpleObject simpleObject : args) {
-            if (mathObjectsMap.containsKey(simpleObject.getName())) {
+            if (MATH_OBJECTS_MAP.containsKey(simpleObject.getName())) {
                 SimpleObject old = getMathObject(simpleObject.getName());
                 if (old.getClass().getSimpleName().equals(simpleObject.getClass().getSimpleName())) {
-                    mathObjectsMap.put(simpleObject.getName(), simpleObject);
+                    MATH_OBJECTS_MAP.put(simpleObject.getName(), simpleObject);
                 } else {
                     throw new IllegalArgumentException();
                 }
@@ -61,8 +61,8 @@ public abstract class AbstractCommand {
      */
     protected void createMathObject(SimpleObject... args) {
         for (SimpleObject simpleObject : args) {
-            if (!mathObjectsMap.containsKey(simpleObject.getName())) {
-                mathObjectsMap.put(simpleObject.getName(), simpleObject);
+            if (!MATH_OBJECTS_MAP.containsKey(simpleObject.getName())) {
+                MATH_OBJECTS_MAP.put(simpleObject.getName(), simpleObject);
             } else {
                 throw new DuplicateMathObjectException();
             }
@@ -93,10 +93,10 @@ public abstract class AbstractCommand {
      */
     protected void deleteMathObject(String... args) {
         for (String mathObjectName : args) {
-            if (!mathObjectsMap.containsKey(mathObjectName)) {
+            if (!MATH_OBJECTS_MAP.containsKey(mathObjectName)) {
                 throw new MathObjectNotFoundException();
             } else {
-                mathObjectsMap.remove(mathObjectName);
+                MATH_OBJECTS_MAP.remove(mathObjectName);
             }
         }
     }
@@ -109,7 +109,7 @@ public abstract class AbstractCommand {
      * @throws MathObjectNotFoundException
      */
     protected SimpleObject getMathObject(String name) {
-        SimpleObject simpleObject = mathObjectsMap.get(name);
+        SimpleObject simpleObject = MATH_OBJECTS_MAP.get(name);
         if (simpleObject == null) {
             throw new MathObjectNotFoundException();
         }
@@ -138,7 +138,7 @@ public abstract class AbstractCommand {
      * @return true if exists and false if not
      */
     protected boolean hasMathObject(String name) {
-        return mathObjectsMap.containsKey(name);
+        return MATH_OBJECTS_MAP.containsKey(name);
     }
 
 //    /**
@@ -158,7 +158,7 @@ public abstract class AbstractCommand {
      */
     protected List<SimpleObject> getAllObjects() {
         List<SimpleObject> result = new ArrayList<SimpleObject>();
-        for (SimpleObject o : mathObjectsMap.values()) {
+        for (SimpleObject o : MATH_OBJECTS_MAP.values()) {
             result.add(o);
         }
         return result;
@@ -181,6 +181,6 @@ public abstract class AbstractCommand {
      * Drops all registered elements
      */
     protected void dropAll() {
-        mathObjectsMap.clear();
+        MATH_OBJECTS_MAP.clear();
     }
 }

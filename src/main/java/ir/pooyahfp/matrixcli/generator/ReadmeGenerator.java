@@ -21,7 +21,7 @@ import java.util.*;
  *         Date: 3/4/13
  *         Time: 3:27 PM
  */
-public class ReadmeGenerator {
+public final class ReadmeGenerator {
 
     private ReadmeGenerator() {
     }

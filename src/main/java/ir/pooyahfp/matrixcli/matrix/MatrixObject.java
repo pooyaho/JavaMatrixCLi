@@ -629,11 +629,11 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
 
         double[][] lu;
 
-        int height;
+//        int height;
         int width;
 
         lu = getContent();
-        height = getHeight();
+//        height = getHeight();
         width = getWidth();
 
         int[] piv = new int[getHeight()];
