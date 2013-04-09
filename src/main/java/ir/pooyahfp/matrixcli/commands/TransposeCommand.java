@@ -6,6 +6,7 @@
 package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author : Pooya husseini
@@ -14,8 +15,9 @@ import ir.pooyahfp.matrixcli.matrix.SimpleObject;
  *         Time: 2:14 PM
  */
 public class TransposeCommand extends AbstractUnaryOperation {
+    @NotNull
     @Override
-    public SimpleObject operation(SimpleObject object) {
+    public SimpleObject operation(@NotNull SimpleObject object) {
         return object.getTranspose();
     }
 

@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.matrix.util;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 
 /**
@@ -18,7 +20,8 @@ public final class ArrayUtil {
     private ArrayUtil() {
     }
 
-    public static <T> T[][] splitArray(T[] input, int length) {
+    @NotNull
+    public static <T> T[][] splitArray(@NotNull T[] input, @SuppressWarnings("SameParameterValue") int length) {
 
         T[][] temp = (T[][]) new Object[input.length / length][length];
 
@@ -28,7 +31,8 @@ public final class ArrayUtil {
         return temp;
     }
 
-    public static Double[][] toObject(double[][] input) {
+    @NotNull
+    public static Double[][] toObject(@NotNull double[][] input) {
         Double[][] temp = new Double[input.length][input[0].length];
         for (int i = 0; i < input.length; i++) {
             temp[i] = toObject(input[i]);
@@ -36,7 +40,8 @@ public final class ArrayUtil {
         return temp;
     }
 
-    public static Double[] toObject(double[] input) {
+    @NotNull
+    public static Double[] toObject(@NotNull double[] input) {
         Double[] temp = new Double[input.length];
         //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < input.length; i++) {
@@ -46,7 +51,7 @@ public final class ArrayUtil {
         return temp;
     }
 
-    public static double[] divide(double[] content, double divisor) {
+    public static double[] divide(@NotNull double[] content, double divisor) {
         double[] clone = content.clone();
         for (int i = 0; i < content.length; i++) {
             clone[i] /= divisor;
@@ -54,7 +59,7 @@ public final class ArrayUtil {
         return clone;
     }
 
-    public static double[] multiply(double[] content, double multiplier) {
+    public static double[] multiply(@NotNull double[] content, double multiplier) {
         double[] clone = content.clone();
         for (int i = 0; i < content.length; i++) {
             clone[i] *= multiplier;
@@ -62,7 +67,7 @@ public final class ArrayUtil {
         return clone;
     }
 
-    public static double[] sub(double[] content, double operand) {
+    public static double[] sub(@NotNull double[] content, @SuppressWarnings("SameParameterValue") double operand) {
         double[] clone = content.clone();
         for (int i = 0; i < content.length; i++) {
             clone[i] -= operand;
@@ -70,7 +75,7 @@ public final class ArrayUtil {
         return clone;
     }
 
-    public static double[] divide(double[] a, double[] b) {
+    public static double[] divide(@NotNull double[] a, double[] b) {
         double[] clone = a.clone();
         for (int i = 0; i < a.length; i++) {
             clone[i] /= b[i];
@@ -78,7 +83,7 @@ public final class ArrayUtil {
         return clone;
     }
 
-    public static double[] multiply(double[] a, double[] b) {
+    public static double[] multiply(@NotNull double[] a, double[] b) {
         double[] clone = a.clone();
         for (int i = 0; i < a.length; i++) {
             clone[i] *= b[i];
@@ -86,7 +91,7 @@ public final class ArrayUtil {
         return clone;
     }
 
-    public static double[] sub(double[] a, double[] b) {
+    public static double[] sub(@NotNull double[] a, double[] b) {
         double[] clone = a.clone();
         for (int i = 0; i < a.length; i++) {
             clone[i] -= b[i];
@@ -95,7 +100,7 @@ public final class ArrayUtil {
         return clone;
     }
 
-    public static double[] add(double[] a, double[] b) {
+    public static double[] add(@NotNull double[] a, double[] b) {
         double[] clone = a.clone();
         for (int i = 0; i < a.length; i++) {
             clone[i] += b[i];
@@ -103,7 +108,7 @@ public final class ArrayUtil {
         return clone;
     }
 
-    public static double[] add(double[] content, double operand) {
+    public static double[] add(@NotNull double[] content, @SuppressWarnings("SameParameterValue") double operand) {
         double[] clone = content.clone();
         for (int i = 0; i < content.length; i++) {
             clone[i] += operand;
@@ -111,14 +116,15 @@ public final class ArrayUtil {
         return clone;
     }
 
-    public static double[] concat(double[] first, double[] second) {
+    @NotNull
+    public static double[] concat(@NotNull double[] first, @NotNull double[] second) {
         double[] result = Arrays.copyOf(first, first.length + second.length);
         System.arraycopy(second, 0, result, first.length, second.length);
 
         return result;
     }
 
-    public static double gcd(double[] content) {
+    public static double gcd(@NotNull double[] content) {
         double result = content[0];
         for (int i = 1; i < content.length; i++) {
             result = gcd(result, content[i]);

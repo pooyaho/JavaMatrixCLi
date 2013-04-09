@@ -18,6 +18,8 @@ package com.agileapes.motorex.string.scan.impl;
 import com.agileapes.motorex.string.scan.DocumentScanner;
 import com.agileapes.motorex.string.scan.SnippetParser;
 import com.agileapes.motorex.string.token.Token;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Mohammad Milad Naseri (m.m.naseri@gmail.com)
@@ -47,8 +49,9 @@ public class DelimitedSnippetParser extends EnclosedSnippetParser {
         this.delimiters = delimiters;
     }
 
+    @Nullable
     @Override
-    public Token parse(DocumentScanner scanner) {
+    public Token parse(@NotNull DocumentScanner scanner) {
         final Token token = super.parse(scanner);
         if (token != null) {
             if (scanner.has(delimiters)) {

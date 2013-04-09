@@ -16,6 +16,7 @@
 package com.agileapes.motorex.string.text.impl;
 
 import com.agileapes.motorex.string.text.PositionAwareTextHandler;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Mohammad Milad Naseri (m.m.naseri@gmail.com)
@@ -26,7 +27,7 @@ public class SimplePositionHandler implements PositionAwareTextHandler {
     private int line;
     private int column;
 
-    public SimplePositionHandler(int line, int column) {
+    public SimplePositionHandler(@SuppressWarnings("SameParameterValue") int line, @SuppressWarnings("SameParameterValue") int column) {
         this.line = line;
         this.column = column;
     }
@@ -63,7 +64,7 @@ public class SimplePositionHandler implements PositionAwareTextHandler {
         }
     }
 
-    public void readString(String string) {
+    public void readString(@NotNull String string) {
         for (int i = 0; i < string.length(); i ++) {
             readChar(string.charAt(i));
         }

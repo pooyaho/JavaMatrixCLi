@@ -6,6 +6,7 @@
 package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class DeleteCommand extends AbstractCommand {
     @Override
-    public void execute(List<String> params, List<String> values) {
+    public void execute(@NotNull List<String> params, List<String> values) {
         if (params.size() < 1) {
             throw new IllegalCommandArguments();
         }

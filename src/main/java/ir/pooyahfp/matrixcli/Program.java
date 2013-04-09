@@ -8,6 +8,7 @@ package ir.pooyahfp.matrixcli;
 import ir.pooyahfp.matrixcli.commands.AbstractCommand;
 import ir.pooyahfp.matrixcli.tokenizer.Token;
 import ir.pooyahfp.matrixcli.tokenizer.Tokenizer;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.*;
@@ -25,11 +26,7 @@ public final class Program {
     private static PrintWriter writer;
     private static final String ERROR_MESSAGE = "An error occurred: ";
 
-//    private Program() {
-//    }
-
     private static Map<String, AbstractCommand> commandMap;
-
 
     public void runCommand(String line) throws InstantiationException, IllegalAccessException {
         List<Token> tokens = Tokenizer.createToken(line);
@@ -61,18 +58,16 @@ public final class Program {
         }
     }
 
-
     public void setWriter(PrintWriter writer) {
         Program.writer = writer;
         AbstractCommand.setWriter(writer);
     }
 
-
     public void setCommandMap(Map<String, AbstractCommand> commandMap) {
         Program.commandMap = commandMap;
     }
 
-    public static void main(String[] args) {
+    public static void main(@NotNull String[] args) {
         new ClassPathXmlApplicationContext("classpath*:**/spring/spring-config.xml");
         Program program = new Program();
         if (args.length > 0) {

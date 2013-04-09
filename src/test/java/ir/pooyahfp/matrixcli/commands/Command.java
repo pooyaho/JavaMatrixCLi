@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -16,5 +18,5 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Command {
-    Class targetClass() ;
+    @NotNull Class targetClass() ;
 }

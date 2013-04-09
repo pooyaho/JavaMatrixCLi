@@ -6,6 +6,8 @@
 package com.agileapes.motorex.string.scan;
 
 import com.agileapes.motorex.string.exception.MissingExpectedTokenException;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.regex.Pattern;
 
@@ -22,6 +24,7 @@ public interface DocumentScanner {
      * @return the document being scanned in its entirety -- as it is available to the
      * scanner itself
      */
+    @Nullable
     String getDocument();
 
     /**
@@ -81,7 +84,7 @@ public interface DocumentScanner {
      * @param delimiters    the delimiters signifying the end of required portion
      * @return the portion of the document that was read
      */
-    String readUntil(String... delimiters);
+    String readUntil(@SuppressWarnings("SameParameterValue") String... delimiters);
 
     /**
      * This will read the given character from the document, failing if it does not appear
@@ -97,6 +100,7 @@ public interface DocumentScanner {
      * @return the read token
      * @throws MissingExpectedTokenException
      */
+    @NotNull
     String expect(String... tokens) throws MissingExpectedTokenException;
 
     /**
@@ -169,6 +173,7 @@ public interface DocumentScanner {
      * document, and thus making subsequent calls to {@link #reset()} to jump to this position
      * @return The snapshot for the current situation
      */
+    @NotNull
     ScannerSnapshot remember();
 
     /**

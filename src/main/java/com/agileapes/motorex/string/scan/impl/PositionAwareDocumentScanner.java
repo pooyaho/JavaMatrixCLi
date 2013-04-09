@@ -17,6 +17,8 @@ import com.agileapes.motorex.string.text.PositionAwareTextHandler;
 import com.agileapes.motorex.string.text.impl.DefaultPatternFactory;
 import com.agileapes.motorex.string.text.impl.SimplePositionHandler;
 import com.agileapes.motorex.string.token.Token;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Stack;
 import java.util.regex.Matcher;
@@ -26,10 +28,13 @@ import java.util.regex.Pattern;
  * @author Mohammad Milad Naseri (m.m.naseri@gmail.com)
  * @since 1.0 (2012/12/7, 19:38)
  */
+@SuppressWarnings("WeakerAccess")
 public class PositionAwareDocumentScanner implements DocumentScanner, PositionAwareTextHandler {
 
+    @NotNull
     private final SimplePositionHandler positionHandler;
     private final SnippetParser parser;
+    @Nullable
     private String document;
     private PatternFactory patternFactory;
     private int cursor;
@@ -47,7 +52,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
         this(document, new DefaultPatternFactory(Pattern.DOTALL | Pattern.MULTILINE), parser);
     }
 
-    public PositionAwareDocumentScanner(String document, PatternFactory patternFactory, SnippetParser parser) {
+    public PositionAwareDocumentScanner(@Nullable String document, PatternFactory patternFactory, SnippetParser parser) {
         if (document == null) {
             throw new NullPointerException();
         }
@@ -60,6 +65,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
         reset();
     }
 
+    @Nullable
     @Override
     public String getDocument() {
         return document;
@@ -108,7 +114,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
     }
 
     @Override
-    public String read(Pattern pattern) {
+    public String read(@NotNull Pattern pattern) {
         final Matcher matcher = pattern.matcher(getRemainder());
         if (matcher.find() && matcher.start() == 0) {
             final String read = matcher.group();
@@ -120,7 +126,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
     }
 
     @Override
-    public String readUntil(String... delimiters) {
+    public String readUntil(@NotNull String... delimiters) {
         String read = "";
         while (remaining() > 0) {
             boolean done = false;
@@ -139,7 +145,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
     }
 
     @Override
-    public char expect(char... characters) throws MissingExpectedTokenException {
+    public char expect(@NotNull char... characters) throws MissingExpectedTokenException {
         final char read = read();
         for (char character : characters) {
             if (read == character) {
@@ -149,8 +155,9 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
         throw new MissingExpectedTokenException(characters);
     }
 
+    @NotNull
     @Override
-    public String expect(String... tokens) throws MissingExpectedTokenException {
+    public String expect(@NotNull String... tokens) throws MissingExpectedTokenException {
         for (String token : tokens) {
             if (has(token)) {
                 positionHandler.readString(token);
@@ -162,7 +169,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
     }
 
     @Override
-    public String expect(Pattern... patterns) throws MissingExpectedTokenException {
+    public String expect(@NotNull Pattern... patterns) throws MissingExpectedTokenException {
         for (Pattern pattern : patterns) {
             if (matches(pattern)) {
                 return read(pattern);
@@ -172,7 +179,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
     }
 
     @Override
-    public boolean has(String... tokens) {
+    public boolean has(@NotNull String... tokens) {
         for (String token : tokens) {
             if (getRemainder().startsWith(token)) {
                 return true;
@@ -181,7 +188,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
         return false;
     }
     @Override
-    public boolean contains(String... tokens) {
+    public boolean contains(@NotNull String... tokens) {
         for (String token : tokens) {
             if (getRemainder().contains(token)) {
                 return true;
@@ -196,7 +203,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
     }
 
     @Override
-    public boolean matches(Pattern pattern) {
+    public boolean matches(@NotNull Pattern pattern) {
         final Matcher matcher = pattern.matcher(getRemainder());
         return matcher.find() && matcher.start() == 0;
     }
@@ -227,6 +234,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
         positionHandler.reset();
     }
 
+    @NotNull
     @Override
     public ScannerSnapshot remember() {
         final PositionAwareScannerSnapshot snapshot = new PositionAwareScannerSnapshot(document, cursor, getLine(), getColumn());
@@ -258,7 +266,7 @@ public class PositionAwareDocumentScanner implements DocumentScanner, PositionAw
     }
 
     @Override
-    public String parse(SnippetParser parser) {
+    public String parse(@Nullable SnippetParser parser) {
         if (parser == null) {
             throw new NoParserAvailableException();
         }

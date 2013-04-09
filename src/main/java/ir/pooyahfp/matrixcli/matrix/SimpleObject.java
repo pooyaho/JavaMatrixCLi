@@ -6,6 +6,8 @@
 package ir.pooyahfp.matrixcli.matrix;
 
 import ir.pooyahfp.matrixcli.exception.NotSupportedException;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author : Pooya husseini
@@ -60,42 +62,50 @@ public class SimpleObject extends Number {
     }
 
 
+    @NotNull
     public SimpleObject getTranspose() {
         throw new NotSupportedException("Value does not have transpose");
     }
 
 
+    @NotNull
     public SimpleObject getDeterminant() {
         throw new NotSupportedException("Value does not have determinant");
     }
 
 
+    @NotNull
     public SimpleObject getInvert() {
         throw new NotSupportedException("Value does not have invert");
     }
 
 
-    public SimpleObject add(SimpleObject b) {
+    @NotNull
+    public SimpleObject add(@NotNull SimpleObject b) {
         return new SimpleObject(b.doubleValue() + this.doubleValue());
     }
 
 
-    public SimpleObject sub(SimpleObject b) {
+    @NotNull
+    public SimpleObject sub(@NotNull SimpleObject b) {
         return new SimpleObject(this.doubleValue() - b.doubleValue());
     }
 
 
-    public SimpleObject mul(SimpleObject b) {
+    @NotNull
+    public SimpleObject mul(@NotNull SimpleObject b) {
         return new SimpleObject(b.doubleValue() * this.doubleValue());
     }
 
 
+    @NotNull
     public SimpleObject power(int c) {
         return new SimpleObject(Math.pow(this.doubleValue(), c));
     }
 
 
-    public SimpleObject power(SimpleObject o) {
+    @NotNull
+    public SimpleObject power(@NotNull SimpleObject o) {
         return power(o.intValue());
     }
 
@@ -105,30 +115,36 @@ public class SimpleObject extends Number {
     }
 
 
+    @NotNull
     public SimpleObject echelonForm() {
         throw new NotSupportedException("Value does not have echelon form");
     }
 
 
+    @NotNull
     public SimpleObject getRank() {
         throw new NotSupportedException("Value does not have rank");
     }
 
 
+    @NotNull
     public SimpleObject getTrace() {
         throw new NotSupportedException("Value does not have trace");
     }
 
 
+    @NotNull
     public SimpleObject eigenValues() {
         throw new NotSupportedException("Value does not have Eigen value");
     }
 
+    @NotNull
     public SimpleObject copy() {
         return new SimpleObject(name, value);
     }
 
-    public SimpleObject setContent(Integer row, Integer col, double[] content) {
+    @NotNull
+    public SimpleObject setContent(Integer row, Integer col, @NotNull double[] content) {
         if (content.length != 1) {
             throw new IllegalArgumentException("Values are more than one");
         }
@@ -148,18 +164,21 @@ public class SimpleObject extends Number {
         return value;
     }
 
-    public void setValue(Number value) {
+    public void setValue(@SuppressWarnings("SameParameterValue") Number value) {
         this.value = value;
     }
 
+    @NotNull
     public String toString() {
         return "[" + name + "]\n" + value;
     }
 
+    @Nullable
     public SimpleObject tryCast(SimpleObject o) {
         throw new NotSupportedException("Simple object could not try to cast");
     }
 
+    @NotNull
     public MatrixObject cast(SimpleObject o) {
         throw new NotSupportedException("Simple object could not cast");
     }

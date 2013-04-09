@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * @author : Pooya husseini
  *         Email : info@pooya-hfp.ir
@@ -12,6 +14,7 @@ package ir.pooyahfp.matrixcli.commands;
  *         Time: 10:58 AM
  */
 public class HelpCommand extends AbstractInfoCommand {
+    @NotNull
     @Override
     public String getInfoType() {
         return "help";

@@ -8,6 +8,7 @@ package ir.pooyahfp.matrixcli.commands;
 import ir.pooyahfp.matrixcli.exception.DuplicateMathObjectException;
 import ir.pooyahfp.matrixcli.exception.MathObjectNotFoundException;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public abstract class AbstractCommand {
      *
      * @param args The vararg of the objects
      */
-    protected void updateMathObject(SimpleObject... args) {
+    void updateMathObject(@NotNull SimpleObject... args) {
         for (SimpleObject simpleObject : args) {
             if (MATH_OBJECTS_MAP.containsKey(simpleObject.getName())) {
                 SimpleObject old = getMathObject(simpleObject.getName());
@@ -59,7 +60,7 @@ public abstract class AbstractCommand {
      *
      * @param args The vararg of the objects
      */
-    protected void createMathObject(SimpleObject... args) {
+    void createMathObject(@NotNull SimpleObject... args) {
         for (SimpleObject simpleObject : args) {
             if (!MATH_OBJECTS_MAP.containsKey(simpleObject.getName())) {
                 MATH_OBJECTS_MAP.put(simpleObject.getName(), simpleObject);
@@ -91,7 +92,7 @@ public abstract class AbstractCommand {
      * @param args objects names
      * @throws MathObjectNotFoundException
      */
-    protected void deleteMathObject(String... args) {
+    void deleteMathObject(@NotNull String... args) {
         for (String mathObjectName : args) {
             if (!MATH_OBJECTS_MAP.containsKey(mathObjectName)) {
                 throw new MathObjectNotFoundException();
@@ -108,7 +109,7 @@ public abstract class AbstractCommand {
      * @return The object of object that stored in the map
      * @throws MathObjectNotFoundException
      */
-    protected SimpleObject getMathObject(String name) {
+    SimpleObject getMathObject(String name) {
         SimpleObject simpleObject = MATH_OBJECTS_MAP.get(name);
         if (simpleObject == null) {
             throw new MathObjectNotFoundException();
@@ -137,7 +138,7 @@ public abstract class AbstractCommand {
      * @param name the object name
      * @return true if exists and false if not
      */
-    protected boolean hasMathObject(String name) {
+    boolean hasMathObject(String name) {
         return MATH_OBJECTS_MAP.containsKey(name);
     }
 
@@ -156,7 +157,8 @@ public abstract class AbstractCommand {
      *
      * @return A list of objects
      */
-    protected List<SimpleObject> getAllObjects() {
+    @NotNull
+    List<SimpleObject> getAllObjects() {
         List<SimpleObject> result = new ArrayList<SimpleObject>();
         for (SimpleObject o : MATH_OBJECTS_MAP.values()) {
             result.add(o);
@@ -173,14 +175,14 @@ public abstract class AbstractCommand {
      *
      * @return the writer
      */
-    protected PrintWriter getWriter() {
+    PrintWriter getWriter() {
         return writer;
     }
 
     /**
      * Drops all registered elements
      */
-    protected void dropAll() {
+    void dropAll() {
         MATH_OBJECTS_MAP.clear();
     }
 }

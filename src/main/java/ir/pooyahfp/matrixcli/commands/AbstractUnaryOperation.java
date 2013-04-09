@@ -7,6 +7,7 @@ package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public abstract class AbstractUnaryOperation extends AbstractCommand {
     @Override
-    public void execute(List<String> params, List<String> values) throws IllegalAccessException, InstantiationException {
+    public void execute(@NotNull List<String> params, List<String> values) throws IllegalAccessException, InstantiationException {
         if (params.size() < 1 || params.size() > 2) {
             throw new IllegalCommandArguments();
         }
@@ -39,5 +40,6 @@ public abstract class AbstractUnaryOperation extends AbstractCommand {
         updateMathObject(resultObject);
     }
 
-    public abstract SimpleObject operation(SimpleObject object);
+    @NotNull
+    protected abstract SimpleObject operation(SimpleObject object);
 }

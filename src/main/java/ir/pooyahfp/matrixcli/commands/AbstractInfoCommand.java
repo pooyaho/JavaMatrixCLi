@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.commands;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,7 +20,7 @@ import java.util.ResourceBundle;
 public abstract class AbstractInfoCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values) throws IllegalAccessException, InstantiationException {
+    public void execute(@NotNull List<String> params, List<String> values) throws IllegalAccessException, InstantiationException {
         ResourceBundle rb = ResourceBundle.getBundle(getInfoType());
 
         if (params.size() <= 0) {
@@ -44,5 +46,6 @@ public abstract class AbstractInfoCommand extends AbstractCommand {
         }
     }
 
-    public abstract String getInfoType();
+    @NotNull
+    protected abstract String getInfoType();
 }

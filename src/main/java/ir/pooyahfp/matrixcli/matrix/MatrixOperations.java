@@ -5,6 +5,8 @@
 
 package ir.pooyahfp.matrixcli.matrix;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This class contains the operation on multiple matrices
  *
@@ -23,7 +25,7 @@ public final class MatrixOperations {
      * @param a The first matrix
      * @param b The second one
      */
-    public static void swap(SimpleObject a, SimpleObject b)  {
+    public static void swap(@NotNull SimpleObject a, @NotNull SimpleObject b)  {
 
         String temp = a.getName();
         a.setName(b.getName());

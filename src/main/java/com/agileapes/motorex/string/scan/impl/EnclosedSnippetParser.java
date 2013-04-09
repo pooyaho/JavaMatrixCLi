@@ -11,6 +11,8 @@ import com.agileapes.motorex.string.scan.DocumentScanner;
 import com.agileapes.motorex.string.scan.SnippetParser;
 import com.agileapes.motorex.string.token.Token;
 import com.agileapes.motorex.string.token.impl.SimpleTaggedToken;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,15 +39,18 @@ public class EnclosedSnippetParser implements SnippetParser {
         this(opening, closing, null);
     }
 
-    public EnclosedSnippetParser(String opening, String closing, SnippetParser fallback) {
+    @SuppressWarnings("WeakerAccess")
+    public EnclosedSnippetParser(String opening, String closing, @Nullable SnippetParser fallback) {
         this(opening, closing, fallback, fallback != null, true);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public EnclosedSnippetParser(String opening, String closing, SnippetParser fallback, boolean allowUnenclosed, boolean acceptNested) {
         this(opening, closing, fallback, allowUnenclosed, acceptNested, null);
     }
 
-    public EnclosedSnippetParser(String opening, String closing, SnippetParser fallback, boolean allowUnenclosed, boolean acceptNested, Character escape) {
+    @SuppressWarnings("WeakerAccess")
+    public EnclosedSnippetParser(@Nullable String opening, @Nullable String closing, SnippetParser fallback, boolean allowUnenclosed, boolean acceptNested, Character escape) {
         this.fallback = fallback;
         this.allowUnenclosed = allowUnenclosed;
         this.acceptNested = acceptNested;
@@ -68,8 +73,9 @@ public class EnclosedSnippetParser implements SnippetParser {
         }
     }
 
+    @Nullable
     @Override
-    public Token parse(DocumentScanner scanner) {
+    public Token parse(@NotNull DocumentScanner scanner) {
         final char firstChar = scanner.peek();
         final List<Character> closing = containers.get(firstChar);
         //if no valid container can be found, we will check if we can

@@ -7,6 +7,7 @@ package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
 public class SetCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values)  {
+    public void execute(@NotNull List<String> params, @NotNull List<String> values)  {
         if (params.size() < 1 || params.size() > 3) {
             throw new IllegalCommandArguments();
         }
@@ -39,7 +40,8 @@ public class SetCommand extends AbstractCommand {
         updateMathObject(mathObject);
     }
 
-    public double[] toDouble(List<String> list) {
+    @NotNull
+    public double[] toDouble(@NotNull List<String> list) {
         double[] doubles = new double[list.size()];
 
         for (int i = 0; i < list.size(); i++) {

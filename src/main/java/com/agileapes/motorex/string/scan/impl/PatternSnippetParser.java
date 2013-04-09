@@ -19,6 +19,8 @@ import com.agileapes.motorex.string.scan.DocumentScanner;
 import com.agileapes.motorex.string.scan.SnippetParser;
 import com.agileapes.motorex.string.token.Token;
 import com.agileapes.motorex.string.token.impl.SimpleToken;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.regex.Pattern;
 
@@ -38,8 +40,9 @@ public class PatternSnippetParser implements SnippetParser {
         this.pattern = Pattern.compile(pattern, Pattern.DOTALL);
     }
 
+    @Nullable
     @Override
-    public Token parse(DocumentScanner scanner) {
+    public Token parse(@NotNull DocumentScanner scanner) {
         if (scanner.matches(pattern)) {
             return new SimpleToken(scanner.read(pattern).length());
         }

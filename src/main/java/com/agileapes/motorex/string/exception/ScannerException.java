@@ -19,19 +19,24 @@ package com.agileapes.motorex.string.exception;
  * @author Mohammad Milad Naseri (m.m.naseri@gmail.com)
  * @since 1.0 (2012/12/7, 19:26)
  */
+@SuppressWarnings("WeakerAccess")
 public class ScannerException extends Error {
 
+    @SuppressWarnings("WeakerAccess")
     public ScannerException() {
     }
 
+    @SuppressWarnings("WeakerAccess")
     public ScannerException(String message) {
         super(message);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public ScannerException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public ScannerException(Throwable cause) {
         super(cause);
     }

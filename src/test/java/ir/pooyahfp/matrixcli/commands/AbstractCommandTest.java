@@ -7,6 +7,7 @@ package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.matrix.MatrixObject;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 
 import java.io.PrintWriter;
@@ -22,15 +23,15 @@ import java.util.List;
  */
 public abstract class AbstractCommandTest extends AbstractCommand {
 
-    protected final List<String> params = new ArrayList<String>();
-    protected final List<String> values = new ArrayList<String>();
+    private final List<String> params = new ArrayList<String>();
+    private final List<String> values = new ArrayList<String>();
 
-    public AbstractCommandTest() {
+    AbstractCommandTest() {
         fillMap();
         setWriter(new PrintWriter(System.out));
     }
 
-    protected void fillMap() {
+    void fillMap() {
         dropAll();
         params.clear();
         values.clear();
@@ -58,14 +59,14 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         );
     }
 
-    protected void executeWithOperands(String... params) throws InstantiationException, IllegalAccessException {
+    void executeWithOperands(String... params) throws InstantiationException, IllegalAccessException {
         this.params.clear();
         this.values.clear();
         Collections.addAll(this.params, params);
         execute(this.params, values);
     }
 
-    protected void executeWithOperands(String[] params, int[] values) throws InstantiationException, IllegalAccessException {
+    void executeWithOperands(String[] params, @NotNull int[] values) throws InstantiationException, IllegalAccessException {
         this.params.clear();
         this.values.clear();
         Collections.addAll(this.params, params);
@@ -75,16 +76,16 @@ public abstract class AbstractCommandTest extends AbstractCommand {
         execute(this.params, this.values);
     }
 
-    protected void executeWithOperands(String name, int[] values) throws IllegalAccessException, InstantiationException {
+    void executeWithOperands(@SuppressWarnings("SameParameterValue") String name, @NotNull int[] values) throws IllegalAccessException, InstantiationException {
 
         executeWithOperands(new String[]{name}, values);
     }
 
-    protected void executeWithOperands(String name, String i, String j, int[] values) throws IllegalAccessException, InstantiationException {
+    void executeWithOperands(@SuppressWarnings("SameParameterValue") String name, String i, String j, @NotNull int[] values) throws IllegalAccessException, InstantiationException {
         executeWithOperands(new String[]{name, i, j}, values);
     }
 
-    protected void executeAndExpectException(String... params) {
+    void executeAndExpectException(String... params) {
         this.params.clear();
         this.values.clear();
         Collections.addAll(this.params, params);
@@ -102,7 +103,7 @@ public abstract class AbstractCommandTest extends AbstractCommand {
 
     }
 
-    protected void executeAndExpectException(int[] values, String... params) {
+    void executeAndExpectException(@NotNull int[] values, @SuppressWarnings("SameParameterValue") String... params) {
         this.params.clear();
         this.values.clear();
         Collections.addAll(this.params, params);
@@ -123,7 +124,7 @@ public abstract class AbstractCommandTest extends AbstractCommand {
 
     }
 
-    private void fillValues(int[] values) {
+    private void fillValues(@NotNull int[] values) {
         for (Integer value : values) {
             this.values.add(String.valueOf(value));
         }

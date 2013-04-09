@@ -10,6 +10,8 @@ import com.agileapes.motorex.string.scan.SnippetParser;
 import com.agileapes.motorex.string.scan.impl.EnclosedSnippetParser;
 import com.agileapes.motorex.string.scan.impl.IdentifierParser;
 import com.agileapes.motorex.string.scan.impl.PositionAwareDocumentScanner;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,7 @@ public final class Tokenizer {
      * @param s input command string
      * @return a list of token
      */
+    @NotNull
     public static List<Token> createToken(String s) {
 
         List<Token> tokenArrayList = new ArrayList<Token>();
@@ -53,8 +56,9 @@ public final class Tokenizer {
 
             if (scanner.contains("[", "{")) {
                 scanner.parse(new SnippetParser() {
+                    @Nullable
                     @Override
-                    public com.agileapes.motorex.string.token.Token parse(DocumentScanner scanner) {
+                    public com.agileapes.motorex.string.token.Token parse(@NotNull DocumentScanner scanner) {
                         scanner.read(pattern);
                         String commandName = scanner.expect(Pattern.compile(IdentifierParser.IDENTIFIER_PATTERN));
                         token.setCommand(commandName);
@@ -103,8 +107,9 @@ public final class Tokenizer {
 
                 scanner.parse(new SnippetParser() {
 
+                    @Nullable
                     @Override
-                    public com.agileapes.motorex.string.token.Token parse(DocumentScanner scanner) {
+                    public com.agileapes.motorex.string.token.Token parse(@NotNull DocumentScanner scanner) {
                         scanner.read(pattern);
                         String commandName = scanner.expect(Pattern.compile(IdentifierParser.IDENTIFIER_PATTERN));
                         token.setCommand(commandName);

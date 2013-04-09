@@ -16,6 +16,7 @@
 package com.agileapes.motorex.string.scan;
 
 import com.agileapes.motorex.string.token.Token;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This interface will expose functionality to enable developers to write meaningful batches of
@@ -31,6 +32,7 @@ public interface SnippetParser {
      * @param scanner    the scanner holding the document
      * @return the token to be used by the parser or {@code null} if no such token exists
      */
+    @Nullable
     Token parse(DocumentScanner scanner);
 
 }

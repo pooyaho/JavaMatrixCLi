@@ -6,6 +6,7 @@
 package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author : Pooya husseini
@@ -14,8 +15,9 @@ import ir.pooyahfp.matrixcli.matrix.SimpleObject;
  *         Time: 2:11 PM
  */
 public class MulCommand extends AbstractBinaryOperation {
+    @NotNull
     @Override
-    public SimpleObject operation(SimpleObject a, SimpleObject b) {
+    public SimpleObject operation(@NotNull SimpleObject a, @NotNull SimpleObject b) {
         return a.mul(b);
     }
 }

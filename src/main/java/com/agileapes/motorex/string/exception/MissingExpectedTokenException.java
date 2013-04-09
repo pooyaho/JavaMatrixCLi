@@ -15,6 +15,8 @@
 
 package com.agileapes.motorex.string.exception;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.regex.Pattern;
 
 /**
@@ -34,23 +36,24 @@ public class MissingExpectedTokenException extends ScannerException {
         super(cause);
     }
 
-    public MissingExpectedTokenException(Character... tokens) {
+    public MissingExpectedTokenException(@NotNull Character... tokens) {
         this(convertChars(tokens));
     }
 
-    public MissingExpectedTokenException(char... tokens) {
+    public MissingExpectedTokenException(@NotNull char... tokens) {
         this(convertChars(convertPrimitive(tokens)));
     }
 
-    public MissingExpectedTokenException(Pattern... patterns) {
+    public MissingExpectedTokenException(@NotNull Pattern... patterns) {
         this(convertPatterns(patterns));
     }
 
-    public MissingExpectedTokenException(String... tokens) {
+    public MissingExpectedTokenException(@NotNull String... tokens) {
         super("Expected one of the tokens: " + arrayToString(tokens));
     }
 
-    private static Character[] convertPrimitive(char[] chars) {
+    @NotNull
+    private static Character[] convertPrimitive(@NotNull char[] chars) {
         final Character[] characters = new Character[chars.length];
         //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < chars.length; i++) {
@@ -59,7 +62,8 @@ public class MissingExpectedTokenException extends ScannerException {
         return characters;
     }
 
-    private static String[] convertChars(Character[] chars) {
+    @NotNull
+    private static String[] convertChars(@NotNull Character[] chars) {
         final String[] strings = new String[chars.length];
         for (int i = 0; i < chars.length; i++) {
             strings[i] = chars[i].toString();
@@ -67,7 +71,8 @@ public class MissingExpectedTokenException extends ScannerException {
         return strings;
     }
 
-    private static String[] convertPatterns(Pattern[] patterns) {
+    @NotNull
+    private static String[] convertPatterns(@NotNull Pattern[] patterns) {
         final String[] strings = new String[patterns.length];
         for (int i = 0; i < patterns.length; i++) {
             strings[i] = patterns[i].toString();
@@ -75,7 +80,8 @@ public class MissingExpectedTokenException extends ScannerException {
         return strings;
     }
 
-    private static String arrayToString(String[] strings) {
+    @NotNull
+    private static String arrayToString(@NotNull String[] strings) {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
             String string = strings[i];

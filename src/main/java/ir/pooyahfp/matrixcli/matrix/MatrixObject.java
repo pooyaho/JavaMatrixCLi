@@ -5,8 +5,15 @@
 
 package ir.pooyahfp.matrixcli.matrix;
 
-import ir.pooyahfp.matrixcli.exception.*;
+import ir.pooyahfp.matrixcli.exception.MatrixHasNotDeterminantException;
+import ir.pooyahfp.matrixcli.exception.NonDecomposableMatrixException;
+import ir.pooyahfp.matrixcli.exception.NonInvertibleMatrixException;
+import ir.pooyahfp.matrixcli.exception.NonSquareMatrixException;
+import ir.pooyahfp.matrixcli.exception.NotSupportedException;
+import ir.pooyahfp.matrixcli.exception.TypeConversionException;
 import ir.pooyahfp.matrixcli.matrix.util.ArrayUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
@@ -33,12 +40,12 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         this(height, width, "Temp");
     }
 
-    public MatrixObject(String name) {
+    public MatrixObject(@NotNull String name) {
 
         this(0, 0, name);
     }
 
-    public MatrixObject(int height, int width, String name) {
+    public MatrixObject(int height, int width, @NotNull String name) {
         if ("".equals(name.trim())) {
             throw new IllegalArgumentException("Matrices should have name!");
         }
@@ -52,7 +59,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param content 2d double array
      * @return the matrix with given data
      */
-    public MatrixObject setContent(double[][] content) {
+    @NotNull
+    public MatrixObject setContent(@NotNull double[][] content) {
 
         MatrixObject x = new MatrixObject(content.length, content[0].length, this.name);
 
@@ -63,7 +71,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     }
 
 
-    public MatrixObject setContent(Double[][] content) {
+    @NotNull
+    public MatrixObject setContent(@NotNull Double[][] content) {
 
         MatrixObject x = new MatrixObject(content.length, content[0].length, this.name);
 
@@ -79,7 +88,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      *
      * @param content 1d double array
      */
-    public MatrixObject setContent(double[] content) {
+    @NotNull
+    public MatrixObject setContent(@NotNull double[] content) {
 
         if (content.length < getHeight() * getWidth()) {
             throw new IllegalArgumentException("Input data length is not equal to matrix size");
@@ -106,8 +116,9 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param col     desired col number. it can be null
      * @param content 1d double array
      */
+    @NotNull
     @Override
-    public MatrixObject setContent(Integer row, Integer col, double[] content) {
+    public MatrixObject setContent(@Nullable Integer row, @Nullable Integer col, @NotNull double[] content) {
         MatrixObject x = this.copy();
 
         if (row == null && col != null) {
@@ -155,6 +166,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      *
      * @param width the with
      */
+    @NotNull
     public MatrixObject setWidth(int width) {
         if (width <= 0) {
             throw new IllegalArgumentException("Width should be greater than zero");
@@ -185,6 +197,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      *
      * @param height the getHeight()
      */
+    @NotNull
     public MatrixObject setHeight(int height) {
         if (height <= 0) {
             throw new IllegalArgumentException("Height should be greater than zero");
@@ -220,7 +233,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      *
      * @param val given value
      */
-    public MatrixObject setContent(double val) {
+    @NotNull
+    public MatrixObject setContent(@SuppressWarnings("SameParameterValue") double val) {
         MatrixObject x = this.copy();
 
         for (double[] doubles : x.content) {
@@ -236,6 +250,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param i   cell row
      * @param j   cell column
      */
+    @NotNull
     public MatrixObject setContent(double val, int i, int j) {
         MatrixObject x = this.copy();
         x.content[i][j] = val;
@@ -249,6 +264,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param r desired row
      * @return returns the new matrix without the row
      */
+    @NotNull
     public MatrixObject removeRow(int r) {
         MatrixObject x = new MatrixObject(getHeight() - 1, getWidth(), name);
 
@@ -261,6 +277,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param c desired column
      * @return returns the new matrix without the column
      */
+    @NotNull
     public MatrixObject removeColumn(int c) {
         MatrixObject x = new MatrixObject(getHeight(), getWidth() - 1, name);
 
@@ -280,6 +297,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param r       input row
      * @return the new array without the row
      */
+    @NotNull
     private double[][] removeRow(double[][] content, int r) {
         List<double[]> l = new ArrayList<double[]>(Arrays.asList(content));
         l.remove(r);
@@ -289,6 +307,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     /**
      * @return returns the transpose of this matrix
      */
+    @NotNull
     public MatrixObject getTranspose() {
         MatrixObject matrixObject = new MatrixObject(getWidth(), getHeight(), name);
 //        double temp[][] = new double[this.getWidth()][this.getHeight()];
@@ -305,6 +324,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     /**
      * @return returns the string representation of the matrix
      */
+    @NotNull
     @Override
     public String toString() {
 
@@ -325,6 +345,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param n input divisor
      * @return return the divided matrix
      */
+    @NotNull
     public MatrixObject divide(double n) {
         MatrixObject matrixObject = this.copy();
 
@@ -343,6 +364,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param o input matrix
      * @return the divided matrix
      */
+    @NotNull
     public MatrixObject divide(SimpleObject o) {
         MatrixObject n = cast(o);
         if (isDivisionByZero(n)) {
@@ -358,7 +380,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return matrixObject;
     }
 
-    public boolean contains(double value) {
+    public boolean contains(@SuppressWarnings("SameParameterValue") double value) {
         for (double[] aContent : content) {
             for (double c : aContent) {
                 if (value == c) {
@@ -372,6 +394,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     /**
      * @return returns the determinant of the matrix
      */
+    @NotNull
     public SimpleObject getDeterminant() {
         return new SimpleObject(determinant(this));
     }
@@ -396,7 +419,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param a input matrix
      * @return determinant of the matrix
      */
-    private double determinant(MatrixObject a) {
+    private double determinant(@NotNull MatrixObject a) {
         if (!a.hasDeterminant()) {
             throw new MatrixHasNotDeterminantException();
         }
@@ -420,6 +443,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param j input column number
      * @return the new matrix without row and column
      */
+    @NotNull
     public MatrixObject removeRowAndCol(int i, int j) {
         MatrixObject temp = this.removeRow(i);
         return temp.removeColumn(j);
@@ -428,6 +452,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     /**
      * @return returns the coFactor of the matrix
      */
+    @NotNull
     public MatrixObject coFactor() {
         MatrixObject temp = new MatrixObject(getHeight(), getWidth());
 
@@ -443,6 +468,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
     /**
      * @return returns the invert of the matrix
      */
+    @NotNull
     public MatrixObject getInvert() {
 
         if (!isInvertible()) {
@@ -482,7 +508,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param o input matrix
      * @return returns the result of addition
      */
-    public MatrixObject add(SimpleObject o) {
+    @NotNull
+    public MatrixObject add(@NotNull SimpleObject o) {
         MatrixObject b = tryCast(o);
         MatrixObject temp = new MatrixObject(getHeight(), getWidth());
         if (b != null) {
@@ -505,6 +532,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return temp;
     }
 
+    @NotNull
     public MatrixObject add(double o) {
         MatrixObject temp = copy();
 
@@ -523,7 +551,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param o input matrix
      * @return returns the result of this-b
      */
-    public MatrixObject sub(SimpleObject o) {
+    @NotNull
+    public MatrixObject sub(@NotNull SimpleObject o) {
         MatrixObject b = tryCast(o);
         MatrixObject temp = new MatrixObject(getHeight(), getWidth());
         if (b != null) {
@@ -553,7 +582,8 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param o input matrix
      * @return returns the result of this*b
      */
-    public MatrixObject mul(SimpleObject o) {
+    @NotNull
+    public MatrixObject mul(@NotNull SimpleObject o) {
         MatrixObject b = tryCast(o);
 
         if (b != null) {
@@ -593,6 +623,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
      * @param c power number
      * @return returns the result of this^c
      */
+    @NotNull
     public MatrixObject power(int c) {
         if (c <= 0) {
             throw new IllegalArgumentException("Power must be greater than zero");
@@ -606,8 +637,9 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return temp;
     }
 
+    @NotNull
     @Override
-    public SimpleObject power(SimpleObject o) {
+    public SimpleObject power(@NotNull SimpleObject o) {
         return power(o.intValue());
     }
 
@@ -716,6 +748,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         l = lTemp.copy();
     }
 
+    @NotNull
     public MatrixObject echelonForm() {
         MatrixObject matrixObject = new MatrixObject(name);
         matrixObject.content = this.content.clone();
@@ -733,6 +766,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return matrixObject;
     }
 
+    @NotNull
     public SimpleObject getRank() {
         MatrixObject x = echelonForm();
 
@@ -749,6 +783,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return new SimpleObject(x.content.length - rank);
     }
 
+    @NotNull
     public SimpleObject getTrace() {
         if (getHeight() != getWidth()) {
             throw new NonSquareMatrixException();
@@ -762,6 +797,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return new SimpleObject(sum);
     }
 
+    @NotNull
     public MatrixObject eigenValues() {
         MatrixObject y = new MatrixObject(getHeight(), 1);
         y.setContent(1);
@@ -775,6 +811,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return y;
     }
 
+    @NotNull
     public MatrixObject getIdentity() {
         if (getHeight() != getWidth()) {
             throw new NonSquareMatrixException();
@@ -789,6 +826,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return new MatrixObject("I").setContent(v);
     }
 
+    @NotNull
     public MatrixObject copy() {
         MatrixObject matrixObject = new MatrixObject(name);
         matrixObject.content = this.content.clone();
@@ -804,6 +842,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return getWidth() == b.getHeight();
     }
 
+    @NotNull
     public MatrixObject cast(SimpleObject o) {
         if (!(o instanceof MatrixObject)) {
             throw new TypeConversionException();
@@ -811,6 +850,7 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         return (MatrixObject) o;
     }
 
+    @Nullable
     public MatrixObject tryCast(SimpleObject o) {
         if (!(o instanceof MatrixObject)) {
             return null;
@@ -842,12 +882,4 @@ public class MatrixObject extends SimpleObject implements Serializable, Cloneabl
         throw new NotSupportedException(MESSAGE);
     }
 
-//    private double[][] splitArray(double[] input, int length) {
-//        double[][] temp = new double[input.length / length][length];
-//
-//        for (int i = 0; i < input.length / length; i++) {
-//            temp[i] = Arrays.copyOfRange(input, i * length, length);
-//        }
-//        return temp;
-//    }
 }

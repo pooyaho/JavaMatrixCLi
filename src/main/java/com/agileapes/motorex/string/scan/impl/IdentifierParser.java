@@ -9,6 +9,7 @@ import com.agileapes.motorex.string.scan.DocumentScanner;
 import com.agileapes.motorex.string.scan.SnippetParser;
 import com.agileapes.motorex.string.token.Token;
 import com.agileapes.motorex.string.token.impl.SimpleToken;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Mohammad Milad Naseri (m.m.naseri@gmail.com)
@@ -18,8 +19,9 @@ public class IdentifierParser implements SnippetParser {
 
     public static final String IDENTIFIER_PATTERN = "([a-zA-Z_][a-zA-Z_\\d]*)+";
 
+    @NotNull
     @Override
-    public Token parse(DocumentScanner scanner) {
+    public Token parse(@NotNull DocumentScanner scanner) {
         return new SimpleToken(scanner.read(IDENTIFIER_PATTERN).length());
     }
 

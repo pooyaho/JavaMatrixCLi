@@ -12,6 +12,8 @@ import com.agileapes.motorex.string.scan.impl.IdentifierParser;
 import com.agileapes.motorex.string.scan.impl.PositionAwareDocumentScanner;
 import com.agileapes.motorex.string.token.Token;
 import ir.pooyahfp.matrixcli.matrix.MatrixObject;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -187,10 +189,7 @@ public class MatrixTest {
         Assert.assertEquals(matrixObject.getContent()[0][0], 4L, 0);
     }
 
-    @Test
-    public void testCofactor()  {
 
-    }
 
     @Test
     public void testInvert()  {
@@ -327,11 +326,6 @@ public class MatrixTest {
     }
 
     @Test
-    public void testLu()  {
-
-    }
-
-    @Test
     public void testEchelonForm() {
         double[][] a = {
                 {2, 4, 1, 3},
@@ -355,8 +349,9 @@ public class MatrixTest {
         scanner.read("\\s*");
 
         String command = scanner.parse(new SnippetParser() {
+            @Nullable
             @Override
-            public Token parse(DocumentScanner scanner) {
+            public Token parse(@NotNull DocumentScanner scanner) {
                 int offset = scanner.read("\\s*").length();
                 String commandName = scanner.expect(Pattern.compile(IdentifierParser.IDENTIFIER_PATTERN));
                 System.out.println("commandName = " + commandName);
@@ -397,8 +392,9 @@ public class MatrixTest {
         scanner.read("\\s*");
 
         scanner.parse(new SnippetParser() {
+            @Nullable
             @Override
-            public Token parse(DocumentScanner scanner) {
+            public Token parse(@NotNull DocumentScanner scanner) {
                 scanner.read("\\s*");
                 String commandName = scanner.expect(Pattern.compile(".*;"));
                 System.out.println("commandName = " + commandName);

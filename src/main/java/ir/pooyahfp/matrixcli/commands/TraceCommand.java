@@ -6,6 +6,7 @@
 package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author : Pooya husseini
@@ -14,8 +15,9 @@ import ir.pooyahfp.matrixcli.matrix.SimpleObject;
  *         Time: 2:48 PM
  */
 public class TraceCommand extends AbstractPrintableCommand {
+    @NotNull
     @Override
-    public SimpleObject operation(SimpleObject simpleObject) {
+    public SimpleObject operation(@NotNull SimpleObject simpleObject) {
         return simpleObject.getTrace();
     }
 }

@@ -6,6 +6,7 @@
 package ir.pooyahfp.matrixcli.commands;
 
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author : Pooya husseini
@@ -15,8 +16,9 @@ import ir.pooyahfp.matrixcli.matrix.SimpleObject;
  */
 public class AddCommand extends AbstractBinaryOperation {
 
+    @NotNull
     @Override
-    public SimpleObject operation(SimpleObject a, SimpleObject b) {
+    public SimpleObject operation(@NotNull SimpleObject a, @NotNull SimpleObject b) {
         return a.add(b);
     }
 

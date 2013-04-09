@@ -8,6 +8,7 @@ package ir.pooyahfp.matrixcli.commands;
 import ir.pooyahfp.matrixcli.exception.IllegalCommandArguments;
 import ir.pooyahfp.matrixcli.matrix.MatrixObject;
 import ir.pooyahfp.matrixcli.matrix.SimpleObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
 public class MatrixCommand extends AbstractCommand {
 
     @Override
-    public void execute(List<String> params, List<String> values)  {
+    public void execute(@NotNull List<String> params, List<String> values)  {
 
         if (params.size() < 1 || params.size() > 3 || params.size() == 2) {
             throw new IllegalCommandArguments();

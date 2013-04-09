@@ -16,7 +16,7 @@ public class NonDecomposableMatrixException extends RuntimeException {
     public NonDecomposableMatrixException() {
     }
 
-    public NonDecomposableMatrixException(String message) {
+    public NonDecomposableMatrixException(@SuppressWarnings("SameParameterValue") String message) {
         super(message);
     }
 
